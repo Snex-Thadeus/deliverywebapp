@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <!-- The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <meta name="author" content=""/>
+    <!-- BEGIN: Page Title-->
+    <title>Delivery Home | Delivery Web App System </title>
+    <!-- END:  Page Title-->
+    <!-- BEGIN: Vendor CSS-->
+    <link type="text/css" rel="stylesheet"
+          href="{{ url_for('static',filename='assets/plugins/chart.js/chart.min.css') }}"/>
+    <link type="text/css" rel="stylesheet"
+          href="{{ url_for('static',filename='assets/plugins/daterangepicker/daterangepicker.css') }}"/>
+    <link type="text/css" rel="stylesheet"
+          href="{{ url_for('static',filename='assets/plugins/d3/cal-heatmap/cal-heatmap.css') }}"/>
+    <link type="text/css" rel="stylesheet"
+          href="{{ url_for('static',filename='assets/plugins/jqvmap/jquery-jvectormap-2.0.2.css') }}">
+    <!-- END: Vendor CSS-->
+    <!-- BEGIN: Custom CSS-->
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static',filename='assets/css/style.css') }}"/>
+    <!-- END: Custom CSS-->
+    <!-- BEGIN: Favicon-->
+    <link type="image/x-icon" rel="icon" href="{{ url_for('static',filename='assets/images/favicon.ico') }}">
+    <!-- END: Favicon-->
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn"t work if you view the page via file: -->
+    <!--[if lt IE 9]>
+    <script src="https:oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https:oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+</head>
+<body>
+<!--================================-->
+<!-- Page Container Start -->
+<!--================================-->
+<div class="page-container">
+    <!--================================-->
+    <!-- Page Sidebar Start -->
+    <!--================================-->
+    <div class="page-sidebar">
+        <div class="logo">
+            <a class="logo-img" href="#">
+                <img class="desktop-logo" src="{{ url_for('static',filename='assets/images/logo.png') }}" alt="">
+                <img class="small-logo" src="{{ url_for('static',filename='assets/images/small-logo.png') }}" alt="">
+            </a>
+            <a id="sidebar-toggle-button-close"><i class="wd-20 ht-20" data-feather="x"></i> </a>
+        </div>
+        <!--================================-->
+        <!-- Sidebar Menu Start -->
+        <!--================================-->
+        <div class="page-sidebar-inner">
+            <div class="page-sidebar-menu">
+                <ul class="accordion-menu">
+                    <li class="menu-label">Dashboard</li>
+                    <li class="open active">
+                        <a href="">
+                            <svg class="adata-svg-icon">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <rect x="0" y="0" width="24" height="24"/>
+                                    <path d="M13,18.9450712 L13,20 L14,20 C15.1045695,20 16,20.8954305 16,22 L8,22 C8,20.8954305 8.8954305,20 10,20 L11,20 L11,18.9448245 C9.02872877,18.7261967 7.20827378,17.866394 5.79372555,16.5182701 L4.73856106,17.6741866 C4.36621808,18.0820826 3.73370941,18.110904 3.32581341,17.7385611 C2.9179174,17.3662181 2.88909597,16.7337094 3.26143894,16.3258134 L5.04940685,14.367122 C5.46150313,13.9156769 6.17860937,13.9363085 6.56406875,14.4106998 C7.88623094,16.037907 9.86320756,17 12,17 C15.8659932,17 19,13.8659932 19,10 C19,7.73468744 17.9175842,5.65198725 16.1214335,4.34123851 C15.6753081,4.01567657 15.5775721,3.39010038 15.903134,2.94397499 C16.228696,2.49784959 16.8542722,2.4001136 17.3003976,2.72567554 C19.6071362,4.40902808 21,7.08906798 21,10 C21,14.6325537 17.4999505,18.4476269 13,18.9450712 Z"
+                                          fill="#000000" fill-rule="nonzero"/>
+                                    <circle fill="#000000" opacity="0.3" cx="12" cy="10" r="6"/>
+                                </g>
+                            </svg>
+                            <span>Manage Orders</span><i class="accordion-icon fa fa-angle-left"></i>
+                        </a>
+                        <ul class="sub-menu">
+                            <li><a href="{{ url_for("viewOrders") }}">View Orders</a></li>
+                            <li><a href="#">View Deliveries</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="">
+                            <svg class="adata-svg-icon">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <rect x="0" y="0" width="24" height="24"/>
+                                    <path d="M4,4 L20,4 C21.1045695,4 22,4.8954305 22,6 L22,18 C22,19.1045695 21.1045695,20 20,20 L4,20 C2.8954305,20 2,19.1045695 2,18 L2,6 C2,4.8954305 2.8954305,4 4,4 Z"
+                                          fill="#000000" opacity="0.3"/>
+                                    <path d="M18.5,11 L5.5,11 C4.67157288,11 4,11.6715729 4,12.5 L4,13 L8.58578644,13 C8.85100293,13 9.10535684,13.1053568 9.29289322,13.2928932 L10.2928932,14.2928932 C10.7456461,14.7456461 11.3597108,15 12,15 C12.6402892,15 13.2543539,14.7456461 13.7071068,14.2928932 L14.7071068,13.2928932 C14.8946432,13.1053568 15.1489971,13 15.4142136,13 L20,13 L20,12.5 C20,11.6715729 19.3284271,11 18.5,11 Z"
+                                          fill="#000000"/>
+                                    <path d="M5.5,6 C4.67157288,6 4,6.67157288 4,7.5 L4,8 L20,8 L20,7.5 C20,6.67157288 19.3284271,6 18.5,6 L5.5,6 Z"
+                                          fill="#000000"/>
+                                </g>
+                            </svg>
+                            <span>Manage Products</span><i class="accordion-icon fa fa-angle-left"></i>
+                        </a>
+                        <ul class="sub-menu">
+                            <li><a href="{{ url_for("viewProduct") }}">View Products</a></li>
+                            <li><a href="{{ url_for("viewProductPrices") }}">View Product Prices</a></li>
+
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="">
+                            <svg class="adata-svg-icon">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <rect x="0" y="0" width="24" height="24"/>
+                                    <path d="M9.07117914,12.5710461 L13.8326627,12.5710461 C14.108805,12.5710461 14.3326627,12.3471885 14.3326627,12.0710461 L14.3326627,0.16733734 C14.3326627,-0.108805035 14.108805,-0.33266266 13.8326627,-0.33266266 C13.6282104,-0.33266266 13.444356,-0.208187188 13.3684243,-0.0183579985 L8.6069408,11.8853508 C8.50438409,12.1417426 8.62909204,12.4327278 8.8854838,12.5352845 C8.94454394,12.5589085 9.00756943,12.5710461 9.07117914,12.5710461 Z"
+                                          fill="#000000" opacity="0.3"
+                                          transform="translate(11.451854, 6.119192) rotate(-270.000000) translate(-11.451854, -6.119192) "/>
+                                    <path d="M9.23851648,24.5 L14,24.5 C14.2761424,24.5 14.5,24.2761424 14.5,24 L14.5,12.0962912 C14.5,11.8201488 14.2761424,11.5962912 14,11.5962912 C13.7955477,11.5962912 13.6116933,11.7207667 13.5357617,11.9105959 L8.77427814,23.8143047 C8.67172143,24.0706964 8.79642938,24.3616816 9.05282114,24.4642383 C9.11188128,24.4878624 9.17490677,24.5 9.23851648,24.5 Z"
+                                          fill="#000000"
+                                          transform="translate(11.500000, 18.000000) scale(1, -1) rotate(-270.000000) translate(-11.500000, -18.000000) "/>
+                                    <rect fill="#000000" opacity="0.3"
+                                          transform="translate(12.000000, 12.000000) rotate(-270.000000) translate(-12.000000, -12.000000) "
+                                          x="11" y="2" width="2" height="20" rx="1"/>
+                                </g>
+                            </svg>
+                            <span>Manage Customers</span><i class="accordion-icon fa fa-angle-left"></i>
+                        </a>
+                        <ul class="sub-menu">
+                            <li><a href="{{ url_for("viewCustomersDetails") }}">View Customers</a></li>
+                            <li><a href="{{ url_for("viewAreas") }}">View Areas</a></li>
+
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="">
+                            <svg class="adata-svg-icon">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <rect x="0" y="0" width="24" height="24"/>
+                                    <rect fill="#000000" opacity="0.3" x="4" y="4" width="4" height="4" rx="1"/>
+                                    <path d="M5,10 L7,10 C7.55228475,10 8,10.4477153 8,11 L8,13 C8,13.5522847 7.55228475,14 7,14 L5,14 C4.44771525,14 4,13.5522847 4,13 L4,11 C4,10.4477153 4.44771525,10 5,10 Z M11,4 L13,4 C13.5522847,4 14,4.44771525 14,5 L14,7 C14,7.55228475 13.5522847,8 13,8 L11,8 C10.4477153,8 10,7.55228475 10,7 L10,5 C10,4.44771525 10.4477153,4 11,4 Z M11,10 L13,10 C13.5522847,10 14,10.4477153 14,11 L14,13 C14,13.5522847 13.5522847,14 13,14 L11,14 C10.4477153,14 10,13.5522847 10,13 L10,11 C10,10.4477153 10.4477153,10 11,10 Z M17,4 L19,4 C19.5522847,4 20,4.44771525 20,5 L20,7 C20,7.55228475 19.5522847,8 19,8 L17,8 C16.4477153,8 16,7.55228475 16,7 L16,5 C16,4.44771525 16.4477153,4 17,4 Z M17,10 L19,10 C19.5522847,10 20,10.4477153 20,11 L20,13 C20,13.5522847 19.5522847,14 19,14 L17,14 C16.4477153,14 16,13.5522847 16,13 L16,11 C16,10.4477153 16.4477153,10 17,10 Z M5,16 L7,16 C7.55228475,16 8,16.4477153 8,17 L8,19 C8,19.5522847 7.55228475,20 7,20 L5,20 C4.44771525,20 4,19.5522847 4,19 L4,17 C4,16.4477153 4.44771525,16 5,16 Z M11,16 L13,16 C13.5522847,16 14,16.4477153 14,17 L14,19 C14,19.5522847 13.5522847,20 13,20 L11,20 C10.4477153,20 10,19.5522847 10,19 L10,17 C10,16.4477153 10.4477153,16 11,16 Z M17,16 L19,16 C19.5522847,16 20,16.4477153 20,17 L20,19 C20,19.5522847 19.5522847,20 19,20 L17,20 C16.4477153,20 16,19.5522847 16,19 L16,17 C16,16.4477153 16.4477153,16 17,16 Z"
+                                          fill="#000000"/>
+                                </g>
+                            </svg>
+                            <span>Manage Inventory</span><i class="accordion-icon fa fa-angle-left"></i>
+                        </a>
+                        <ul class="sub-menu">
+                            <li><a href="{{ url_for("viewRawMaterialItems") }}">View Raw Material Items</a></li>
+                            <li><a href="{{ url_for("viewUnitofMeasure") }}">View Units of Measure</a></li>
+                            <li><a href="#">View Item UoM</a></li>
+                            <li><a href="#">View Conversion Factors</a></li>
+                            <li><a href="#">View Production Activities</a></li>
+                            <li><a href="#">View Quantity Balances</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="">
+                            <svg class="adata-svg-icon">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <rect x="0" y="0" width="24" height="24"/>
+                                    <path d="M2.56066017,10.6819805 L4.68198052,8.56066017 C5.26776695,7.97487373 6.21751442,7.97487373 6.80330086,8.56066017 L8.9246212,10.6819805 C9.51040764,11.267767 9.51040764,12.2175144 8.9246212,12.8033009 L6.80330086,14.9246212 C6.21751442,15.5104076 5.26776695,15.5104076 4.68198052,14.9246212 L2.56066017,12.8033009 C1.97487373,12.2175144 1.97487373,11.267767 2.56066017,10.6819805 Z M14.5606602,10.6819805 L16.6819805,8.56066017 C17.267767,7.97487373 18.2175144,7.97487373 18.8033009,8.56066017 L20.9246212,10.6819805 C21.5104076,11.267767 21.5104076,12.2175144 20.9246212,12.8033009 L18.8033009,14.9246212 C18.2175144,15.5104076 17.267767,15.5104076 16.6819805,14.9246212 L14.5606602,12.8033009 C13.9748737,12.2175144 13.9748737,11.267767 14.5606602,10.6819805 Z"
+                                          fill="#000000" opacity="0.3"/>
+                                    <path d="M8.56066017,16.6819805 L10.6819805,14.5606602 C11.267767,13.9748737 12.2175144,13.9748737 12.8033009,14.5606602 L14.9246212,16.6819805 C15.5104076,17.267767 15.5104076,18.2175144 14.9246212,18.8033009 L12.8033009,20.9246212 C12.2175144,21.5104076 11.267767,21.5104076 10.6819805,20.9246212 L8.56066017,18.8033009 C7.97487373,18.2175144 7.97487373,17.267767 8.56066017,16.6819805 Z M8.56066017,4.68198052 L10.6819805,2.56066017 C11.267767,1.97487373 12.2175144,1.97487373 12.8033009,2.56066017 L14.9246212,4.68198052 C15.5104076,5.26776695 15.5104076,6.21751442 14.9246212,6.80330086 L12.8033009,8.9246212 C12.2175144,9.51040764 11.267767,9.51040764 10.6819805,8.9246212 L8.56066017,6.80330086 C7.97487373,6.21751442 7.97487373,5.26776695 8.56066017,4.68198052 Z"
+                                          fill="#000000"/>
+                                </g>
+                            </svg>
+                            <span>Manage Expenses/Purchases</span><i class="accordion-icon fa fa-angle-left"></i>
+                        </a>
+                        <ul class="sub-menu">
+                            <li><a href="{{ url_for("viewExpenseCategory") }}">View Expense Category</a></li>
+                            <li><a href="{{ url_for("viewPettyCash") }}">View Petty Cash</a></li>
+                            <li><a href="{{ url_for("viewSupplies") }}">View Suppliers</a></li>
+                            <li><a href="{{ url_for("viewBills") }}">View Bills</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="">
+                            <svg class="adata-svg-icon">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <rect x="0" y="0" width="24" height="24"></rect>
+                                    <path d="M16.0576695,5.11553395 L18.1789899,7.23685429 L15.7041161,11.8330484 L20.3003102,9.35817464 L22.0680772,11.1259416 C22.2633393,11.3212037 22.2633393,11.6377862 22.0680772,11.8330484 L16.7647763,17.1363492 L6.86528137,7.23685429 L12.1685822,1.93355343 C12.3638444,1.73829129 12.6804269,1.73829129 12.875689,1.93355343 L14.643456,3.70132039 L13.9363492,5.82264073 L16.0576695,5.11553395 Z"
+                                          fill="#000000" opacity="0.3"></path>
+                                    <path d="M10.1599151,16.1883423 L6.86835729,20.8905356 C6.23492536,21.7954322 4.98786373,22.0154978 4.08296718,21.3820658 C3.98751044,21.3152457 3.8980757,21.2402114 3.81568357,21.1578192 L2.85771147,20.1998471 C2.07666289,19.4187986 2.07666289,18.1524686 2.85771147,17.37142 C2.94393183,17.2851997 3.0378564,17.2070448 3.13831183,17.1379318 L7.86059197,13.8890191 L4.74396103,10.7723882 C4.35343673,10.3818639 4.35343673,9.74869893 4.74396103,9.35817464 L6.15817459,7.94396107 L16.0576695,17.843456 L14.643456,19.2576696 C14.2529317,19.6481939 13.6197667,19.6481939 13.2292424,19.2576696 L10.1599151,16.1883423 Z M4.74396103,19.2576696 C5.13448532,19.6481939 5.7676503,19.6481939 6.15817459,19.2576696 C6.54869888,18.8671453 6.54869888,18.2339803 6.15817459,17.843456 C5.7676503,17.4529317 5.13448532,17.4529317 4.74396103,17.843456 C4.35343673,18.2339803 4.35343673,18.8671453 4.74396103,19.2576696 Z"
+                                          fill="#000000"></path>
+                                </g>
+                            </svg>
+                            <span>User Admin</span><i class="accordion-icon fa fa-angle-left"></i>
+                        </a>
+                        <ul class="sub-menu" style="display: block;">
+                            <!-- Active Page -->
+                            <li class="active"><a href="{{ url_for('defineAccountInfo') }}">Account Info</a></li>
+
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="">
+                            <svg class="adata-svg-icon">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <polygon points="0 0 24 0 24 24 0 24"/>
+                                    <path d="M18.5,8 C17.1192881,8 16,6.88071187 16,5.5 C16,4.11928813 17.1192881,3 18.5,3 C19.8807119,3 21,4.11928813 21,5.5 C21,6.88071187 19.8807119,8 18.5,8 Z M18.5,21 C17.1192881,21 16,19.8807119 16,18.5 C16,17.1192881 17.1192881,16 18.5,16 C19.8807119,16 21,17.1192881 21,18.5 C21,19.8807119 19.8807119,21 18.5,21 Z M5.5,21 C4.11928813,21 3,19.8807119 3,18.5 C3,17.1192881 4.11928813,16 5.5,16 C6.88071187,16 8,17.1192881 8,18.5 C8,19.8807119 6.88071187,21 5.5,21 Z"
+                                          fill="#000000" opacity="0.3"/>
+                                    <path d="M5.5,8 C4.11928813,8 3,6.88071187 3,5.5 C3,4.11928813 4.11928813,3 5.5,3 C6.88071187,3 8,4.11928813 8,5.5 C8,6.88071187 6.88071187,8 5.5,8 Z M11,4 L13,4 C13.5522847,4 14,4.44771525 14,5 C14,5.55228475 13.5522847,6 13,6 L11,6 C10.4477153,6 10,5.55228475 10,5 C10,4.44771525 10.4477153,4 11,4 Z M11,18 L13,18 C13.5522847,18 14,18.4477153 14,19 C14,19.5522847 13.5522847,20 13,20 L11,20 C10.4477153,20 10,19.5522847 10,19 C10,18.4477153 10.4477153,18 11,18 Z M5,10 C5.55228475,10 6,10.4477153 6,11 L6,13 C6,13.5522847 5.55228475,14 5,14 C4.44771525,14 4,13.5522847 4,13 L4,11 C4,10.4477153 4.44771525,10 5,10 Z M19,10 C19.5522847,10 20,10.4477153 20,11 L20,13 C20,13.5522847 19.5522847,14 19,14 C18.4477153,14 18,13.5522847 18,13 L18,11 C18,10.4477153 18.4477153,10 19,10 Z"
+                                          fill="#000000"/>
+                                </g>
+                            </svg>
+                            <span>Reporting</span><i class="accordion-icon fa fa-angle-left"></i>
+                        </a>
+                        <ul class="sub-menu">
+                            <li><a href="form/form-element.html">Report 1</a></li>
+                            <li><a href="form/form-formatter.html">Report 2</a></li>
+
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--/ Sidebar Menu End -->
+    </div>
+    <!--/ Page Sidebar End -->
+    <!--================================-->
+    <!-- Page Content Start -->
+    <!--================================-->
+    {% block content %}{% endblock content %}
+    <!--/ Page Container End -->
+    <!--================================-->
+</div>
+<!-- BEGIN: Theme Customizer-->
+<div class="settingSidebar">
+    <a href="javascript:void(0)" class="settingPanelToggle tooltip-primary" data-toggle="tooltip" data-trigger="hover"
+       data-placement="left" title="" data-original-title="Theme Customizer">
+        <i class="fa fa-cog fa-spin tx-20"></i>
+    </a>
+    <div class="settingSidebar-body ps-container ps-theme-default">
+        <div class="fade show active">
+            <div class="pd-15 bg-gray-100 bd-b">
+                <span class="tx-13 tx-spacing-1 tx-medium d-block">Template Customizer</span>
+                <span class="tx-8 tx-uppercase mg-t-5 tx-spacing-2 d-block ">Customize & Real Time Preview</span>
+            </div>
+            <div class="pd-15 bd-b">
+                <h6 class="tx-13 mg-b-10">Theme Color</h6>
+                <div class="theme-setting-options">
+                    <ul class="theme-color list-unstyled mb-0">
+                        <li title="default" class="">
+                            <div class="default"></div>
+                        </li>
+                        <li title="cyan">
+                            <div class="cyan"></div>
+                        </li>
+                        <li title="blue">
+                            <div class="blue"></div>
+                        </li>
+                        <li title="purple">
+                            <div class="purple"></div>
+                        </li>
+                        <li title="orange">
+                            <div class="orange"></div>
+                        </li>
+                        <li title="green">
+                            <div class="green"></div>
+                        </li>
+                        <li title="red">
+                            <div class="red"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pd-15 bd-b">
+                <h6 class="tx-13 mg-b-10">Sidebar Color</h6>
+                <div class="theme-setting-options">
+                    <ul class="sidebar-color list-unstyled mb-0">
+                        <li title="default" class="">
+                            <div class="default"></div>
+                        </li>
+                        <li title="cyan">
+                            <div class="cyan"></div>
+                        </li>
+                        <li title="blue">
+                            <div class="blue"></div>
+                        </li>
+                        <li title="purple">
+                            <div class="purple"></div>
+                        </li>
+                        <li title="orange">
+                            <div class="orange"></div>
+                        </li>
+                        <li title="green">
+                            <div class="green"></div>
+                        </li>
+                        <li title="red">
+                            <div class="red"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pd-15 bd-b">
+                <h6 class="tx-13 mg-b-10">Header Top Color</h6>
+                <div class="theme-setting-options">
+                    <ul class="header-top-color list-unstyled mb-0">
+                        <li title="default" class="">
+                            <div class="default"></div>
+                        </li>
+                        <li title="cyan">
+                            <div class="cyan"></div>
+                        </li>
+                        <li title="blue">
+                            <div class="blue"></div>
+                        </li>
+                        <li title="purple">
+                            <div class="purple"></div>
+                        </li>
+                        <li title="orange">
+                            <div class="orange"></div>
+                        </li>
+                        <li title="green">
+                            <div class="green"></div>
+                        </li>
+                        <li title="red">
+                            <div class="red"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pd-15 bd-b">
+                <h6 class="tx-13 mg-b-10">Header Bottom Color</h6>
+                <div class="theme-setting-options">
+                    <ul class="header-bottom-color list-unstyled mb-0">
+                        <li title="default" class="">
+                            <div class="default"></div>
+                        </li>
+                        <li title="cyan">
+                            <div class="cyan"></div>
+                        </li>
+                        <li title="blue">
+                            <div class="blue"></div>
+                        </li>
+                        <li title="purple">
+                            <div class="purple"></div>
+                        </li>
+                        <li title="orange">
+                            <div class="orange"></div>
+                        </li>
+                        <li title="green">
+                            <div class="green"></div>
+                        </li>
+                        <li title="red">
+                            <div class="red"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pd-15 bd-b">
+                <h6 class="tx-13 mg-b-10">Footer Color</h6>
+                <div class="theme-setting-options">
+                    <ul class="footer-color list-unstyled mb-0">
+                        <li title="default" class="">
+                            <div class="default"></div>
+                        </li>
+                        <li title="cyan">
+                            <div class="cyan"></div>
+                        </li>
+                        <li title="blue">
+                            <div class="blue"></div>
+                        </li>
+                        <li title="purple">
+                            <div class="purple"></div>
+                        </li>
+                        <li title="orange">
+                            <div class="orange"></div>
+                        </li>
+                        <li title="green">
+                            <div class="green"></div>
+                        </li>
+                        <li title="red">
+                            <div class="red"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pd-15 bd-b">
+                <div class="theme-setting-options">
+                    <div class="setting-list">
+                        <h6 class="setting-list-name tx-13">Fixed Header</h6>
+                        <div class="setting-list-switch">
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="fixed_header_setting">
+                                <label class="custom-control-label" for="fixed_header_setting"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pd-15 bd-b">
+                <div class="theme-setting-options">
+                    <div class="setting-list">
+                        <h6 class="setting-list-name tx-13">Fixed Footer</h6>
+                        <div class="setting-list-switch">
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="fixed_footer_setting">
+                                <label class="custom-control-label" for="fixed_footer_setting"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pd-15 bd-b">
+                <div class="theme-setting-options">
+                    <div class="setting-list">
+                        <h6 class="setting-list-name tx-13">Collapse Sidebar</h6>
+                        <div class="setting-list-switch">
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="collapsed_sidebar_setting">
+                                <label class="custom-control-label" for="collapsed_sidebar_setting"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pd-15 bd-b">
+                <div class="theme-setting-options">
+                    <div class="setting-list">
+                        <h6 class="setting-list-name tx-13">Boxed Style</h6>
+                        <div class="setting-list-switch">
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="box_style_setting">
+                                <label class="custom-control-label" for="box_style_setting"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pd-15 bd-b">
+                <div class="theme-setting-options">
+                    <div class="setting-list">
+                        <h6 class="setting-list-name tx-13">Theme Shadow</h6>
+                        <div class="setting-list-switch">
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="box_shadow_setting">
+                                <label class="custom-control-label" for="box_shadow_setting"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pd-15 bd-b">
+                <h6 class="tx-13 mg-b-10">Sidebar Switch</h6>
+                <div class="selectgroup theme-switch">
+                    <label class="selectgroup-item">
+                        <input type="radio" name="theme-switch" value="semi-dark-theme"
+                               class="selectgroup-input-radio select-theme">
+                        <span class="selectgroup-button waves-effect tooltip-primary" data-toggle="tooltip"
+                              data-original-title="Dark Sidebar"><i data-feather="sidebar" class="wd-16 ht-16 mr-2"></i>Semi</span>
+                    </label>
+                    <label class="selectgroup-item">
+                        <input type="radio" name="theme-switch" value="gradient-theme"
+                               class="selectgroup-input-radio select-theme">
+                        <span class="selectgroup-button waves-effect tooltip-primary" data-toggle="tooltip"
+                              data-original-title="Gradient Sidebar"><i data-feather="disc"
+                                                                        class="wd-16 ht-16 mr-2"></i>Gradient</span>
+                    </label>
+                </div>
+            </div>
+            <div class="pd-15 bd-b">
+                <h6 class="tx-13 mg-b-10">Theme Switch</h6>
+                <div class="selectgroup theme-switch">
+                    <label class="selectgroup-item">
+                        <input type="radio" name="theme-switch" value="light"
+                               class="selectgroup-input-radio select-theme" checked>
+                        <span class="selectgroup-button waves-effect tooltip-primary" data-toggle="tooltip"
+                              data-original-title="Light Theme"><i data-feather="sun" class="wd-16 ht-16 mr-2"></i>Light</span>
+                    </label>
+                    <label class="selectgroup-item">
+                        <input type="radio" name="theme-switch" value="dark"
+                               class="selectgroup-input-radio select-theme">
+                        <span class="selectgroup-button waves-effect tooltip-primary" data-toggle="tooltip"
+                              data-original-title="Dark Theme"><i data-feather="moon" class="wd-16 ht-16 mr-2"></i>Dark</span>
+                    </label>
+                </div>
+            </div>
+            <div class="pd-x-15 pd-t-25">
+                <a href="javascript:void(0)"
+                   class="btn btn-lg btn-primary d-block waves-effect waves-light btn-restore-theme">Restore Default</a>
+            </div>
+            <div class="pd-x-15 pd-t-25 pd-b-50">
+                <a href="https://themeforest.net/user/colorlibcode/portfolio" target="_blank"
+                   class="btn btn-lg btn-success d-block waves-effect">Download Now</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End: Theme Customizer-->
+<!--================================-->
+<!-- Footer Script -->
+<!--================================-->
+<!--================================-->
+<!-- BEGIN: Global JS -->
+<script src="{{ url_for('static',filename='assets/js/plugin-bundle.js') }}"></script>
+<script src="{{ url_for('static',filename='assets/js/app.js') }}"></script>
+<script src="{{ url_for('static',filename='assets/js/adata-init.js') }}"></script>
+<!-- END: Global JS-->
+<!-- BEGIN: Vendor JS -->
+<script src="{{ url_for('static',filename='assets/plugins/chart.js/chart.min.js') }}"></script>
+<script src="{{ url_for('static',filename='assets/plugins/daterangepicker/daterangepicker.js') }}"></script>
+<script src="{{ url_for('static',filename='assets/plugins/d3/d3.min.js') }}"></script>
+<script src="{{ url_for('static',filename='assets/plugins/d3/cal-heatmap/cal-heatmap.min.js') }}"></script>
+<script src="{{ url_for('static',filename='assets/plugins/flot/jquery.flot.js') }}"></script>
+<script src="{{ url_for('static',filename='assets/plugins/flot/jquery.flot.pie.js') }}"></script>
+<script src="{{ url_for('static',filename='assets/plugins/flot/jquery.flot.resize.js') }}"></script>
+<script src="{{ url_for('static',filename='assets/plugins/flot/sampledata.js') }}"></script>
+<script src="{{ url_for('static',filename='assets/plugins/jqvmap/jquery-jvectormap-2.0.2.min.js') }}"></script>
+<script src="{{ url_for('static',filename='assets/plugins/jqvmap/gdp-data.js') }}"></script>
+<script src="{{ url_for('static',filename='assets/plugins/jqvmap/maps/jquery-jvectormap-world-mill-en.js') }}"></script>
+<!-- END: Vendor JS-->
+<!-- BEGIN: Init JS -->
+<script src="{{ url_for('static',filename='assets/lib/dashboard/analytic/dashboard-home-init.js') }}"></script>
+<!-- END: Init JS-->
+
+<!--page-settings-->
+
+<!-- BEGIN: Vendor JS -->
+<script src="{{ url_for('static',filename='assets/plugins/cleavejs/cleave.min.js') }}"></script>
+<!-- END: Vendor JS-->
+
+<!--table-datatable-->
+<!-- BEGIN: Vendor JS-->
+<script src="{{ url_for('static',filename='assets/plugins/dataTable/datatables.min.js') }}"></script>
+<script src="{{ url_for('static',filename='assets/plugins/dataTable/responsive/dataTables.responsive.js') }}"></script>
+<script src="{{ url_for('static',filename='assets/plugins/dataTable/extensions/dataTables.jqueryui.min.js') }}"></script>
+<!-- END: Vendor JS-->
+<!-- BEGIN: Init JS-->
+<!-- END: Init JS-->
+
+<!--FORM FORMATTING-->
+<!-- BEGIN: Vendor JS-->
+<script src="{{ url_for('static',filename='assets/plugins/formatter/jquery.formatter.min.js') }}"></script>
+<!-- END: Vendor JS-->
+<!-- BEGIN: Init JS-->
+<script src="{{ url_for('static', filename='delivery_app_scripts/master_layout_scripts.js') }}"></script>
+<!-- END: Init JS-->
+
+{% block imports %}
+
+{% endblock %}
+</div>
+</body>
+</html>
