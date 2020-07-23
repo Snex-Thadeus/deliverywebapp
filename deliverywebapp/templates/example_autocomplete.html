@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <head>
+        <meta charset="utf-8">
+        <script src="../../assets/plugins/parsleyjs/parsley.js"></script>
+        <!-- END: Vendor JS-->
+        <!-- BEGIN: Init JS -->
+        <script>
+            $(function () {
+                'use strict';
+                $('#selectForm').parsley();
+                $('#selectForm2').parsley();
+            });
+        </script>
+    </head>
+<body>
+<div class="ui-widget">
+    <form action="" id="selectForm">
+        <div class="d-md-flex">
+            <div id="slWrapper" class="parsley-select wd-250">
+                <select class="form-control select2" data-placeholder="Choose one"
+                        data-parsley-class-handler="#slWrapper" data-parsley-errors-container="#slErrorContainer"
+                        required>
+                    <option label="Choose one"></option>
+                    <option value="Firefox">Firefox</option>
+                    <option value="Chrome">Chrome</option>
+                    <option value="Safari">Safari</option>
+                    <option value="Opera">Opera</option>
+                    <option value="Internet Explorer">Internet Explorer</option>
+                </select>
+                <div id="slErrorContainer"></div>
+            </div>
+            <div class="mg-md-l-10 mg-t-10 mg-md-t-0">
+                <button type="submit" class="btn btn-primary waves-effect" value="5">Validate Form</button>
+            </div>
+        </div>
+        <!-- d-flex -->
+    </form>
+</div>
+
+</body>
+</html>
