@@ -10,7 +10,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a50b9782-7b46-4ebe-9606-45fe2328b225" name="Default Changelist" comment="" />
+    <list default="true" id="a50b9782-7b46-4ebe-9606-45fe2328b225" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deliverywebapp/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/deliverywebapp/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deliverywebapp/models/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/deliverywebapp/models/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deliverywebapp/models/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/deliverywebapp/models/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deliverywebapp/routes/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/deliverywebapp/routes/routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/login.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,7 +35,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1ejKRfL9G0zm7bHX85bFdHxM49W" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -41,7 +50,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.editor.code.editing" />
   </component>
   <component name="RunManager" selected="Flask server.Flask (app.py)">
     <configuration name="deliverywebapp" type="PythonConfigurationType" factoryName="Python">
@@ -104,7 +113,8 @@
       <workItem from="1594993756779" duration="3366000" />
       <workItem from="1595077734718" duration="8961000" />
       <workItem from="1595136248321" duration="72008000" />
-      <workItem from="1595384904232" duration="957000" />
+      <workItem from="1595384904232" duration="11797000" />
+      <workItem from="1595597566593" duration="3379000" />
     </task>
     <servers />
   </component>
@@ -121,6 +131,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="184" y="112" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1594994222607">
@@ -207,10 +218,10 @@
     <state width="1878" height="362" key="GridCell.Tab.1.right/0.23.1440.877/1440.0.1920.1080@1440.0.1920.1080" timestamp="1595326238850" />
     <state width="1878" height="362" key="GridCell.Tab.1.right/0.23.1440.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1595323414209" />
     <state width="1398" height="292" key="GridCell.Tab.1.right/0.23.1440.877@0.23.1440.877" timestamp="1595337803171" />
-    <state x="229" y="89" key="SettingsEditor" timestamp="1594992247181">
+    <state x="229" y="89" key="SettingsEditor" timestamp="1595583314655">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="229" y="89" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1594992247181" />
+    <state x="229" y="89" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1595583314655" />
     <state x="271" y="186" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1594990792496">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -227,10 +238,15 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="427" y="176" width="586" height="548" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1595162774360" />
-    <state x="2065" y="241" width="670" height="676" key="search.everywhere.popup" timestamp="1595259472250">
-      <screen x="1440" y="0" width="1920" height="1080" />
+    <state x="493" y="333" width="564" height="255" key="org.intellij.images.editor.actions.BackgroundImageDialog" timestamp="1595576039927">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="493" y="333" width="564" height="255" key="org.intellij.images.editor.actions.BackgroundImageDialog/0.0.1440.900@0.0.1440.900" timestamp="1595576039927" />
+    <state x="469" y="201" width="670" height="564" key="search.everywhere.popup" timestamp="1595516232617">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="2065" y="241" width="670" height="676" key="search.everywhere.popup/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1595259472250" />
+    <state x="469" y="201" width="670" height="564" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1595516232617" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

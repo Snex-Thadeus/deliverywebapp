@@ -5,9 +5,9 @@ from datetime import datetime
 import secrets
 
 
-# @login_manager.user_loader
-# def load_user(user_id):
-#     return User.query.get(int(user_id))
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 
 # it will add certain fileds to the user class tha are essential to the user login

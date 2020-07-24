@@ -1,5 +1,6 @@
 from datetime import datetime
-
+from flask_login import UserMixin
+from deliverywebapp import login_manager
 from deliverywebapp import db, ma
 
 
@@ -22,7 +23,12 @@ class OrganizationTb(db.Model):
         self.PostalAddress = PostalAddress
 
 
-class UserAccountTb(db.Model):
+@login_manager.user_loader
+def load_user(user_id):
+    return UserAccountTb.query.get(int(user_id))
+
+
+class UserAccountTb(db.Model,UserMixin):
     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
     Name = db.Column(db.String(50), nullable=False)
     UserName = db.Column(db.String(50), nullable=False)
@@ -268,3 +274,113 @@ class BillTb(db.Model):
 
     def __init__(self, Name):
         self.Name = Name
+
+
+# v8
+# class ItemIomTb(db.Model):
+#     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
+#     MaterialItemsTbID = db.Column(db.Integer, db.ForeignKey("material_items_tb.ID"), nullable=False)
+#     UnitOfMeasureTbID = db.Column(db.Integer, db.ForeignKey("unit_of_measure_tb.ID"), nullable=False)
+#
+#     def __repr__(self):
+#         pass
+#
+#     def __init__(self, MaterialItemsTbID, UnitOfMeasureTbID):
+#         self.MaterialItemsTbID = MaterialItemsTbID
+#         self.UnitOfMeasureTbID = UnitOfMeasureTbID
+#
+#
+# class ConversionFactorTb(db.Model):
+#     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
+#     MaterialItemsTbID = db.Column(db.Integer, db.ForeignKey("material_items_tb.ID"), nullable=False)
+#     ItemIomTbID = db.Column(db.Integer, db.ForeignKey("item_iom_tb_id.ID"), nullable=False)
+#     MeasurementDescription = db.Column(db.String(50), nullable=False)
+#     DescribeQuantity = db.Column(db.Integer, nullable=False)
+#
+#     def __repr__(self):
+#         pass
+#
+#     def __init__(self, MaterialItemsTbID, ItemIomTbID, MeasurementDescription, DescribeQuantity):
+#         self.MaterialItemsTbID = MaterialItemsTbID
+#         self.ItemIomTbID = ItemIomTbID
+#         self.MeasurementDescription = MeasurementDescription
+#         self.DescribeQuantity = DescribeQuantity
+#
+#
+# class ProductionActivitiesTb(db.Model):
+#     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
+#     Activity = db.Column(db.String(50), nullable=False)
+#
+#     def __init__(self, Activity):
+#         self.Activity = Activity
+#
+#
+# class UpdateMaterialQuantitiesTb(db.Model):
+#     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
+#     ItemIomTbID = db.Column(db.Integer, db.ForeignKey("item_iom_tb_id.ID"), nullable=False)
+#     ReceivedDate = db.Column(db.String(20), nullable=False)
+#     Quantity = db.Column(db.Integer, nullable=False)
+#
+#     def __init__(self, ItemIomTbID, ReceivedDate, Quantity):
+#         self.ItemIomTbID = ItemIomTbID
+#         self.ReceivedDate = ReceivedDate
+#         self.Quantity = Quantity
+#
+#
+# class ViewQuantityBalancesTb(db.Model):
+#     ID = db.Column(db.Integer)
+#
+#
+# class UpdateDailyProductionTb(db.Model):
+#     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
+#     DefineProductionActivitiesTbID = db.Column(db.Integer, db.ForeignKey("item_iom_tb_id.ID"), nullable=False)
+#     ConversionFactorTbID = db.Column(db.Integer, db.ForeignKey("item_iom_tb_id.ID"), nullable=False)
+#     Quantity = db.Column(db.Integer, nullable=False)
+#     QuantityUsed = db.Column(db.Float,
+#                              nullable=False)  # Populate the Quantity used = Quantity above * Conversion Factor Quantity
+#     EntryDate = db.Column(db.Date, nullable=False, default=datetime.now())
+#
+#     def __init__(self, DefineProductionActivitiesTbID, ConversionFactorTbID, Quantity, QuantityUsed):
+#         self.DefineProductionActivitiesTbID = DefineProductionActivitiesTbID
+#         self.ConversionFactorTbID = ConversionFactorTbID
+#         self.Quantity = Quantity
+#         self.QuantityUsed = QuantityUsed
+#
+#
+# # class DailyProductionTb(db.Model):
+# #     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
+# #     Activity = db.Column(db.String(50), nullable=False)
+# #     Measure = db.Column()
+#
+# class PackagingMaterialsTb(db.Model):
+#     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
+#     Description = db.Column(db.String(50), nullable=False)
+#
+#     def __init__(self, Description):
+#         self.Description = Description
+#
+#
+# class UpdatePackingMaterialsTb(db.Model):
+#     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
+#     PackagingMaterialsTbID = db.Column(db.Integer, db.ForeignKey("item_iom_tb_id.ID"), nullable=False)
+#     Number = db.Column(db.Integer, nullable=False)
+#     EntryDate = db.Column(db.Integer, nullable=False)
+#
+#     def __init__(self, PackagingMaterialsTbID, Number, EntryDate):
+#         self.PackagingMaterialsTbID = PackagingMaterialsTbID
+#         self.Number = Number
+#         self.EntryDate = EntryDate
+#
+#
+# class UpdateFinishedGoodsTb(db.Model):
+#     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
+#     ProductTbID = db.Column(db.Integer, db.ForeignKey(""), nullable=False)
+#     PackagingMaterialsTbID = db.Column(db.Integer, db.ForeignKey(""), nullable=False)
+#     QuantityUsed = db.Column(db.String(50), nullable=False)
+#     EntryDate = db.Column(db.Date, default=datetime.now(), nullable=False)
+#
+# # class ViewFinishedGoodsBalancesTb(db.Model):
+# #     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
+#
+# # class ViewPackingMaterialBalancesTb(db.Model):
+# #
