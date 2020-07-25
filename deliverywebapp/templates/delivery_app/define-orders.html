@@ -61,17 +61,17 @@
             deliveryMethod.onchange = function () {
                 var deliveryMethodValue = deliveryMethod.value;
                 var categoryValue = category.value;
-                console.log(deliveryMethodValue)
+                //console.log(deliveryMethodValue)
                 fetch('/product_prices/' + deliveryMethodValue + " " + categoryValue).then(function (response) {
                     response.json().then(function (data) {
-                        console.log(data)
+                       // console.log(data)
                         let optionHTML = '<option value="' + -1 + '">Choose Product</option>';
 
                         $.each(data, function (index, value) {
                             optionHTML += '<option value="' + value.Price + '">' + value.Description + '</option>';
                         });
 
-                        console.log(optionHTML)
+                        //console.log(optionHTML)
 
                         product.innerHTML = optionHTML;
                     });

@@ -116,3 +116,19 @@ class DefineSupplierForm(FlaskForm):
 class DefineBillsForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
     submit = SubmitField('Submit')
+
+
+class DefineItemUom(FlaskForm):
+    chooseRawMaterail = SelectField('Choose raw material', validators=[DataRequired()])
+    chooseUnitOfMeasure = SelectField("Choose unit of measure", validators=[DataRequired()])
+    submit = SubmitField("Submit")
+
+class DefineConversionFactors(FlaskForm):
+    chooseRawMaterail = SelectField('Choose raw material', validators=[DataRequired()])
+    chooseItemUom = SelectField("Choose item UOM", validators=[DataRequired()])
+    measurementDescription = SelectField('Measurement Desscription', validators=[DataRequired()])
+    quantity = SelectField('Quantity', validators=[DataRequired()])
+
+class DefineProductionActivities(FlaskForm):
+    activity = SelectField('Activity', validators=[DataRequired()])
+

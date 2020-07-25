@@ -21,8 +21,8 @@ def sarchViewUnitOfMeasure():
         else:
             unitOfMeasure = UnitOfMeasureTb.query.all()
             return json.dumps(unitOfMeasure, cls=AlchemyEncoder)
-    except sqlalchemy.exc.SQLAlchemyError as ex:
-        flash(ex, ' danger')
+    except Exception as ex:
+        flash(ex, 'danger')
 
 
 @app.route('/delivery_app/define-unit-of-measure', methods=['GET', 'POST'])
@@ -37,8 +37,8 @@ def defineUnitOfMeasure():
             flash('Unit of Measure: "' + form.description.data + '" successfully added', 'success')
             return redirect(url_for('viewUnitofMeasure', form=form))
 
-        except sqlalchemy.exc.SQLAlchemyError as ex:
-            flash(ex, ' danger')
+        except Exception as ex:
+            flash(ex, 'danger')
 
     return render_template('./delivery_app/define-unit-of-measure.html', form=form)
 
@@ -73,8 +73,8 @@ def editDefineUnitOfMeasure(id):
                 flash(
                     '\n\t "' + BeforeShortDescription + '" successfully edited to "' + form.shortDescription.data + '"',
                     'success')
-        except sqlalchemy.exc.SQLAlchemyError as ex:
-            flash(ex, ' danger')
+        except Exception as ex:
+            flash(ex, 'danger')
 
         return redirect(url_for('viewUnitofMeasure', form=form))
 
