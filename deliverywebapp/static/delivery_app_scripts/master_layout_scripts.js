@@ -117,14 +117,14 @@ $('#compactTable').DataTable({
     }
 });
 
-// Hoverable DataTable
-$('#hoverTable').DataTable({
-    responsive: true,
-    language: {
-        searchPlaceholder: 'Search...',
-        sSearch: ''
-    }
-});
+// // Hoverable DataTable
+// $('#hoverTable').DataTable({
+//     responsive: true,
+//     language: {
+//         searchPlaceholder: 'Search...',
+//         sSearch: ''
+//     }
+// });
 
 // Scrollable Table DataTable
 $('#scrollableTable').DataTable({

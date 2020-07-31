@@ -1,4 +1,7 @@
 {% extends "master_layout.html" %}
+{% block imports %}
+    <script src="{{ url_for('static', filename='delivery_app_scripts/view_item-uom_search.js')}}"></script>
+{% endblock %}
 {% block content %}
     <div class="page-content">
             <!--================================-->
@@ -79,42 +82,42 @@
                               <div class="row no-gutters header-service">
                                  <div class="col-md-6 bd-r bd-b">
                                     <a href="" class="tx-center d-block waves-effect waves-light">
-                                       <img src="{{ url_for('static',filename='assets/images/icon/bag.png') }}" class="img-fluid wd-50" alt="">
+                                       <img src="../../assets/images/icon/bag.png" class="img-fluid wd-50" alt="">
                                        <h2 class="tx-13 mg-t-10 mb-0">Shopping</h2>
                                        <p class="tx-12 mb-0">Shopping Cart</p>
                                     </a>
                                  </div>
                                  <div class="col-md-6 bd-b">
                                     <a href="" class="tx-center d-block waves-effect waves-light">
-                                       <img src="{{ url_for('static',filename='assets/images/icon/bill.png') }}" class="img-fluid wd-50" alt="">
+                                       <img src="../../assets/images/icon/bill.png" class="img-fluid wd-50" alt="">
                                        <h2 class="tx-13 mg-t-10 mb-0">Billing</h2>
                                        <p class="tx-12 mb-0">Online Billing</p>
                                     </a>
                                  </div>
                                  <div class="col-md-6 bd-r bd-b">
                                     <a href="" class="tx-center d-block waves-effect waves-light">
-                                       <img src="{{ url_for('static',filename='assets/images/icon/bill-reciept.png') }}" class="img-fluid wd-50" alt="">
+                                       <img src="../../assets/images/icon/bill-reciept.png" class="img-fluid wd-50" alt="">
                                        <h2 class="tx-13 mg-t-10 mb-0">Billing</h2>
                                        <p class="tx-12 mb-0">Billing Receipt</p>
                                     </a>
                                  </div>
                                  <div class="col-md-6 bd-b">
                                     <a href="" class="tx-center d-block waves-effect waves-light">
-                                       <img src="{{ url_for('static',filename='assets/images/icon/finance.png') }}" class="img-fluid wd-50" alt="">
+                                       <img src="../../assets/images/icon/finance.png" class="img-fluid wd-50" alt="">
                                        <h2 class="tx-13 mg-t-10 mb-0">Finance</h2>
                                        <p class="tx-12 mb-0">Finance Details</p>
                                     </a>
                                  </div>
                                  <div class="col-md-6 bd-r bd-b">
                                     <a href="" class="tx-center d-block waves-effect waves-light">
-                                       <img src="{{ url_for('static',filename='assets/images/icon/offer.png') }}" class="img-fluid wd-50" alt="">
+                                       <img src="../../assets/images/icon/offer.png" class="img-fluid wd-50" alt="">
                                        <h2 class="tx-13 mg-t-10 mb-0">Offers</h2>
                                        <p class="tx-12 mb-0">Big Deal Offers</p>
                                     </a>
                                  </div>
                                  <div class="col-md-6 bd-b">
                                     <a href="" class="tx-center d-block waves-effect waves-light">
-                                       <img src="{{ url_for('static',filename='assets/images/icon/shipping.png') }}" class="img-fluid wd-50" alt="">
+                                       <img src="../../assets/images/icon/shipping.png" class="img-fluid wd-50" alt="">
                                        <h2 class="tx-13 mg-t-10 mb-0">Shipping</h2>
                                        <p class="tx-12 mb-0">Shipping Details</p>
                                     </a>
@@ -329,7 +332,7 @@
                                     <a class="dropdown-item list-group-item" href="javascript:void(0)">
                                        <div class="pd-r-10 d-flex align-items-center justify-content-center">
                                           <span class="avatar avatar-online">
-                                          <img src="{{ url_for('static',filename='assets/images/users-face/1.png') }}" class="img-fluid" alt="">
+                                          <img src="../../assets/images/users-face/1.png" class="img-fluid" alt="">
                                           <i></i>
                                           </span>
                                        </div>
@@ -342,7 +345,7 @@
                                     <a class="dropdown-item list-group-item" href="javascript:void(0)">
                                        <div class="pd-r-10 d-flex align-items-center justify-content-center">
                                           <span class="avatar avatar-online">
-                                          <img src="{{ url_for('static',filename='assets/images/users-face/2.png') }}" class="img-fluid" alt="">
+                                          <img src="../../assets/images/users-face/2.png" class="img-fluid" alt="">
                                           <i></i>
                                           </span>
                                        </div>
@@ -355,7 +358,7 @@
                                     <a class="dropdown-item list-group-item" href="javascript:void(0)">
                                        <div class="pd-r-10 d-flex align-items-center justify-content-center">
                                           <span class="avatar avatar-busy">
-                                          <img src="{{ url_for('static',filename='assets/images/users-face/3.png') }}" class="img-fluid" alt="">
+                                          <img src="../../assets/images/users-face/3.png" class="img-fluid" alt="">
                                           <i></i>
                                           </span>
                                        </div>
@@ -368,7 +371,7 @@
                                     <a class="dropdown-item list-group-item" href="javascript:void(0)">
                                        <div class="pd-r-10 d-flex align-items-center justify-content-center">
                                           <span class="avatar avatar-busy">
-                                          <img src="{{ url_for('static',filename='assets/images/users-face/4.png') }}" class="img-fluid" alt="">
+                                          <img src="../../assets/images/users-face/4.png" class="img-fluid" alt="">
                                           <i></i>
                                           </span>
                                        </div>
@@ -382,7 +385,7 @@
                                     <a class="dropdown-item list-group-item" href="javascript:void(0)">
                                        <div class="pd-r-10 d-flex align-items-center justify-content-center">
                                           <span class="avatar avatar-offline">
-                                          <img src="{{ url_for('static',filename='assets/images/users-face/5.png') }}" class="img-fluid" alt="">
+                                          <img src="../../assets/images/users-face/5.png" class="img-fluid" alt="">
                                           <i></i>
                                           </span>
                                        </div>
@@ -395,7 +398,7 @@
                                     <a class="dropdown-item list-group-item" href="javascript:void(0)">
                                        <div class="pd-r-10 d-flex align-items-center justify-content-center">
                                           <span class="avatar avatar-offline">
-                                          <img src="{{ url_for('static',filename='assets/images/users-face/6.png') }}" class="img-fluid" alt="">
+                                          <img src="../../assets/images/users-face/6.png" class="img-fluid" alt="">
                                           <i></i>
                                           </span>
                                        </div>
@@ -408,7 +411,7 @@
                                     <a class="dropdown-item list-group-item" href="javascript:void(0)">
                                        <div class="pd-r-10 d-flex align-items-center justify-content-center">
                                           <span class="avatar avatar-online">
-                                          <img src="{{ url_for('static',filename='assets/images/users-face/1.png') }}" class="img-fluid" alt="">
+                                          <img src="../../assets/images/users-face/1.png" class="img-fluid" alt="">
                                           <i></i>
                                           </span>
                                        </div>
@@ -421,7 +424,7 @@
                                     <a class="dropdown-item list-group-item" href="javascript:void(0)">
                                        <div class="pd-r-10 d-flex align-items-center justify-content-center">
                                           <span class="avatar avatar-online">
-                                          <img src="{{ url_for('static',filename='assets/images/users-face/2.png') }}" class="img-fluid" alt="">
+                                          <img src="../../assets/images/users-face/2.png" class="img-fluid" alt="">
                                           <i></i>
                                           </span>
                                        </div>
@@ -434,7 +437,7 @@
                                     <a class="dropdown-item list-group-item" href="javascript:void(0)">
                                        <div class="pd-r-10 d-flex align-items-center justify-content-center">
                                           <span class="avatar avatar-busy">
-                                          <img src="{{ url_for('static',filename='assets/images/users-face/3.png') }}" class="img-fluid" alt="">
+                                          <img src="../../assets/images/users-face/3.png" class="img-fluid" alt="">
                                           <i></i>
                                           </span>
                                        </div>
@@ -458,13 +461,13 @@
                         <!--================================-->
                         <li class="list-inline-item dropdown ml-2">
                            <a href="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                           <img src="{{ url_for('static',filename='assets/images/users-face/1.png') }}" class="img-fluid wd-30 ht-30 rounded-circle" alt="">
+                           <img src="../../assets/images/users-face/1.png" class="img-fluid wd-30 ht-30 rounded-circle" alt="">
                            </a>
                            <div class="dropdown-menu dropdown-menu-right dropdown-profile">
                               <div class="user-profile-area">
                                  <div class="user-profile-heading">
                                     <div class="profile-thumbnail">
-                                       <img src="{{ url_for('static',filename='assets/images/users-face/1.png') }}" class="img-fluid wd-40 ht-40 rounded-circle" alt="">
+                                       <img src="../../assets/images/users-face/1.png" class="img-fluid wd-40 ht-40 rounded-circle" alt="">
                                     </div>
                                     <div class="profile-text">
                                        <h6>Ruhul Hasan</h6>
@@ -492,279 +495,103 @@
                </nav>
                <div class="pd-y-10 pd-x-30 d-flex justify-content-between align-items-center header-bottom">
                   <div class="d-flex align-items-center">
-                     <h2 class="d-flex align-items-center tx-16 mb-0 pd-r-10 mr-2 bd-r bd-gray-200">User Admin</h2>
-                     <h2 class="d-flex align-items-center tx-13 mb-0 tx-normal">Account Info</h2>
+                     <h2 class="d-flex align-items-center tx-16 mb-0 pd-r-10 mr-2 bd-r bd-gray-200">Manage Inventory</h2>
+                     <h2 class="d-flex align-items-center tx-13 mb-0 tx-normal">View Item Uom</h2>
                   </div>
+
                </div>
             </div>
             <!--/ Page Header End -->
             <!--================================-->
             <!-- Page Inner Content Start -->
             <!--================================-->
-            <div class="page-inner">
-               <div class="row row-xs">
-                  <div class="col-lg-4 col-xl-3">
-                     <div class="card mg-b-20">
-                        <div class="card-body">
-                           <ul class="nav nav-pills flex-column tx-medium ac-setting-navi">
-                              <li class="nav-item">
-                                 <a class="nav-link d-flex align-items-center active" data-toggle="pill" href="#setting-account-info" aria-expanded="false">
-                                 <i data-feather="cpu" class="wd-16 ht-16 mr-2"></i>
-                                 <span>Account Information</span>
-                                 </a>
-                              </li>
-                              <li class="nav-item">
-                                 <a class="nav-link d-flex align-items-center" data-toggle="pill" href="#setting-change-password" aria-expanded="false">
-                                 <i data-feather="settings" class="wd-16 ht-16 mr-2"></i>
-                                 <span>Change Password</span>
-                                 </a>
-                              </li>
-                           </ul>
-                           <hr>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col-lg-8 col-xl-9">
-                     <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" id="setting-account-info">
-                           <div class="card">
-                              <div class="card-header d-flex align-items-center justify-content-between pd-15">
-                                 <h6 class="mb-0">Account Information</h6>
-                                 <div class="card-header-btn">
-                                    <div class="dropdown">
-                                       <a href="" class="" data-toggle="dropdown"><i data-feather="more-horizontal" class="wd-16  ht-16 "></i></a>
-                                       <div class="dropdown-menu dropdown-menu-right">
-                                          <a href="" class="dropdown-item"><i data-feather="info" class="wd-16 ht-16 mr-2"></i>View Details</a>
-                                          <a href="" class="dropdown-item"><i data-feather="share" class="wd-16 ht-16 mr-2"></i>Share</a>
-                                          <a href="" class="dropdown-item"><i data-feather="download" class="wd-16 ht-16 mr-2"></i>Download</a>
-                                          <a href="" class="dropdown-item"><i data-feather="copy" class="wd-16 ht-16 mr-2"></i>Copy to</a>
-                                          <a href="" class="dropdown-item"><i data-feather="folder" class="wd-16 ht-16 mr-2"></i>Move to</a>
-                                          <a href="" class="dropdown-item"><i data-feather="edit" class="wd-16 ht-16 mr-2"></i>Rename</a>
-                                          <a href="" class="dropdown-item"><i data-feather="trash" class="wd-16 ht-16 mr-2"></i>Delete</a>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                              <div class="card-body">
-                                  <div class="clearfix">
-                                      {% with messages = get_flashed_messages(with_categories=true) %}
-                                      {% if messages %}
-                                          {% for category, message in messages %}
-                                              <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-                                                    {{ message }}
-                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                    <span aria-hidden="true">×</span>
-                                                    </button>
-                                              </div>
-    {#                                        <div class="alert alert-{{ category }}" role="alert">#}
-    {#                                          {{ message }}#}
-    {#                                        </div>#}
-                                          {% endfor %}
-                                      {% endif %}
-                                    {% endwith %}
-                                  </div>
-                                 <form action="" method="POST" autocomplete="off">
-                                    <div class="row mg-t-20">
-                                       <label class="col-lg-3 form-control-label tx-left tx-lg-right form-label"><span class="tx-danger">*</span> Name:</label>
-                                       <div class="col-lg-6 mg-t-10 mg-sm-t-0">
-                                           {% if form.name.errors %}
-                                                        {{ form.name(class="form-control")}}
-                                                       <div class="invalid-feedback">
-                                                            {% for error in form.name.errors %}
-                                                                <span>{{ error }}</span>
-                                                            {% endfor %}
-                                                       </div>
+            <div class="page-inner-content">
+               <div class="row no-gutters">
+                  <!--================================-->
+                  <!-- Page Content Area Start -->
+                  <!--================================-->
+                  <div class="col-lg-12 page-content-area">
+                     <div class="inner-content">
 
-                                                   {% else %}
-                                                       {{ form.name(class="form-control", placeholder="Enter Name") }}
-                                                   {% endif %}
-                                       </div>
-                                    </div>
-                                    <div class="row mg-t-20">
-                                       <label class="col-lg-3 form-control-label tx-left tx-lg-right form-label"><span class="tx-danger">*</span> Username:</label>
-                                       <div class="col-lg-6 mg-t-10 mg-sm-t-0">
-                                            {% if form.username.errors %}
-                                                        {{ form.username(class="form-control")}}
-                                                       <div class="invalid-feedback">
-                                                            {% for error in form.username.errors %}
-                                                                <span>{{ error }}</span>
-                                                            {% endfor %}
-                                                       </div>
-
-                                                   {% else %}
-                                                       {{ form.username(class="form-control", placeholder="Enter Username") }}
-                                                   {% endif %}
-
-                                       </div>
-                                    </div>
-                                    <div class="row mg-t-20">
-                                       <label class="col-lg-3 form-control-label tx-left tx-lg-right form-label"><span class="tx-danger">*</span> Email:</label>
-                                       <div class="col-lg-6 mg-t-10 mg-sm-t-0">
-                                           {% if form.email.errors %}
-                                                        {{ form.email(class="form-control")}}
-                                                       <div class="invalid-feedback">
-                                                            {% for error in form.email.errors %}
-                                                                <span>{{ error }}</span>
-                                                            {% endfor %}
-                                                       </div>
-
-                                                   {% else %}
-                                                       {{ form.email(class="form-control", placeholder="Enter email") }}
-                                                   {% endif %}
-
-                                       </div>
-                                    </div>
-
-                                   <div class="row mg-t-20">
-                                       <label class="col-lg-3 form-control-label tx-left tx-lg-right form-label"><span class="tx-danger">*</span> Phone Number:</label>
-                                       <div class="col-lg-6 mg-t-10 mg-sm-t-0">
-                                           {% if form.phonenumber.errors %}
-                                                        {{ form.phonenumber(class="form-control")}}
-                                                       <div class="invalid-feedback">
-                                                            {% for error in form.phonenumber.errors %}
-                                                                <span>{{ error }}</span>
-                                                            {% endfor %}
-                                                       </div>
-
-                                                   {% else %}
-                                                       {{ form.phonenumber(class="form-control", placeholder="Enter Phone Number") }}
-                                                   {% endif %}
-                                       </div>
-                                    </div>
-                                    {% if form.edit == 0 %}
-                                         <div class="row mg-t-20">
-                                           <label class="col-lg-3 form-control-label tx-left tx-lg-right form-label"><span class="tx-danger">*</span> Password:</label>
-                                           <div class="col-lg-6 mg-t-10 mg-sm-t-0">
-                                               {% if form.password.errors %}
-                                                            {{ form.password(class="form-control")}}
-                                                           <div class="invalid-feedback">
-                                                                {% for error in form.password.errors %}
-                                                                    <span>{{ error }}</span>
-                                                                {% endfor %}
-                                                           </div>
-
-                                               {% else %}
-                                                   {{ form.password(class="form-control", placeholder="Enter Password") }}
-                                               {% endif %}
-                                           </div>
-                                        </div>
-                                         <div class="row mg-t-20">
-                                           <label class="col-lg-3 form-control-label tx-left tx-lg-right form-label"><span class="tx-danger">*</span> Confirm password:</label>
-                                           <div class="col-lg-6 mg-t-10 mg-sm-t-0">
-                                               {% if form.confirmPassword.errors %}
-                                                            {{ form.confirmPassword(class="form-control")}}
-                                                           <div class="invalid-feedback">
-                                                                {% for error in form.confirmPassword.errors %}
-                                                                    <span>{{ error }}</span>
-                                                                {% endfor %}
-                                                           </div>
-
-                                               {% else %}
-                                                   {{ form.confirmPassword(class="form-control", placeholder="Confirm password entered") }}
-                                               {% endif %}
-                                           </div>
-                                        </div>
-                                    {% else %}
-                                            <div class="clearfix mg-t-20"></div>
-                                            <div class="clearfix mg-t-20"></div>
-                                            <div class="clearfix mg-t-20"></div>
-                                    {% endif %}
-
-
-                                    <div class="row mg-t-30">
-                                       <div class="col-sm-8 mg-l-auto">
-                                          <div class="form-layout-footer">
-                                             {{ form.submit( class="btn btn-primary waves-effect")}}
+                        <div class="custom-fieldset mg-b-30">
+                           <div class="clearfix">
+                                {% with messages = get_flashed_messages(with_categories=true) %}
+                                  {% if messages %}
+                                      {% for category, message in messages %}
+                                          <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                                                {{ message }}
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                                </button>
                                           </div>
-                                       </div>
-                                    </div>
-                                 </form>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="tab-pane fade" id="setting-change-password" role="tabpanel">
-                           <div class="card">
-                              <div class="card-header d-flex align-items-center justify-content-between pd-15">
-                                 <h6 class="mb-0">Change Password</h6>
-                                 <div class="card-header-btn">
-                                    <div class="dropdown">
-                                       <a href="" class="" data-toggle="dropdown"><i data-feather="more-horizontal" class="wd-16  ht-16 "></i></a>
-                                       <div class="dropdown-menu dropdown-menu-right">
-                                          <a href="" class="dropdown-item"><i data-feather="info" class="wd-16 ht-16 mr-2"></i>View Details</a>
-                                          <a href="" class="dropdown-item"><i data-feather="share" class="wd-16 ht-16 mr-2"></i>Share</a>
-                                          <a href="" class="dropdown-item"><i data-feather="download" class="wd-16 ht-16 mr-2"></i>Download</a>
-                                          <a href="" class="dropdown-item"><i data-feather="copy" class="wd-16 ht-16 mr-2"></i>Copy to</a>
-                                          <a href="" class="dropdown-item"><i data-feather="folder" class="wd-16 ht-16 mr-2"></i>Move to</a>
-                                          <a href="" class="dropdown-item"><i data-feather="edit" class="wd-16 ht-16 mr-2"></i>Rename</a>
-                                          <a href="" class="dropdown-item"><i data-feather="trash" class="wd-16 ht-16 mr-2"></i>Delete</a>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                              <div class="card-body">
-                                 <div class="alert alert-warning alert-bordered pd-y-15" role="alert">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true"><i class="mdi mdi-close tx-16"></i></span>
-                                    </button>
-                                    <div class="d-sm-flex align-items-center justify-content-start">
-                                       <i class="mdi mdi-alert alert-icon tx-50 mg-r-20 tx-warning"></i>
-                                       <div class="mg-t-20 mg-sm-t-0">
-                                          <h5 class="mg-b-2 tx-warning">Configure user passwords alert</h5>
-                                          <p class="mg-b-0">Configure user passwords to expire periodically. Users will need warning that their passwords are going to expire,
-                                             or they might inadvertently get locked out of the system!
-                                          </p>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <form>
+{#                                        <div class="alert alert-{{ category }}" role="alert">#}
+{#                                          {{ message }}#}
+{#                                        </div>#}
+                                      {% endfor %}
+                                  {% endif %}
+                                {% endwith %}
+                              <div class="clearfix">
+                                 <div class="table-responsive">
                                     <div class="row">
-                                       <label class="col-lg-3 form-control-label tx-left tx-lg-right form-label">Old Password:</label>
-                                       <div class="col-lg-6 mg-t-10 mg-sm-t-0">
-                                          <input type="password" class="form-control" required="" placeholder="Old Password" data-validation-required-message="This old password field is required">
-                                          <a href="" class="tx-10">Forgot password ?</a>
-                                       </div>
+                                    <div class="form-group col-sm-6">
+                                           <input type="text" id = "livebox" class="form-control" placeholder="Search with raw material">
                                     </div>
-                                    <div class="row mg-t-20">
-                                       <label class="col-lg-3 form-control-label tx-left tx-lg-right form-label">New Password:</label>
-                                       <div class="col-lg-6 mg-t-10 mg-sm-t-0">
-                                          <input type="password" name="password" class="form-control" placeholder="New Password" required="" data-validation-required-message="The password field is required" minlength="6">
-                                       </div>
-                                    </div>
-                                    <div class="row mg-t-20">
-                                       <label class="col-lg-3 form-control-label tx-left tx-lg-right form-label">Retype Password:</label>
-                                       <div class="col-lg-6 mg-t-10 mg-sm-t-0">
-                                          <input type="password" name="con-password" class="form-control" required="" data-validation-match-match="password" placeholder="New Password" data-validation-required-message="The Confirm password field is required" minlength="6">
-                                       </div>
-                                    </div>
-                                    <div class="row mg-t-30">
-                                       <div class="col-sm-8 mg-l-auto">
-                                          <div class="form-layout-footer">
-                                             <button class="btn btn-primary waves-effect">Save Changes</button>
-                                             <button class="btn btn-default waves-effect">Cancel</button>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </form>
+                                    <div class="form-group col-sm-6">
+                                    <a class="btn btn-primary" href="{{ url_for('defineItemUom') }}" >Add Item Uom</a>
+                                 </div>
+                                 </div>
+                                    <table class="table table-separated table-bordered">
+                                       <thead>
+                                          <tr>
+                                             <th class="font-weight-bold">MATERIAL ITEM</th>
+                                              <th class="font-weight-bold">UNIT OF MEASURE</th>
+                                             <th class="text-center w-100px font-weight-bold">ACTIONS</th>
+                                          </tr>
+                                       </thead>
+                                       <tbody>
+                                       </tbody>
+                                    </table>
+                                    <nav>
+                                       {#<ul class="pagination justify-content-center">
+                                          <li class="page-item disabled">
+                                             <a class="page-link waves-effect" href="">
+                                             <span class="fa fa-arrow-left"></span>
+                                             </a>
+                                          </li>
+                                          <li class="page-item active">
+                                             <a class="page-link waves-effect" href="">1</a>
+                                          </li>
+                                          <li class="page-item"><a class="page-link waves-effect" href="">2</a></li>
+                                          <li class="page-item"><a class="page-link waves-effect" href="">3</a></li>
+                                          <li class="page-item"><a class="page-link waves-effect" href="">4</a></li>
+                                          <li class="page-item"><a class="page-link waves-effect" href="">5</a></li>
+                                          <li class="page-item">
+                                             <a class="page-link waves-effect" href="">
+                                             <span class="fa fa-arrow-right"></span>
+                                             </a>
+                                          </li>
+                                       </ul>#}
+                                    </nav>
+                                 </div>
                               </div>
                            </div>
                         </div>
                      </div>
                   </div>
+                  <!--/ Page Content Area End -->
+                  <!--================================-->
+                  <!-- Page Sidebar Area Start -->
+                  <!--================================-->
+
+                  <!--/ Page Sidebar Area End -->
                </div>
             </div>
             <!--/ Page Inner Content End -->
             <!--================================-->
             <!-- Page Footer Start -->
             <!--================================-->
-            <footer class="page-footer d-block d-sm-flex justify-content-between pd-x-30 pd-t-20 pd-b-15">
-               <p class="mg-b-15 mg-sm-b-0">Copyright&copy; 2020 |  Created By  <a href="https://themeforest.net/user/colorlibcode/portfolio" target="_blank">Delivery Web App</a></p>
-               <div class="d-block d-sm-flex">
-                  <a href="" class="mr-3">About Us</a>
-                  <a href="" class="mr-3">Terms & Condition</a>
-                  <a href="" class="mr-3">Privacy & Policy</a>
-                  <a href="">Contact Us</a>
-               </div>
-            </footer>
+
             <!--/ Page Footer End -->
          </div>
+             <a href="" data-click="scroll-top" class="btn-scroll-top fade waves-effect"><i data-feather="arrow-up" class="wd-16 ht-16"></i></a>
 {% endblock %}

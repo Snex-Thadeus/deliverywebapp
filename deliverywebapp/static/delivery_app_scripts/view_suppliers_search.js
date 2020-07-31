@@ -18,7 +18,7 @@ $(document).ready(function(){
                         var url_for = "/delivery_app/define-supplier-edit/"+supplier.ID
                         var data = "<tr>";
 
-                         data += "<td>"+ supplier.SupplierName  +"</td>";
+                         data += "<td>"+ supplier.Name  +"</td>";
                          data += "<td>"+ supplier.Email  +"</td>";
                          data += "<td>"+ supplier.TelephoneNo  +"</td>";
                          data += "<td>"+ supplier.Location  +"</td>";

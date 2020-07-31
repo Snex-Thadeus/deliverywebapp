@@ -73,7 +73,7 @@
                         </a>
                         <ul class="sub-menu">
                             <li><a href="{{ url_for("viewOrders") }}">View Orders</a></li>
-                            <li><a href="#">View Deliveries</a></li>
+                            <li><a href="{{ url_for("viewDeliveries") }}">View Deliveries</a></li>
                         </ul>
                     </li>
                     <li>
@@ -137,7 +137,7 @@
                         <ul class="sub-menu">
                             <li><a href="{{ url_for("viewRawMaterialItems") }}">View Raw Material Items</a></li>
                             <li><a href="{{ url_for("viewUnitofMeasure") }}">View Units of Measure</a></li>
-                            <li><a href="#">View Item UoM</a></li>
+                            <li><a href="{{ url_for('defineItemUom') }}">View Item UoM</a></li>
                             <li><a href="#">View Conversion Factors</a></li>
                             <li><a href="#">View Production Activities</a></li>
                             <li><a href="#">View Quantity Balances</a></li>
@@ -178,7 +178,8 @@
                         </a>
                         <ul class="sub-menu" style="display: block;">
                             <!-- Active Page -->
-                            <li class="active"><a href="{{ url_for('defineAccountInfo') }}">Account Info</a></li>
+                            <li class="active"><a href="{{ url_for('defineAccountInfo') }}">Create User</a></li>
+                            <li class="active"><a href="{{ url_for('viewAccountInfo') }}">View Users</a></li>
 
                         </ul>
                     </li>
@@ -211,6 +212,7 @@
     <!-- Page Content Start -->
     <!--================================-->
     {% block content %}{% endblock content %}
+
     <!--/ Page Container End -->
     <!--================================-->
 </div>

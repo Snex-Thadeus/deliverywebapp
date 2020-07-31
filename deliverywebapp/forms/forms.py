@@ -118,17 +118,41 @@ class DefineBillsForm(FlaskForm):
     submit = SubmitField('Submit')
 
 
+class DefineAccountInfo(FlaskForm):
+    name = StringField('Enter Name', validators=[DataRequired()])
+    username = StringField('Enter User Name', validators=[DataRequired()])
+    email = StringField('Enter Email', validators=[DataRequired(), Email()])
+    phonenumber = StringField('Enter Phone Number', validators=[DataRequired()])
+    password = PasswordField("Enter Password",
+                             validators=[DataRequired()
+                                         ])  # '''EqualTo('confirmPassword', message='Passwords must match')'''
+    confirmPassword = PasswordField("Confirm password entered", validators=[DataRequired()])
+    edit = 0
+    submit = SubmitField('Submit')
+
+
+class UpdateDeliveries(FlaskForm):
+    invoice_receipt = SelectField('Choose Invoice/Receipt', validators=[DataRequired()])
+    invoiceNo_receiptNo = StringField('Enter Invoice No/Receipt No', validators=[DataRequired()])
+    deliveredDate = StringField('Enter Delivered Date', validators=[DataRequired()])
+    paymentMode = SelectField('Choose payment mode', validators=[DataRequired()])
+    referenceNo = StringField('Enter reference No')
+    AmountPaid = StringField('Enter amount paid', validators=[DataRequired()])
+    submit = SubmitField('Save Changes')
+
+
 class DefineItemUom(FlaskForm):
     chooseRawMaterail = SelectField('Choose raw material', validators=[DataRequired()])
     chooseUnitOfMeasure = SelectField("Choose unit of measure", validators=[DataRequired()])
     submit = SubmitField("Submit")
 
+
 class DefineConversionFactors(FlaskForm):
     chooseRawMaterail = SelectField('Choose raw material', validators=[DataRequired()])
-    chooseItemUom = SelectField("Choose item UOM", validators=[DataRequired()])
-    measurementDescription = SelectField('Measurement Desscription', validators=[DataRequired()])
+    chooseItemUom = SelectField("Choose Item Uom", validators=[DataRequired()])
+    measurementDescription = SelectField('Measurement Description', validators=[DataRequired()])
     quantity = SelectField('Quantity', validators=[DataRequired()])
+
 
 class DefineProductionActivities(FlaskForm):
     activity = SelectField('Activity', validators=[DataRequired()])
-

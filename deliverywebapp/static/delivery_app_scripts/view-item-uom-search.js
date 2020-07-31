@@ -10,15 +10,16 @@ $(document).ready(function(){
     function fetchdata(){
          $.ajax({
                 method:"post",
-                url:"/search_view_areas",
+                url:"/search-view-item-uom",
                 data:{text:$("#livebox").val()},
                 success:function(res){
-                     $.each(JSON.parse(res),function(index,area){
+                     $.each(JSON.parse(res),function(index,uom){
 
-                        var url_for = "/delivery_app/define-areas-edit/"+area.ID
+                        var url_for = "/delivery_app/define-item-uom-edit/"+uom.ID
                         var data = "<tr>";
 
-                         data += "<td>"+ area.Name  +"</td>";
+                         data += "<td>"+ uom.MaterialItem  +"</td>";
+                         data += "<td>"+ uom.UnitOfMeasure  +"</td>";
                          data += "<td class='text-right table-actions'>" +
                                  "<a class='table-action  mg-r-10' href='"+url_for+"'><i class='fa fa-pencil'></i></a>" +
                              "</td>";
@@ -30,7 +31,7 @@ $(document).ready(function(){
 
                       if ( JSON.parse(res).length <= 0){
 
-                        $('table tbody').show().append("<tr><td style='text-align: center' colspan='3'><p  style='color: #0e90d2'>No areas to show</p></td></tr>");
+                        $('table tbody').show().append("<tr><td style='text-align: center' colspan='3'><p  style='color: #0e90d2'>No items uom to show</p></td></tr>");
                     }
                 }
             });

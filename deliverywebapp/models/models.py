@@ -28,7 +28,7 @@ def load_user(user_id):
     return UserAccountTb.query.get(int(user_id))
 
 
-class UserAccountTb(db.Model,UserMixin):
+class UserAccountTb(db.Model, UserMixin):
     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
     Name = db.Column(db.String(50), nullable=False)
     UserName = db.Column(db.String(50), nullable=False)
@@ -166,9 +166,7 @@ class OrderTb(db.Model):
 
 
 class DeliveriesTb(db.Model):
-    ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    OrderNo = db.Column(db.Integer, db.ForeignKey("order_tb.OrderNo"), nullable=False)
-    TotalAmount = db.Column(db.String(50), nullable=False)
+    OrderNo = db.Column(db.Integer, primary_key=True, nullable=False, unique=True)
     Invoice_Receipt = db.Column(db.String(150), nullable=True)
     InvoiceNo_ReceiptNo = db.Column(db.String(50), nullable=True)
     DeliveredDate = db.Column(db.String(50), nullable=True)
@@ -179,10 +177,9 @@ class DeliveriesTb(db.Model):
     def __repr__(self):
         pass
 
-    def __init__(self, OrderNo, TotalAmount, Invoice_Receipt, InvoiceNo_ReceiptNo,
+    def __init__(self, OrderNo, Invoice_Receipt, InvoiceNo_ReceiptNo,
                  DeliveredDate, PaymentMode, ReferenceNo, AmountPaid):
         self.OrderNo = OrderNo
-        self.TotalAmount = TotalAmount
         self.Invoice_Receipt = Invoice_Receipt
         self.InvoiceNo_ReceiptNo = InvoiceNo_ReceiptNo
         self.DeliveredDate = DeliveredDate
@@ -191,7 +188,7 @@ class DeliveriesTb(db.Model):
         self.AmountPaid = AmountPaid
 
 
-class MeterialItemsTb(db.Model):
+class MaterialItemsTb(db.Model):
     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
     Description = db.Column(db.String(50), nullable=False)
 
@@ -200,6 +197,11 @@ class MeterialItemsTb(db.Model):
 
     def __init__(self, Description):
         self.Description = Description
+
+
+class MaterailItemSchema(ma.Schema):
+    class Meta:
+        fields = ("ID", "Description")
 
 
 class UnitOfMeasureTb(db.Model):
@@ -213,6 +215,11 @@ class UnitOfMeasureTb(db.Model):
     def __init__(self, Description, ShortDescription):
         self.Description = Description
         self.ShortDescription = ShortDescription
+
+
+class UnitOfMeasureSchema(ma.Schema):
+    class Meta:
+        fields = ("ID", "Description")
 
 
 # Expenses/Purchases
@@ -249,16 +256,13 @@ class PettyCashTb(db.Model):
 
 class SupplierTb(db.Model):
     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    SupplierName = db.Column(db.String(50), nullable=False)
+    Name = db.Column(db.String(50), nullable=False)
     Email = db.Column(db.String(50), nullable=False)
     TelephoneNo = db.Column(db.String(50), nullable=False)
     Location = db.Column(db.String(50), nullable=False)
 
-    def __repr__(self):
-        pass
-
-    def __init__(self, SupplierName, Email, TelephoneNo, Location):
-        self.SupplierName = SupplierName,
+    def __init__(self, Name, Email, TelephoneNo, Location):
+        self.Name = Name
         self.Email = Email
         self.TelephoneNo = TelephoneNo
         self.Location = Location
@@ -277,54 +281,54 @@ class BillTb(db.Model):
 
 
 # v8
-# class ItemIomTb(db.Model):
-#     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
-#     MaterialItemsTbID = db.Column(db.Integer, db.ForeignKey("material_items_tb.ID"), nullable=False)
-#     UnitOfMeasureTbID = db.Column(db.Integer, db.ForeignKey("unit_of_measure_tb.ID"), nullable=False)
-#
-#     def __repr__(self):
-#         pass
-#
-#     def __init__(self, MaterialItemsTbID, UnitOfMeasureTbID):
-#         self.MaterialItemsTbID = MaterialItemsTbID
-#         self.UnitOfMeasureTbID = UnitOfMeasureTbID
-#
-#
-# class ConversionFactorTb(db.Model):
-#     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
-#     MaterialItemsTbID = db.Column(db.Integer, db.ForeignKey("material_items_tb.ID"), nullable=False)
-#     ItemIomTbID = db.Column(db.Integer, db.ForeignKey("item_iom_tb_id.ID"), nullable=False)
-#     MeasurementDescription = db.Column(db.String(50), nullable=False)
-#     DescribeQuantity = db.Column(db.Integer, nullable=False)
-#
-#     def __repr__(self):
-#         pass
-#
-#     def __init__(self, MaterialItemsTbID, ItemIomTbID, MeasurementDescription, DescribeQuantity):
-#         self.MaterialItemsTbID = MaterialItemsTbID
-#         self.ItemIomTbID = ItemIomTbID
-#         self.MeasurementDescription = MeasurementDescription
-#         self.DescribeQuantity = DescribeQuantity
-#
-#
-# class ProductionActivitiesTb(db.Model):
-#     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
-#     Activity = db.Column(db.String(50), nullable=False)
-#
-#     def __init__(self, Activity):
-#         self.Activity = Activity
-#
-#
-# class UpdateMaterialQuantitiesTb(db.Model):
-#     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
-#     ItemIomTbID = db.Column(db.Integer, db.ForeignKey("item_iom_tb_id.ID"), nullable=False)
-#     ReceivedDate = db.Column(db.String(20), nullable=False)
-#     Quantity = db.Column(db.Integer, nullable=False)
-#
-#     def __init__(self, ItemIomTbID, ReceivedDate, Quantity):
-#         self.ItemIomTbID = ItemIomTbID
-#         self.ReceivedDate = ReceivedDate
-#         self.Quantity = Quantity
+class ItemUomTb(db.Model):
+    ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    MaterialItemsTbID = db.Column(db.Integer, db.ForeignKey("material_items_tb.ID"), nullable=False)
+    UnitOfMeasureTbID = db.Column(db.Integer, db.ForeignKey("unit_of_measure_tb.ID"), nullable=False)
+
+    def __repr__(self):
+        pass
+
+    def __init__(self, MaterialItemsTbID, UnitOfMeasureTbID):
+        self.MaterialItemsTbID = MaterialItemsTbID
+        self.UnitOfMeasureTbID = UnitOfMeasureTbID
+
+
+class ConversionFactorTb(db.Model):
+    ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    MaterialItemsTbID = db.Column(db.Integer, db.ForeignKey("material_items_tb.ID"), nullable=False)
+    ItemUomTbID = db.Column(db.Integer, db.ForeignKey("item_uom_tb.ID"), nullable=False)
+    MeasurementDescription = db.Column(db.String(50), nullable=False)
+    DescribeQuantity = db.Column(db.Integer, nullable=False)
+
+    def __repr__(self):
+        pass
+
+    def __init__(self, MaterialItemsTbID, ItemUomTbID, MeasurementDescription, DescribeQuantity):
+        self.MaterialItemsTbID = MaterialItemsTbID
+        self.ItemUomTbID = ItemUomTbID
+        self.MeasurementDescription = MeasurementDescription
+        self.DescribeQuantity = DescribeQuantity
+
+
+class ProductionActivitiesTb(db.Model):
+    ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    Activity = db.Column(db.String(50), nullable=False)
+
+    def __init__(self, Activity):
+        self.Activity = Activity
+
+
+class UpdateMaterialQuantitiesTb(db.Model):
+    ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    ItemUomTbID = db.Column(db.Integer, db.ForeignKey("item_uom_tb.ID"), nullable=False)
+    ReceivedDate = db.Column(db.String(20), nullable=False)
+    Quantity = db.Column(db.Integer, nullable=False)
+
+    def __init__(self, ItemUomTbID, ReceivedDate, Quantity):
+        self.ItemUomTbID = ItemUomTbID
+        self.ReceivedDate = ReceivedDate
+        self.Quantity = Quantity
 #
 #
 # class ViewQuantityBalancesTb(db.Model):
@@ -333,8 +337,8 @@ class BillTb(db.Model):
 #
 # class UpdateDailyProductionTb(db.Model):
 #     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
-#     DefineProductionActivitiesTbID = db.Column(db.Integer, db.ForeignKey("item_iom_tb_id.ID"), nullable=False)
-#     ConversionFactorTbID = db.Column(db.Integer, db.ForeignKey("item_iom_tb_id.ID"), nullable=False)
+#     DefineProductionActivitiesTbID = db.Column(db.Integer, db.ForeignKey("item_uom_tb.ID"), nullable=False)
+#     ConversionFactorTbID = db.Column(db.Integer, db.ForeignKey("item_uom_tb.ID"), nullable=False)
 #     Quantity = db.Column(db.Integer, nullable=False)
 #     QuantityUsed = db.Column(db.Float,
 #                              nullable=False)  # Populate the Quantity used = Quantity above * Conversion Factor Quantity
@@ -362,7 +366,7 @@ class BillTb(db.Model):
 #
 # class UpdatePackingMaterialsTb(db.Model):
 #     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
-#     PackagingMaterialsTbID = db.Column(db.Integer, db.ForeignKey("item_iom_tb_id.ID"), nullable=False)
+#     PackagingMaterialsTbID = db.Column(db.Integer, db.ForeignKey("item_uom_tb.ID"), nullable=False)
 #     Number = db.Column(db.Integer, nullable=False)
 #     EntryDate = db.Column(db.Integer, nullable=False)
 #

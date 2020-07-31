@@ -45,7 +45,7 @@
                       {% endwith %}
                      <h3 class="mg-b-5 tx-left">Sign In</h3>
                      <p class="tx-12 mg-b-30 tx-left">Welcome back! Please signin to continue.</p>
-                      <form method="POST" action="">
+                      <form method="POST" action="" autocomplete="off">
                           {{ form.hidden_tag() }}
                            <div class="form-group tx-left">
                                 {{ form.email.label(class="mg-b-5") }}

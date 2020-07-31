@@ -26,16 +26,19 @@ bcrypt = Bcrypt(app)
 
 # init the login manager
 login_manager = LoginManager(app)
+
 login_manager.login_view = "login"
 login_manager.login_message_category = "info"
 
 # setting the config options for mail
-app.config["MAIL_USERNAME"] = "denniskiruku@gmail.com"
-app.config["MAIL_PASSWORD"] = "*****"
-app.config["MAIL_USE_TLS"] = True
-app.config["MAIL_PORT"] = 587
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'jamesgituma9961@gmail.com'
+app.config['MAIL_PASSWORD'] = 'nyanchera'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
 
-mail = Mail()
+mail = Mail(app)
 
 migrate = Migrate(app, db)
 
@@ -43,4 +46,5 @@ from deliverywebapp.routes import routes, product_route, \
     area_routes, product_prices_route, bill_routes, \
     expense_categories_routes, raw_material_items_routes, \
     unit_of_measure_routes, supplier_routes, petty_cash_routes, \
-    customer_routes, order_routes, account_info_route, example_route
+    customer_routes, order_routes, account_info_route, example_route, \
+    view_deliveries_routes, itemUom_routes

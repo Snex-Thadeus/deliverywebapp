@@ -15,11 +15,11 @@ def searchViewRawMeterialItems():
     searchbox = request.form.get('text')
     try:
         if searchbox != "":
-            rawMaterials = MeterialItemsTb.query.filter(
-                MeterialItemsTb.Description.like('%' + searchbox + '%')).all()
+            rawMaterials = MaterialItemsTb.query.filter(
+                MaterialItemsTb.Description.like('%' + searchbox + '%')).all()
             return json.dumps(rawMaterials, cls=AlchemyEncoder)
         else:
-            rawMaterials = MeterialItemsTb.query.all()
+            rawMaterials = MaterialItemsTb.query.all()
             return json.dumps(rawMaterials, cls=AlchemyEncoder)
     except Exception as ex:
             flash(ex, 'danger')
@@ -30,7 +30,7 @@ def defineRawMaterialItem():
     form = DefineRawMaterialItemsForm()
     if form.validate_on_submit():
         try:
-            rawMaterial = MeterialItemsTb(form.description.data)
+            rawMaterial = MaterialItemsTb(form.description.data)
             db.session.add(rawMaterial)
             db.session.commit()
 
@@ -47,13 +47,13 @@ def editDefineRawMeterialItem(id):
     form = DefineRawMaterialItemsForm()
     if not form.validate_on_submit():
         try:
-            rawMaterial = MeterialItemsTb.query.get(id)
+            rawMaterial = MaterialItemsTb.query.get(id)
             form.description.data = rawMaterial.Description
         except Exception as ex:
             flash(ex, 'danger')
     elif form.validate_on_submit():
         try:
-            rawMaterialTbEdit = db.session.query(MeterialItemsTb).filter(MeterialItemsTb.ID == id).one()
+            rawMaterialTbEdit = db.session.query(MaterialItemsTb).filter(MaterialItemsTb.ID == id).one()
             BeforerawMaterial = rawMaterialTbEdit.Description
 
             rawMaterialTbEdit.Description = form.description.data

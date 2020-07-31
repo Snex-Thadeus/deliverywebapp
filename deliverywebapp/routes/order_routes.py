@@ -106,7 +106,7 @@ def defineOrders():
             db.session.commit()
 
             flash(
-                'Order: ' + form.lpoNo.data + '" is successfully added ',
+                'Order: "' + form.lpoNo.data + '" is successfully added ',
                 'success')
             return redirect(url_for('viewOrders', form=form))
         except Exception as ex:

@@ -36,7 +36,7 @@ def defineSuppliers():
             location = form.location.data
             # TODO:
             supplier = SupplierTb(
-                SupplierName=suppliername,
+                Name=suppliername,
                 Email=email,
                 TelephoneNo=telephone,
                 Location=location
@@ -64,7 +64,7 @@ def editDefineSupplier(id):
     if not form.validate_on_submit():
         try:
             supplier = ExpenseCategoriesTb.query.get(id)
-            form.supplierName.data = supplier.SupplierName
+            form.supplierName.data = supplier.Name
             form.email.data = supplier.Email
             form.telephoneNo = supplier.TelephoneNo
             form.location = supplier.Location
@@ -74,7 +74,7 @@ def editDefineSupplier(id):
         try:
             SupplierTbEdit = db.session.query(SupplierTb).filter(SupplierTb.ID == id).one()
 
-            BeforeSupplierName = SupplierTbEdit.SupplierName
+            BeforeSupplierName = SupplierTbEdit.Name
             BeforeEmail = SupplierTbEdit.Email
             BeforeTelephone = SupplierTbEdit.TelephoneNo
             BeforeLocation = SupplierTbEdit.Location
