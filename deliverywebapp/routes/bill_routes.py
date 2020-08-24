@@ -1,16 +1,13 @@
 from flask import render_template, flash, redirect, url_for, request, jsonify, json
-from deliverywebapp.forms.forms import LoginForm, DefineProductsForm, DefineAreasForm, DefineBillsForm
-from deliverywebapp import app, db
-from deliverywebapp.forms.search_forms import SearchViewProductsForm
-from deliverywebapp.models.models import ProductTb
+from deliverywebapp.forms.forms import DefineBillsForm
+from deliverywebapp import app
 from flask_sqlalchemy import sqlalchemy
-from sqlalchemy import update
 from deliverywebapp.utility import AlchemyEncoder
 from deliverywebapp.models.models import *
 
 
 @app.route('/search_view_bills', methods=['POST', 'GET'])
-def searchViewBill():
+def search_view_bill():
     searchbox = request.form.get('text')
     try:
         if searchbox != "":
@@ -25,7 +22,7 @@ def searchViewBill():
 
 
 @app.route('/delivery_app/define-bills', methods=['GET', 'POST'])
-def defineBills():
+def define_bills():
     form = DefineBillsForm()
     if form.validate_on_submit():
         try:
@@ -37,13 +34,13 @@ def defineBills():
             flash(ex, 'danger')
 
         flash('Bill: "' + form.name.data + '" successfully added', 'success')
-        return redirect(url_for('viewBills', form=form))
+        return redirect(url_for('view_bills', form=form))
 
-    return render_template('./delivery_app/define-bills.html', form=form)
+    return render_template('/delivery_app/define-bills.html', form=form)
 
 
 @app.route('/delivery_app/define-bill-edit/<string:id>', methods=['GET', 'POST'])
-def editDefineBills(id):
+def edit_define_bills(id):
     form = DefineBillsForm()
     if not form.validate_on_submit():
         try:
@@ -53,15 +50,15 @@ def editDefineBills(id):
             flash(ex, 'danger')
     elif form.validate_on_submit():
         try:
-            BillsTbEdit = db.session.query(BillTb).filter(BillTb.ID == id).one()
-            BeforeBill = BillsTbEdit.Name
+            bills_tb_edit = db.session.query(BillTb).filter(BillTb.ID == id).one()
+            before_bill = bills_tb_edit.Name
 
-            BillsTbEdit.Name = form.name.data
+            bills_tb_edit.Name = form.name.data
 
             db.session.commit()
 
-            if BeforeBill != form.name.data:
-                flash('\n\t "' + BeforeBill + '" successfully edited to "' + form.name.data + '"',
+            if before_bill != form.name.data:
+                flash('\n\t "' + before_bill + '" successfully edited to "' + form.name.data + '"',
                       'success')
 
         except sqlalchemy.exc.SQLAlchemyError as ex:
@@ -69,9 +66,9 @@ def editDefineBills(id):
 
         return redirect(url_for('viewBills', form=form))
 
-    return render_template('./delivery_app/define-bills.html', form=form)
+    return render_template('/delivery_app/define-bills.html', form=form)
 
 
 @app.route('/delivery_app/view-bills')
-def viewBills():
-    return render_template('./delivery_app/view-bills.html')
+def view_bills():
+    return render_template('/delivery_app/view-bills.html')

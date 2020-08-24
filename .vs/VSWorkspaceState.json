@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\deliverywebapp",
+    "\\deliverywebapp\\models",
+    "\\deliverywebapp\\routes",
+    "\\deliverywebapp\\templates",
+    "\\deliverywebapp\\templates\\delivery_app"
+  ],
+  "SelectedNode": "\\deliverywebapp\\routes\\product_route.py",
+  "PreviewInSolutionExplorer": false
+}

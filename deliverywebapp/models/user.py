@@ -1,4 +1,4 @@
-from deliverywebapp import db, ma, app
+from deliverywebapp import db, ma, app, login_manager
 from flask_login import UserMixin
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from datetime import datetime
@@ -10,7 +10,7 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
-# it will add certain fileds to the user class tha are essential to the user login
+# it will add certain fileds to the user class that are essential to the user login
 
 
 class User(db.Model, UserMixin):

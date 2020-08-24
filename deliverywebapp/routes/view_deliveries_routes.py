@@ -1,19 +1,17 @@
 import json
-
 from flask import request, flash, render_template
-
-from deliverywebapp import app, db
-from deliverywebapp.forms.forms import UpdateDeliveries
-from deliverywebapp.models.models import DeliveriesTb
+from deliverywebapp import app
+from deliverywebapp.forms.forms import UpdateDeliveriesForm
 from deliverywebapp.utility import AlchemyEncoder
+from deliverywebapp.models.models import *
 
 
 @app.route('/search_view_deliveries', methods=['GET', 'POST'])
-def searchViewDeliveriesRoute():
+def search_view_deliveries_route():
     searchbox = request.form.get('text')
     try:
         if searchbox:
-            delivaries = db.session.execute(
+            deliveries = db.session.execute(
                 'SELECT o.OrderNo,o.CustomerName,o.Telephoneno, o.DeliveryMethod, o.Location,o.OrderDate,p.Description AS Product,o.Quantity,o.TotalAmount,'
                 'CASE WHEN  d.Invoice_Receipt IS NULL THEN " " ELSE d.Invoice_Receipt END Invoice_Receipt,'
                 'CASE WHEN d.InvoiceNo_ReceiptNo IS NULL THEN " " ELSE d.InvoiceNo_ReceiptNo END InvoiceNo_ReceiptNo,'
@@ -24,9 +22,9 @@ def searchViewDeliveriesRoute():
                 ' FROM order_tb o LEFT OUTER JOIN deliveries_tb d ON o.OrderNo = d.OrderNo '
                 'INNER JOIN product_tb p ON o.ProductID = p.ID WHERE o.CustomerName LIKE "%' + searchbox + '%" OR o.Telephoneno LIKE "%' + searchbox + '%" ORDER BY o.OrderDate DESC')
 
-            deliveriesRows = [dict(row) for row in delivaries]
+            deliveries_rows = [dict(row) for row in deliveries]
 
-            return json.dumps(deliveriesRows, cls=AlchemyEncoder)
+            return json.dumps(deliveries_rows, cls=AlchemyEncoder)
         else:
             # products = ProductPriceTb.query.all()
             deliveries = db.session.execute(
@@ -40,8 +38,8 @@ def searchViewDeliveriesRoute():
                 ' FROM order_tb o LEFT OUTER JOIN deliveries_tb d ON o.OrderNo = d.OrderNo '
                 'INNER JOIN product_tb p ON o.ProductID = p.ID ORDER BY o.OrderDate DESC')
 
-            deliveriesRows = [dict(row) for row in deliveries]
-            return json.dumps(deliveriesRows, cls=AlchemyEncoder)
+            deliveries_rows = [dict(row) for row in deliveries]
+            return json.dumps(deliveries_rows, cls=AlchemyEncoder)
 
     except Exception as ex:
         flash(ex, 'danger')
@@ -51,15 +49,8 @@ def searchViewDeliveriesRoute():
 # PAYMENT_MODE = [('-1', 'Choose Payment Mode'), ('MPESA', 'MPESA'), ('Cheque', 'Cheque'), ('Cash', 'Cash')]
 
 
-@app.route('/delivery_app/view-deliveries', methods=['GET', 'POST'])
-def viewDeliveries():
-    form = UpdateDeliveries()
-
-    return render_template('./delivery_app/view-deliveries.html', form=form)
-
-
 @app.route('/delivery_app/view-deliveries-edit', methods=['GET', 'POST'])
-def viewDeliveriesEdit():
+def view_deliveries_edit():
     try:
         # existDelivery = db.session.query(DeliveriesTb).filter(DeliveriesTb.OrderNo == request.json['ID']).one()
         # if existDelivery:
@@ -88,3 +79,17 @@ def viewDeliveriesEdit():
         return "1"
     except Exception as ex:
         return ex
+
+
+@app.route('/deliveries/<int:page_num>')
+def delivery(page_num):
+    deliveries = DeliveriesTb.query.paginate(per_page=50, page=page_num, error_out=True)
+    return render_template('paginate.html', deliveries=deliveries)
+
+
+@app.route('/delivery_app/view-deliveries', methods=['GET', 'POST'])
+def view_deliveries():
+    form = UpdateDeliveriesForm()
+
+    return render_template('/delivery_app/view-deliveries.html', form=form)
+

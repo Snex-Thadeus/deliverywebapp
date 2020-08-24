@@ -1,13 +1,15 @@
 from flask import render_template, flash, redirect, url_for, request, json
-from deliverywebapp.forms.forms import  DefineProductsForm
+from deliverywebapp.forms.forms import DefineProductsForm
 from deliverywebapp import app
 from flask_sqlalchemy import sqlalchemy
 from deliverywebapp.utility import AlchemyEncoder
 from deliverywebapp.models.models import *
 
 # MANAGE PRODUCT
+
+
 @app.route('/search_view_product', methods=['POST', 'GET'])
-def searchViewProducts():
+def search_view_products():
     searchbox = request.form.get('text')
     try:
         if searchbox != "":
@@ -21,13 +23,8 @@ def searchViewProducts():
             flash(ex, 'danger')
 
 
-@app.route('/delivery_app/view-product')
-def viewProduct():
-    return render_template('./delivery_app/view-product.html')
-
-
 @app.route('/delivery_app/define-product-edit/<string:id>', methods=['GET', 'POST'])
-def editDefineProduct(id):
+def edit_define_product(id):
     form = DefineProductsForm()
 
     if request.method == 'GET':
@@ -39,29 +36,29 @@ def editDefineProduct(id):
             flash(ex, ' danger')
     elif form.validate_on_submit():
         try:
-            ProductTbEdit = db.session.query(ProductTb).filter(ProductTb.ID == id).one()
-            BeforeSKUNumber = ProductTbEdit.SKUNumber
-            BeforeDescription = ProductTbEdit.Description
-            ProductTbEdit.SKUNumber = form.productSKU.data
-            ProductTbEdit.Description = form.productDescription.data
+            product_tb_edit = db.session.query(ProductTb).filter(ProductTb.ID == id).one()
+            before_sku_number = product_tb_edit.SKUNumber
+            before_description = product_tb_edit.Description
+            product_tb_edit.SKUNumber = form.productSKU.data
+            product_tb_edit.Description = form.productDescription.data
             db.session.commit()
 
-            if BeforeSKUNumber != form.productSKU.data:
-                flash('\n\t ' + BeforeSKUNumber + ' successfully edited to ' + form.productSKU.data,
+            if before_sku_number != form.productSKU.data:
+                flash('\n\t ' + before_sku_number + ' successfully edited to ' + form.productSKU.data,
                       'success')
-            if BeforeDescription != form.productDescription.data:
-                flash('\n\t ' + BeforeDescription + ' successfully edited to ' + form.productDescription.data,
+            if before_description != form.productDescription.data:
+                flash('\n\t ' + before_description + ' successfully edited to ' + form.productDescription.data,
                       'success')
         except sqlalchemy.exc.SQLAlchemyError as ex:
             flash(ex, ' danger')
 
-        return redirect(url_for('viewProduct', form=form))
+        return redirect(url_for('view_product', form=form))
 
     return render_template('./delivery_app/define-product.html', form=form)
 
 
 @app.route('/delivery_app/define-product', methods=['GET', 'POST'])
-def defineProduct():
+def define_product():
     form = DefineProductsForm()
 
     if form.validate_on_submit():
@@ -73,6 +70,12 @@ def defineProduct():
             flash(ex, ' danger')
 
         flash('Product: "' + form.productSKU.data + '" successfully added', 'success')
-        return redirect(url_for('viewProduct', form=form))
+        return redirect(url_for('view_product', form=form))
 
     return render_template('./delivery_app/define-product.html', form=form)
+
+
+@app.route('/delivery_app/view-product')
+def view_product():
+    return render_template('./delivery_app/view-product.html')
+

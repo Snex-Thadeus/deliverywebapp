@@ -1,15 +1,7 @@
-from flask import render_template, flash, redirect, url_for, request, jsonify, json, Response
+from flask import render_template
 from flask_wtf import FlaskForm
-from wtforms import SelectField, StringField
-
-from deliverywebapp.forms.forms import LoginForm, DefineProductsForm, DefineAreasForm, DefineBillsForm, \
-    DefineCustomerDetailsForm, DefineOrdersForm
-from deliverywebapp import app, db
-from deliverywebapp.forms.search_forms import SearchViewProductsForm
-from deliverywebapp.models.models import ProductTb
-from flask_sqlalchemy import sqlalchemy
-from sqlalchemy import update, or_
-from deliverywebapp.utility import AlchemyEncoder
+from wtforms import StringField
+from deliverywebapp import app
 from deliverywebapp.models.models import *
 
 NAMES = ["abc", "abcd", "abcde", "abcdef"]
@@ -35,4 +27,4 @@ customers_schema = CustomerSchema(many=True)
 @app.route('/example', methods=['GET', 'POST'])
 def example():
     form = SearchForm()
-    return render_template("./example_autocomplete.html", form=form)
+    return render_template("/example_autocomplete.html", form=form)

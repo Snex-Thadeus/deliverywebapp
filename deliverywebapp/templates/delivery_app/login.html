@@ -63,7 +63,7 @@
                              <div class="form-group">
                                  <div class="d-flex justify-content-between mg-b-5">
                                         {{ form.password.label(class="mg-b-0") }}
-                                       <a href="aut-password.html" class="tx-13 mg-b-0">Forgot password?</a>
+                                       <a href="{{ url_for('reset_request') }}" class="tx-13 mg-b-0">Forgot password?</a>
                                  </div>
                                  {% if form.password.errors %}
                                      {{ form.password(class="form-control")}}

@@ -1,7 +1,7 @@
 from datetime import datetime
 from flask_login import UserMixin
-from deliverywebapp import login_manager
-from deliverywebapp import db, ma
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
+from deliverywebapp import db, ma, login_manager, app
 
 
 class OrganizationTb(db.Model):
@@ -15,12 +15,12 @@ class OrganizationTb(db.Model):
     def __repr__(self):
         pass
 
-    def __init__(self, Name, TelephoneNo, Email, PinNumber, PostalAddress):
-        self.Name = Name
-        self.TelephoneNo = TelephoneNo
-        self.Email = Email
-        self.PinNumber = PinNumber
-        self.PostalAddress = PostalAddress
+    def __init__(self, name, telephone_no, email, pin_number, postal_address):
+        self.Name = name
+        self.TelephoneNo = telephone_no
+        self.Email = email
+        self.PinNumber = pin_number
+        self.PostalAddress = postal_address
 
 
 @login_manager.user_loader
@@ -37,16 +37,29 @@ class UserAccountTb(db.Model, UserMixin):
     Password = db.Column(db.String(150), nullable=False)
     OrganizationID = db.Column(db.Integer, db.ForeignKey("organization_tb.ID"), nullable=False)
 
+    def get_reset_token(self, expires_sec=1800):
+        s = Serializer(app.config['SECRET_KEY'], expires_sec)
+        return s.dumps({'user_id': self.id}).decode('utf-8')
+
+    @staticmethod
+    def verify_reset_token(token):
+        s = Serializer(app.config['SECRET_KEY'])
+        try:
+            user_id = s.loads(token)['user_id']
+        except:
+            return None
+        return UserAccountTb.query.get(user_id)
+
     def __repr__(self):
         pass
 
-    def __init__(self, Name, UserName, Email, PhoneNumber, Password, OrganizationID):
-        self.Name = Name
-        self.UserName = UserName
-        self.Email = Email
-        self.PhoneNumber = PhoneNumber
-        self.Password = Password
-        self.OrganizationID = OrganizationID
+    def __init__(self, name, user_name, email, phone_number, password, organization_id):
+        self.Name = name
+        self.UserName = user_name
+        self.Email = email
+        self.PhoneNumber = phone_number
+        self.Password = password
+        self.OrganizationID = organization_id
 
 
 class ProductTb(db.Model):
@@ -57,9 +70,9 @@ class ProductTb(db.Model):
     def __repr__(self):
         pass
 
-    def __init__(self, SKUNumber, Description):
-        self.SKUNumber = SKUNumber
-        self.Description = Description
+    def __init__(self, sku_number, description):
+        self.SKUNumber = sku_number
+        self.Description = description
 
 
 class ProductTbDropDownSchema(ma.Schema):
@@ -72,16 +85,21 @@ class ProductPriceTb(db.Model):
     ProductTbID = db.Column(db.Integer, db.ForeignKey('product_tb.ID'), nullable=False)
     Category = db.Column(db.String(50), nullable=False)
     Method = db.Column(db.String(50), nullable=False)
-    Price = db.Column(db.Float(.2), nullable=False)
+    Price = db.Column(db.Float(20), nullable=False)
 
     def __repr__(self):
         pass
 
-    def __init__(self, ProductTbID, Category, Method, Price):
-        self.ProductTbID = ProductTbID
-        self.Category = Category
-        self.Method = Method
-        self.Price = Price
+    def __init__(self, product_tb_id, category, method, price):
+        self.ProductTbID = product_tb_id
+        self.Category = category
+        self.Method = method
+        self.Price = price
+
+
+class ProductPriceTbDropDownSchema(ma.Schema):
+    class Meta:
+        fields = ("ID", "ProductTbID", "Category", "Method", "Price")
 
 
 class AreasTb(db.Model):
@@ -91,8 +109,8 @@ class AreasTb(db.Model):
     def __repr__(self):
         pass
 
-    def __init__(self, Name):
-        self.Name = Name
+    def __init__(self, name):
+        self.Name = name
 
 
 class AreaTbDropDownSchema(ma.Schema):
@@ -104,9 +122,9 @@ class CustomerTb(db.Model):
     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
     FirstName = db.Column(db.String(50), nullable=False)
     LastName = db.Column(db.String(50), nullable=True)
-    ContactPerson = db.Column(db.String(50), nullable=True)
+    ContactPerson = db.Column(db.String(50), nullable=True, default='N/A')
     Type = db.Column(db.String(50), nullable=False)
-    Email = db.Column(db.String(50), nullable=True)
+    Email = db.Column(db.String(50), nullable=True, default='N/A')
     PhoneNumber = db.Column(db.String(50), nullable=False)
     PhoneNumber2 = db.Column(db.String(50), nullable=True)
     PhoneNumber3 = db.Column(db.String(50), nullable=True)
@@ -116,18 +134,18 @@ class CustomerTb(db.Model):
     def __repr__(self):
         pass
 
-    def __init__(self, FirstName, LastName, ContactPerson, Type, Email,
-                 PhoneNumber, PhoneNumber2, PhoneNumber3, AreaID, Location):
-        self.FirstName = FirstName
-        self.LastName = LastName
-        self.ContactPerson = ContactPerson
-        self.Type = Type
-        self.Email = Email
-        self.PhoneNumber = PhoneNumber
-        self.PhoneNumber2 = PhoneNumber2
-        self.PhoneNumber3 = PhoneNumber3
-        self.AreaID = AreaID
-        self.Location = Location
+    def __init__(self, first_name, last_name, contact_person, type, email,
+        phone_number, phone_number2, phone_number3, area_id, location):
+        self.FirstName = first_name
+        self.LastName = last_name
+        self.ContactPerson = contact_person
+        self.Type = type
+        self.Email = email
+        self.PhoneNumber = phone_number
+        self.PhoneNumber2 = phone_number2
+        self.PhoneNumber3 = phone_number3
+        self.AreaID = area_id
+        self.Location = location
 
 
 class CustomerSchema(ma.Schema):
@@ -135,15 +153,15 @@ class CustomerSchema(ma.Schema):
         fields = ("FirstName", "LastName", "ContactPerson", 'Type', "Email", "PhoneNumber", "AreaID", "Location")
 
 
-class OrderTb(db.Model):
+class OrdersTb(db.Model):
     OrderNo = db.Column(db.Integer, primary_key=True, autoincrement=True)
     CustomerName = db.Column(db.String(150), nullable=False)
     TelephoneNo = db.Column(db.String(50), nullable=False)
     DeliveryMethod = db.Column(db.String(50), nullable=False)
     Location = db.Column(db.String(50), nullable=False)
     OrderDate = db.Column(db.Date, default=datetime.now(), nullable=False, )
-    LPONo = db.Column(db.String(50), nullable=False)
-    ProductID = db.Column(db.Integer, db.ForeignKey('product_tb.ID'), nullable=False)
+    LPONo = db.Column(db.String(50), nullable=True, default='N/A')
+    ProductID = db.Column(db.Integer, db.ForeignKey('product_price_tb.ID'), nullable=False)
     Price = db.Column(db.String(50), nullable=False)
     Quantity = db.Column(db.String(50), nullable=False)
     TotalAmount = db.Column(db.String(50), nullable=False)
@@ -151,18 +169,17 @@ class OrderTb(db.Model):
     def __repr__(self):
         pass
 
-    def __init__(self, CustomerName, TelephoneNo, DeliveryMethod,
-                 Location, OrderDate, LPONo, ProductID, Price, Quantity, TotalAmount):
-        self.CustomerName = CustomerName
-        self.TelephoneNo = TelephoneNo
-        self.DeliveryMethod = DeliveryMethod
-        self.Location = Location
-        self.OrderDate = OrderDate
-        self.LPONo = LPONo
-        self.ProductID = ProductID
-        self.Price = Price
-        self.Quantity = Quantity
-        self.TotalAmount = TotalAmount
+    def __init__(self, customer_name, telephone_no, delivery_method, location, order_date, lpo_no, product_id, price, quantity, total_amount):
+        self.CustomerName = customer_name
+        self.TelephoneNo = telephone_no
+        self.DeliveryMethod = delivery_method
+        self.Location = location
+        self.OrderDate = order_date
+        self.LPONo = lpo_no
+        self.ProductID = product_id
+        self.Price = price
+        self.Quantity = quantity
+        self.TotalAmount = total_amount
 
 
 class DeliveriesTb(db.Model):
@@ -177,15 +194,15 @@ class DeliveriesTb(db.Model):
     def __repr__(self):
         pass
 
-    def __init__(self, OrderNo, Invoice_Receipt, InvoiceNo_ReceiptNo,
-                 DeliveredDate, PaymentMode, ReferenceNo, AmountPaid):
-        self.OrderNo = OrderNo
-        self.Invoice_Receipt = Invoice_Receipt
-        self.InvoiceNo_ReceiptNo = InvoiceNo_ReceiptNo
-        self.DeliveredDate = DeliveredDate
-        self.PaymentMode = PaymentMode
-        self.ReferenceNo = ReferenceNo
-        self.AmountPaid = AmountPaid
+    def __init__(self, order_no, invoice_receipt, invoice_no_receipt_no,
+                     delivered_date, payment_mode, reference_no, amount_paid):
+        self.OrderNo = order_no
+        self.Invoice_Receipt = invoice_receipt
+        self.InvoiceNo_ReceiptNo = invoice_no_receipt_no
+        self.DeliveredDate = delivered_date
+        self.PaymentMode = payment_mode
+        self.ReferenceNo = reference_no
+        self.AmountPaid = amount_paid
 
 
 class MaterialItemsTb(db.Model):
@@ -195,11 +212,11 @@ class MaterialItemsTb(db.Model):
     def __repr__(self):
         pass
 
-    def __init__(self, Description):
-        self.Description = Description
+    def __init__(self, description):
+        self.Description = description
 
 
-class MaterailItemSchema(ma.Schema):
+class MaterialItemSchema(ma.Schema):
     class Meta:
         fields = ("ID", "Description")
 
@@ -212,9 +229,9 @@ class UnitOfMeasureTb(db.Model):
     def __repr__(self):
         pass
 
-    def __init__(self, Description, ShortDescription):
-        self.Description = Description
-        self.ShortDescription = ShortDescription
+    def __init__(self, description, short_description):
+        self.Description = description
+        self.ShortDescription = short_description
 
 
 class UnitOfMeasureSchema(ma.Schema):
@@ -222,7 +239,6 @@ class UnitOfMeasureSchema(ma.Schema):
         fields = ("ID", "Description")
 
 
-# Expenses/Purchases
 class ExpenseCategoriesTb(db.Model):
     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
     CategoryDescription = db.Column(db.String(50), nullable=False)
@@ -230,8 +246,8 @@ class ExpenseCategoriesTb(db.Model):
     def __repr__(self):
         pass
 
-    def __init__(self, CategoryDescription):
-        self.CategoryDescription = CategoryDescription
+    def __init__(self, category_description):
+        self.CategoryDescription = category_description
 
 
 class PettyCashTb(db.Model):
@@ -244,31 +260,27 @@ class PettyCashTb(db.Model):
     def __repr__(self):
         pass
 
-    def __init__(self, AmountReceived, DateReceived, ReceivedFrom, Account):
-        self.AmountReceived = AmountReceived
-        self.DateReceived = DateReceived
-        self.ReceivedFrom = ReceivedFrom
-        self.Account = Account
+    def __init__(self, amount_received, date_received, received_from, account):
+        self.AmountReceived = amount_received
+        self.DateReceived = date_received
+        self.ReceivedFrom = received_from
+        self.Account = account
 
-
-# class ExpensesTB(db.Model):
-#     pass
 
 class SupplierTb(db.Model):
     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
     Name = db.Column(db.String(50), nullable=False)
     Email = db.Column(db.String(50), nullable=False)
-    TelephoneNo = db.Column(db.String(50), nullable=False)
+    TelephoneNo = db.Column(db.Integer, nullable=False)
     Location = db.Column(db.String(50), nullable=False)
 
-    def __init__(self, Name, Email, TelephoneNo, Location):
-        self.Name = Name
-        self.Email = Email
-        self.TelephoneNo = TelephoneNo
-        self.Location = Location
+    def __init__(self, name, email, telephone_no, location):
+        self.Name = name
+        self.Email = email
+        self.TelephoneNo = telephone_no
+        self.Location = location
 
 
-# V4
 class BillTb(db.Model):
     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
     Name = db.Column(db.String(50), nullable=False)
@@ -280,7 +292,6 @@ class BillTb(db.Model):
         self.Name = Name
 
 
-# v8
 class ItemUomTb(db.Model):
     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
     MaterialItemsTbID = db.Column(db.Integer, db.ForeignKey("material_items_tb.ID"), nullable=False)
@@ -289,9 +300,14 @@ class ItemUomTb(db.Model):
     def __repr__(self):
         pass
 
-    def __init__(self, MaterialItemsTbID, UnitOfMeasureTbID):
-        self.MaterialItemsTbID = MaterialItemsTbID
-        self.UnitOfMeasureTbID = UnitOfMeasureTbID
+    def __init__(self, material_items_tb_id, unit_of_measure_tb_id):
+        self.MaterialItemsTbID = material_items_tb_id
+        self.UnitOfMeasureTbID = unit_of_measure_tb_id
+
+
+class ItemUomSchema(ma.Schema):
+    class Meta:
+        fields = ("ID", "MaterialItemsTb", "UnitOfMeasureTb")
 
 
 class ConversionFactorTb(db.Model):
@@ -304,19 +320,24 @@ class ConversionFactorTb(db.Model):
     def __repr__(self):
         pass
 
-    def __init__(self, MaterialItemsTbID, ItemUomTbID, MeasurementDescription, DescribeQuantity):
-        self.MaterialItemsTbID = MaterialItemsTbID
-        self.ItemUomTbID = ItemUomTbID
-        self.MeasurementDescription = MeasurementDescription
-        self.DescribeQuantity = DescribeQuantity
+    def __init__(self, material_items_tb_id, item_uom_tb_id, measurement_description, describe_quantity):
+        self.MaterialItemsTbID = material_items_tb_id
+        self.ItemUomTbID = item_uom_tb_id
+        self.MeasurementDescription = measurement_description
+        self.DescribeQuantity = describe_quantity
 
 
 class ProductionActivitiesTb(db.Model):
     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
     Activity = db.Column(db.String(50), nullable=False)
 
-    def __init__(self, Activity):
-        self.Activity = Activity
+    def __init__(self, activity):
+        self.Activity = activity
+
+
+class ProductionActivitiesSchema(ma.Schema):
+    class Meta:
+        fields = ("ID", "Activity")
 
 
 class UpdateMaterialQuantitiesTb(db.Model):
@@ -325,66 +346,108 @@ class UpdateMaterialQuantitiesTb(db.Model):
     ReceivedDate = db.Column(db.String(20), nullable=False)
     Quantity = db.Column(db.Integer, nullable=False)
 
-    def __init__(self, ItemUomTbID, ReceivedDate, Quantity):
-        self.ItemUomTbID = ItemUomTbID
-        self.ReceivedDate = ReceivedDate
-        self.Quantity = Quantity
-#
-#
-# class ViewQuantityBalancesTb(db.Model):
-#     ID = db.Column(db.Integer)
-#
-#
-# class UpdateDailyProductionTb(db.Model):
-#     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
-#     DefineProductionActivitiesTbID = db.Column(db.Integer, db.ForeignKey("item_uom_tb.ID"), nullable=False)
-#     ConversionFactorTbID = db.Column(db.Integer, db.ForeignKey("item_uom_tb.ID"), nullable=False)
-#     Quantity = db.Column(db.Integer, nullable=False)
-#     QuantityUsed = db.Column(db.Float,
-#                              nullable=False)  # Populate the Quantity used = Quantity above * Conversion Factor Quantity
-#     EntryDate = db.Column(db.Date, nullable=False, default=datetime.now())
-#
-#     def __init__(self, DefineProductionActivitiesTbID, ConversionFactorTbID, Quantity, QuantityUsed):
-#         self.DefineProductionActivitiesTbID = DefineProductionActivitiesTbID
-#         self.ConversionFactorTbID = ConversionFactorTbID
-#         self.Quantity = Quantity
-#         self.QuantityUsed = QuantityUsed
-#
-#
-# # class DailyProductionTb(db.Model):
-# #     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
-# #     Activity = db.Column(db.String(50), nullable=False)
-# #     Measure = db.Column()
-#
-# class PackagingMaterialsTb(db.Model):
-#     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
-#     Description = db.Column(db.String(50), nullable=False)
-#
-#     def __init__(self, Description):
-#         self.Description = Description
-#
-#
-# class UpdatePackingMaterialsTb(db.Model):
-#     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
-#     PackagingMaterialsTbID = db.Column(db.Integer, db.ForeignKey("item_uom_tb.ID"), nullable=False)
-#     Number = db.Column(db.Integer, nullable=False)
-#     EntryDate = db.Column(db.Integer, nullable=False)
-#
-#     def __init__(self, PackagingMaterialsTbID, Number, EntryDate):
-#         self.PackagingMaterialsTbID = PackagingMaterialsTbID
-#         self.Number = Number
-#         self.EntryDate = EntryDate
-#
-#
-# class UpdateFinishedGoodsTb(db.Model):
-#     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
-#     ProductTbID = db.Column(db.Integer, db.ForeignKey(""), nullable=False)
-#     PackagingMaterialsTbID = db.Column(db.Integer, db.ForeignKey(""), nullable=False)
-#     QuantityUsed = db.Column(db.String(50), nullable=False)
-#     EntryDate = db.Column(db.Date, default=datetime.now(), nullable=False)
-#
-# # class ViewFinishedGoodsBalancesTb(db.Model):
-# #     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
-#
-# # class ViewPackingMaterialBalancesTb(db.Model):
-# #
+    def __init__(self, item_uom_tb_id, received_date, quantity):
+        self.ItemUomTbID = item_uom_tb_id
+        self.ReceivedDate = received_date
+        self.Quantity = quantity
+
+
+class UpdateDailyProductionTb(db.Model):
+    ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    DefineProductionActivitiesTbID = db.Column(db.Integer, db.ForeignKey("production_activities_tb.ID"), nullable=False)
+    ConversionFactorTbID = db.Column(db.Integer, db.ForeignKey("item_uom_tb.ID"), nullable=False)
+    Quantity = db.Column(db.Integer, nullable=False)
+    EntryDate = db.Column(db.DateTime, default=datetime.now(), nullable=False)
+
+    def __init__(self, define_production_activities_tb_id, conversion_factors_tb_id, quantity, entry_date):
+        self.DefineProductionActivitiesTbID = define_production_activities_tb_id
+        self.ConversionFactorTbID = conversion_factors_tb_id
+        self.Quantity = quantity
+        self.EntryDate = entry_date
+
+
+class DailyProductionTb(db.Model):
+    ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    Activity = db.Column(db.String(50), nullable=False)
+    Measure = db.Column(db.String(30), nullable=False)
+    Quantity = db.Column(db.Integer, primart_key=True, nullable=False)
+    Item = db.Column(db.String(20), nullable=False)
+    UoM = db.Column(db.String(10), nullable=False)
+    ProductionDate = db.Column(db.DateTime, nullable=False, default=datetime.now())
+
+    def __init__(self, activity, measure, quantity, item, uom, production_date):
+        self.Activity = activity
+        self.Measure = measure
+        self.Quantity = quantity
+        self.Item = item
+        self.UoM = uom
+        self.ProductionDate = production_date
+
+
+class PackagingMaterialsTb(db.Model):
+    ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    Description = db.Column(db.String(50), nullable=False)
+
+    def __init__(self, description):
+        self.Description = description
+
+
+class PackagingMaterialsSchema(ma.Schema):
+    class Meta:
+        fields = ("ID", "Description")
+
+
+class UpdatePackagingMaterialsTb(db.Model):
+    ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    PackagingMaterialsTbID = db.Column(db.Integer, db.ForeignKey("packaging_materials_tb.ID"), nullable=False)
+    Number = db.Column(db.Integer, nullable=False)
+    EntryDate = db.Column(db.DateTime, default=datetime.now(), nullable=False)
+
+    def __init__(self, packaging_materials_tb_id, number, entry_date):
+        self.PackagingMaterialsTbID = packaging_materials_tb_id
+        self.Number = number
+        self.EntryDate = entry_date
+
+
+class UpdateFinishedGoodsTb(db.Model):
+    ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    ProductTbID = db.Column(db.Integer, db.ForeignKey("product_price_tb.ID"), nullable=False)
+    PackagingMaterialsTbID = db.Column(db.Integer, db.ForeignKey("item_uom_tb.ID"), nullable=False)
+    QuantityUsed = db.Column(db.String(50), nullable=False)
+    EntryDate = db.Column(db.DateTime, default=datetime.now(), nullable=False)
+
+    def __init__(self, product_tb_id, packaging_materials_tb_id, quantity_used, entry_date):
+        self.ProductTbID = product_tb_id
+        self.PackagingMaterialsTbID = packaging_materials_tb_id
+        self.QuantityUsed = quantity_used
+        self.EntryDate = entry_date
+
+
+class ViewQuantityBalancesTb(db.Model):
+    ID = db.Column(db.Integer,  primary_key=True, autoincrement=True)
+    Material = db.Column(db.String(50), nullable=False)
+    UnitOfMeasure = db.Column(db.String(10), nullable=False)
+    Balance = db.Column(db.Integer, nullable=False)
+
+    def __init__(self, material, unit_of_measure, balance):
+        self.Material = material
+        self.UnitOfMeasure = unit_of_measure
+        self.Balance = balance
+
+
+class ViewDailyProductionTb(db.Model):
+    ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    Activity = db.Column(db.String(50), nullable=False)
+    Measure = db.Column(db.String(50), nullable=False)
+    Quantity = db.Column(db.Integer, nullable=False)
+    Item = db.Column(db.String(50), nullable=False)
+    Uom = db.Column(db.String(10), nullable=False)
+    QuantityUsed = db.Column(db.Integer, nullable=False)
+    ProductionDate = db.Column(db.DateTime, nullable=False)
+
+
+    # # class ViewFinishedGoodsBalancesTb(db.Model):
+    # #     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    #
+    # # class ViewPackingMaterialBalancesTb(db.Model):
+    # #

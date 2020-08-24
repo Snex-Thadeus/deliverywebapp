@@ -1,17 +1,13 @@
 from flask import render_template, flash, redirect, url_for, request, jsonify, json
-from deliverywebapp.forms.forms import LoginForm, DefineProductsForm, DefineAreasForm, DefineBillsForm, \
-    DefineExpenseCategoriesForm, DefineSupplierForm
-from deliverywebapp import app, db
-from deliverywebapp.forms.search_forms import SearchViewProductsForm
-from deliverywebapp.models.models import ProductTb
+from deliverywebapp.forms.forms import DefineSupplierForm
+from deliverywebapp import app
 from flask_sqlalchemy import sqlalchemy
-from sqlalchemy import update
 from deliverywebapp.utility import AlchemyEncoder
 from deliverywebapp.models.models import *
 
 
 @app.route('/search_view_suppliers', methods=['POST', 'GET'])
-def searchViewSupplier():
+def search_view_supplier():
     searchbox = request.form.get('text')
     try:
         if searchbox != "":
@@ -26,17 +22,17 @@ def searchViewSupplier():
 
 
 @app.route('/delivery_app/define-suppliers', methods=['POST', 'GET'])
-def defineSuppliers():
+def define_suppliers():
     form = DefineSupplierForm()
     if form.validate_on_submit():
         try:
-            suppliername = form.supplierName.data
+            supplier_name = form.supplierName.data
             email = form.email.data
             telephone = form.telephoneNo.data
             location = form.location.data
             # TODO:
             supplier = SupplierTb(
-                Name=suppliername,
+                Name=supplier_name,
                 Email=email,
                 TelephoneNo=telephone,
                 Location=location
@@ -50,16 +46,11 @@ def defineSuppliers():
         except Exception as ex:
             flash(ex, 'danger')
 
-    return render_template('./delivery_app/define-suppliers.html', form=form)
-
-
-@app.route('/delivery_app/view-suppliers')
-def viewSupplies():
-    return render_template('./delivery_app/view-suppliers.html')
+    return render_template('/delivery_app/define-suppliers.html', form=form)
 
 
 @app.route('/delivery_app/define-supplier-edit/<string:id>', methods=['GET', 'POST'])
-def editDefineSupplier(id):
+def edit_define_supplier(id):
     form = DefineSupplierForm()
     if not form.validate_on_submit():
         try:
@@ -72,39 +63,45 @@ def editDefineSupplier(id):
             flash(ex, 'danger')
     elif form.validate_on_submit():
         try:
-            SupplierTbEdit = db.session.query(SupplierTb).filter(SupplierTb.ID == id).one()
+            supplier_tb_edit = db.session.query(SupplierTb).filter(SupplierTb.ID == id).one()
 
-            BeforeSupplierName = SupplierTbEdit.Name
-            BeforeEmail = SupplierTbEdit.Email
-            BeforeTelephone = SupplierTbEdit.TelephoneNo
-            BeforeLocation = SupplierTbEdit.Location
+            before_supplier_name = supplier_tb_edit.Name
+            before_email = supplier_tb_edit.Email
+            before_telephone = supplier_tb_edit.TelephoneNo
+            before_location = supplier_tb_edit.Location
 
-            SupplierTbEdit.SupplierName = form.supplierName.data
-            SupplierTbEdit.Email = form.email.data
-            SupplierTbEdit.TelephoneNo = form.telephoneNo.data
-            SupplierTbEdit.Location = form.location.data
+            supplier_tb_edit.SupplierName = form.supplierName.data
+            supplier_tb_edit.Email = form.email.data
+            supplier_tb_edit.TelephoneNo = form.telephoneNo.data
+            supplier_tb_edit.Location = form.location.data
 
             db.session.commit()
 
-            if BeforeSupplierName != form.supplierName.data:
+            if before_supplier_name != form.supplierName.data:
                 flash(
-                    '\n\t "' + BeforeSupplierName + '" successfully edited to "' + form.supplierName.data + '"',
+                    '\n\t "' + before_supplier_name + '" successfully edited to "' + form.supplierName.data + '"',
                     'success')
-            if BeforeEmail != form.email.data:
+            if before_email != form.email.data:
                 flash(
-                    '\n\t "' + BeforeEmail + '" successfully edited to "' + form.email.data + '"',
+                    '\n\t "' + before_email + '" successfully edited to "' + form.email.data + '"',
                     'success')
-            if BeforeTelephone != form.telephoneNo.data:
+            if before_telephone != form.telephoneNo.data:
                 flash(
-                    '\n\t "' + BeforeTelephone + '" successfully edited to "' + form.telephoneNo.data + '"',
+                    '\n\t "' + before_telephone + '" successfully edited to "' + form.telephoneNo.data + '"',
                     'success')
-            if BeforeLocation != form.location.data:
+            if before_location != form.location.data:
                 flash(
-                    '\n\t "' + BeforeLocation + '" successfully edited to "' + form.location.data + '"',
+                    '\n\t "' + before_location + '" successfully edited to "' + form.location.data + '"',
                     'success')
         except sqlalchemy.exc.SQLAlchemyError as ex:
             flash(ex, ' danger')
 
         return redirect(url_for('viewSupplies', form=form))
 
-    return render_template('./delivery_app/define-suppliers.html', form=form)
+    return render_template('/delivery_app/define-suppliers.html', form=form)
+
+
+@app.route('/delivery_app/view-suppliers')
+def view_suppliers():
+    return render_template('/delivery_app/view-suppliers.html')
+

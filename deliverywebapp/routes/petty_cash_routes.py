@@ -1,50 +1,46 @@
 from flask import render_template, flash, redirect, url_for, request, jsonify, json
-from deliverywebapp.forms.forms import LoginForm, DefineProductsForm, DefineAreasForm, DefineBillsForm, \
-    DefinePettyCashForm
-from deliverywebapp import app, db
-from deliverywebapp.forms.search_forms import SearchViewProductsForm
-from deliverywebapp.models.models import ProductTb
+from deliverywebapp.forms.forms import DefinePettyCashForm
+from deliverywebapp import app
 from flask_sqlalchemy import sqlalchemy
-from sqlalchemy import update
-from deliverywebapp.utility import AlchemyEncoder, getCleanPriceValue
+from deliverywebapp.utility import AlchemyEncoder, get_clean_price_value
 from deliverywebapp.models.models import *
 
 ACCOUNT = ['Petty Cash']
 
 
 @app.route('/search_view_petty_cash', methods=['POST', 'GET'])
-def searchViewPettyCash():
+def search_view_petty_cash():
     searchbox = request.form.get('text')
     try:
         if searchbox != "":
-            pettycash = PettyCashTb.query.filter(PettyCashTb.ReceivedFrom.like('%' + searchbox + '%')).all()
-            return json.dumps(pettycash, cls=AlchemyEncoder)
+            petty_cash = PettyCashTb.query.filter(PettyCashTb.ReceivedFrom.like('%' + searchbox + '%')).all()
+            return json.dumps(petty_cash, cls=AlchemyEncoder)
         else:
-            pettycash = PettyCashTb.query.all()
-            return json.dumps(pettycash, cls=AlchemyEncoder)
+            petty_cash = PettyCashTb.query.all()
+            return json.dumps(petty_cash, cls=AlchemyEncoder)
 
     except sqlalchemy.exc.SQLAlchemyError as ex:
         flash(ex, ' danger')
 
 
 @app.route('/delivery_app/define-petty-cash', methods=['GET', 'POST'])
-def definePettyCash():
+def define_petty_cash():
     form = DefinePettyCashForm()
     if request.method == "POST":
         try:
 
-            dateTime = request.form.get('datepicker')
+            date_time = request.form.get('datepicker')
 
-            pettycash = PettyCashTb(form.amountReceived.data, form.dateReceived.data, form.receivedFrom.data,
+            petty_cash = PettyCashTb(form.amountReceived.data, form.dateReceived.data, form.receivedFrom.data,
                                     form.account.data)
-            db.session.add(pettycash)
+            db.session.add(petty_cash)
             db.session.commit()
 
             flash(
                 'Petty Cash: An amount of "' + form.amountReceived.data + '" is successfully added and was received '
                                                                           'from "' + form.receivedFrom.data + '"',
                 'success')
-            return redirect(url_for('viewPettyCash', form=form))
+            return redirect(url_for('view_petty_cash', form=form))
         except sqlalchemy.exc.SQLAlchemyError as ex:
             flash(ex, 'danger')
     elif request.method == 'GET':
@@ -54,46 +50,46 @@ def definePettyCash():
 
 
 @app.route('/delivery_app/define-petty-cash-edit/<string:id>', methods=['GET', 'POST'])
-def editPettyCash(id):
+def edit_petty_cash(id):
     form = DefinePettyCashForm()
     if not form.validate_on_submit():
 
         try:
-            pettycash = PettyCashTb.query.get(id)
-            form.amountReceived.data = pettycash.AmountReceived
-            form.dateReceived.data = pettycash.DateReceived
-            form.receivedFrom.data = pettycash.ReceivedFrom
-            form.account.data = pettycash.Account
-            form.account.default = pettycash.Account
+            petty_cash = PettyCashTb.query.get(id)
+            form.amountReceived.data = petty_cash.AmountReceived
+            form.dateReceived.data = petty_cash.DateReceived
+            form.receivedFrom.data = petty_cash.ReceivedFrom
+            form.account.data = petty_cash.Account
+            form.account.default = petty_cash.Account
         except Exception as ex:
             flash(ex, ' danger')
     elif form.validate_on_submit():
         try:
-            PettyCashTbEdit = db.session.query(PettyCashTb).filter(PettyCashTb.ID == id).one()
+            petty_cash_tb_edit = db.session.query(PettyCashTb).filter(PettyCashTb.ID == id).one()
 
-            BeforeAmountReceived = PettyCashTbEdit.AmountReceived
-            BeforeDateReceived = PettyCashTbEdit.DateReceived
-            BeforeReceivedFrom = PettyCashTbEdit.ReceivedFrom
-            BeforeAccount = PettyCashTbEdit.Account
+            before_amount_received = petty_cash_tb_edit.AmountReceived
+            before_date_received = petty_cash_tb_edit.DateReceived
+            before_received_from = petty_cash_tb_edit.ReceivedFrom
+            before_account = petty_cash_tb_edit.Account
 
-            PettyCashTbEdit.AmountReceived = getCleanPriceValue(form.amountReceived.data)
-            PettyCashTbEdit.DateReceived = form.dateReceived.data
-            PettyCashTbEdit.ReceivedFrom = form.receivedFrom.data
-            PettyCashTbEdit.Account = form.account.data
+            petty_cash_tb_edit.AmountReceived = get_clean_price_value(form.amountReceived.data)
+            petty_cash_tb_edit.DateReceived = form.dateReceived.data
+            petty_cash_tb_edit.ReceivedFrom = form.receivedFrom.data
+            petty_cash_tb_edit.Account = form.account.data
 
             db.session.commit()
 
-            if BeforeAmountReceived != getCleanPriceValue(form.amountReceived.data):
-                flash('\n\t "' + BeforeAmountReceived + '" successfully edited to "' + form.amountReceived.data + '"',
+            if before_amount_received != get_clean_price_value(form.amountReceived.data):
+                flash('\n\t "' + before_amount_received + '" successfully edited to "' + form.amountReceived.data + '"',
                       'success')
-            if BeforeDateReceived != form.dateReceived.data:
-                flash('\n\t "' + BeforeDateReceived + '" successfully edited to "' + form.dateReceived.data + '"',
+            if before_date_received != form.dateReceived.data:
+                flash('\n\t "' + before_date_received + '" successfully edited to "' + form.dateReceived.data + '"',
                       'success')
-            if BeforeReceivedFrom != form.receivedFrom.data:
-                flash('\n\t "' + BeforeReceivedFrom + '" successfully edited to "' + form.receivedFrom.data + '"',
+            if before_received_from != form.receivedFrom.data:
+                flash('\n\t "' + before_received_from + '" successfully edited to "' + form.receivedFrom.data + '"',
                       'success')
-            if BeforeAccount != form.account.data:
-                flash('\n\t "' + BeforeAccount + '" successfully edited to "' + form.account.data + '"',
+            if before_account != form.account.data:
+                flash('\n\t "' + before_account + '" successfully edited to "' + form.account.data + '"',
                       'success')
 
         except Exception as ex:
@@ -105,5 +101,5 @@ def editPettyCash(id):
 
 
 @app.route('/delivery_app/view-petty-cash')
-def viewPettyCash():
+def view_petty_cash():
     return render_template('./delivery_app/view-petty-cash.html')

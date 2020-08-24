@@ -26,29 +26,30 @@ class AlchemyEncoder(json.JSONEncoder):
         return json.JSONEncoder.default(self, obj)
 
 
-def getCleanPriceValue(PRICE_VALUE):
-    return PRICE_VALUE.replace("Ksh ", '').replace(",", '').strip()
+def get_clean_price_value(price_value):
+    return price_value.replace("Ksh ", '').replace(",", '').strip()
 
 
-def getIDForChooseCategory(PRODUCT_PRICE_CATEGORY, select):
-    returnID = 1
-    for i in range(len(PRODUCT_PRICE_CATEGORY)):
-        returnID = i
-        if PRODUCT_PRICE_CATEGORY[i] == select:
+def get_id_for_choose_category(product_price_category, select):
+    return_id = 1
+    for i in range(len(product_price_category)):
+        return_id = i
+        if product_price_category[i] == select:
             break
 
-    return returnID
+    return return_id
     pass
 
 
-def getIDForChooseMethod(PRODUCT_PRICE_METHOD, select):
-    returnID = 1
-    for i in range(len(PRODUCT_PRICE_METHOD)):
-        returnID = i
-        if PRODUCT_PRICE_METHOD[i] == select:
+def get_id_for_choose_method(product_price_method, select):
+    return_id = 1
+    for i in range(len(product_price_method)):
+        return_id = i
+        if product_price_method[i] == select:
             break
 
-    return returnID
+    return return_id
+
 
 def email(_to, subject, body):
     _from = "admin@main.com"
@@ -69,4 +70,3 @@ def email(_to, subject, body):
             return True
         else:
             return False
-

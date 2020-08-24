@@ -807,7 +807,7 @@
                                                                                     <div class="form-group mg-md-l--1 bd-t-0-force">
                                                                                         {% if form.invoiceNo_receiptNo.errors %}
                                                                                             {{ form.invoiceNo_receiptNo(class="form-control") }}
-                                                                                            <div id="slErrorContainer">
+                                                                                            <div id="s2ErrorContainer">
                                                                                                 {% for error in form.invoiceNo_receiptNo.errors %}
                                                                                                     <span>{{ error }}</span>
                                                                                                 {% endfor %}
@@ -865,7 +865,7 @@
                                                                                     <div class="form-group mg-md-l--1 bd-t-0-force">
                                                                                         {% if form.paymentMode.errors %}
                                                                                             {{ form.paymentMode(class="form-control select2-hidden-accessible", **{'data-placeholder':"Choose one", 'data-parsley-class-handler':"#slWrapper", 'data-parsley-errors-container':"#slErrorContainer" 'required'}) }}
-                                                                                            <div id="slErrorContainer">
+                                                                                            <div id="s3ErrorContainer">
                                                                                                 {% for error in form.paymentMode.errors %}
                                                                                                     <span>{{ error }}</span>
                                                                                                 {% endfor %}
@@ -880,7 +880,7 @@
                                                                                     <div class="form-group mg-md-l--1 bd-t-0-force">
                                                                                         {% if form.referenceNo.errors %}
                                                                                             {{ form.referenceNo(class="form-control") }}
-                                                                                            <div id="slErrorContainer">
+                                                                                            <div id="s4ErrorContainer">
                                                                                                 {% for error in form.referenceNo.errors %}
                                                                                                     <span>{{ error }}</span>
                                                                                                 {% endfor %}
@@ -895,7 +895,7 @@
                                                                                     <div class="form-group mg-md-l--1 bd-t-0-force">
                                                                                         {% if form.AmountPaid.errors %}
                                                                                             {{ form.AmountPaid(class="form-control") }}
-                                                                                            <div id="slErrorContainer">
+                                                                                            <div id="s5ErrorContainer">
                                                                                                 {% for error in form.AmountPaid.errors %}
                                                                                                     <span>{{ error }}</span>
                                                                                                 {% endfor %}

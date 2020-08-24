@@ -1,39 +1,37 @@
 from flask import render_template, flash, redirect, url_for, request, jsonify, json
 from flask_bcrypt import Bcrypt
-
-from deliverywebapp.forms.forms import LoginForm, DefineProductsForm, DefineAreasForm, DefineAccountInfo
-from deliverywebapp import app, db
-
+from deliverywebapp.forms.forms import DefineAccountInfoForm
+from deliverywebapp import app
 from deliverywebapp.utility import AlchemyEncoder
 from deliverywebapp.models.models import *
 
 
 @app.route('/search-account-info', methods=['GET', 'POST'])
-def searchAccountInfo():
+def search_account_info(user_account=''):
     searchbox = request.form.get('text')
     try:
         if searchbox:
-            userAccount = UserAccountTb.query.filter(
+            user_account = UserAccountTb.query.filter(
                 UserAccountTb.Name.like('%' + searchbox + '%')).all()
-            return json.dumps(userAccount, cls=AlchemyEncoder)
+            return json.dumps(user_account, cls=AlchemyEncoder)
         else:
-            userAccount = UserAccountTb.query.all()
-            return json.dumps(userAccount, cls=AlchemyEncoder)
+            user_account = UserAccountTb.query.all()
+            return json.dumps(user_account, cls=AlchemyEncoder)
     except Exception as ex:
         flash(ex, 'danger')
 
 
 @app.route('/delivery_app/account-info', methods=['GET', 'POST'])
-def defineAccountInfo():
-    form = DefineAccountInfo()
+def define_account_info():
+    form = DefineAccountInfoForm()
     if request.method == "POST":
         try:
             # Name, UserName, Email, PhoneNumber, Password, OrganizationID
-            userAccount = UserAccountTb(
+            user_account = UserAccountTb(
                 Name=form.name.data, UserName=form.username.data, Email=form.email.data,
                 PhoneNumber=form.phonenumber.data,
                 Password=Bcrypt(app).generate_password_hash(form.password.data), OrganizationID="1")
-            db.session.add(userAccount)
+            db.session.add(user_account)
             db.session.commit()
 
             flash('User "' + form.name.data + '" successfully added', 'success')
@@ -46,17 +44,17 @@ def defineAccountInfo():
 
 
 @app.route('/delivery_app/view-account-info', methods=['GET'])
-def viewAccountInfo():
+def view_account_info():
     return render_template('./delivery_app/view-user-accounts.html')
 
 
 @app.route('/delivery_app/account-info-edit/<string:id>', methods=['GET', 'POST'])
-def accountInfoEdit(id):
-    form = DefineAccountInfo()
-    BeforeName = None
-    BeforeUsername = None
-    BeforeEmail = None
-    BeforePhonenumber = None
+def account_info_edit(id):
+    form = DefineAccountInfoForm()
+    before_name = None
+    before_user_name = None
+    before_email = None
+    before_phone_number = None
 
     if request.method == 'GET':
         try:
@@ -73,38 +71,38 @@ def accountInfoEdit(id):
     elif request.method == 'POST':
         try:
 
-            userAccountEdit = db.session.query(UserAccountTb) \
+            user_account_edit = db.session.query(UserAccountTb) \
                 .filter(UserAccountTb.ID == id).one()
-            BeforeName = userAccountEdit.Name
-            BeforeUsername = userAccountEdit.UserName
-            BeforeEmail = userAccountEdit.Email
-            BeforePhonenumber = userAccountEdit.PhoneNumber
+            before_name = user_account_edit.Name
+            before_user_name = user_account_edit.UserName
+            before_email = user_account_edit.Email
+            before_phone_number = user_account_edit.PhoneNumber
 
-            userAccountEdit.Name = form.name.data
-            userAccountEdit.UserName = form.username.data
-            userAccountEdit.Email = form.email.data
-            userAccountEdit.PhoneNumber = form.phonenumber.data
+            user_account_edit.Name = form.name.data
+            user_account_edit.UserName = form.username.data
+            user_account_edit.Email = form.email.data
+            user_account_edit.PhoneNumber = form.phonenumber.data
             db.session.commit()
 
-            if BeforeName != form.name.data:
+            if before_name != form.name.data:
                 flash(
-                    '\n\t ' + form.name.data + '\'s name "' + BeforeName + '" successfully edited to "' + form.name.data + '"',
+                    '\n\t ' + form.name.data + '\'s name "' + before_name + '" successfully edited to "' + form.name.data + '"',
                     'success')
-            if BeforeUsername != form.username.data:
+            if before_user_name != form.username.data:
                 flash(
-                    '\n\t ' + form.name.data + '\'s username "' + BeforeUsername + '" successfully edited to "' + form.username.data + '"',
+                    '\n\t ' + form.name.data + '\'s username "' + before_user_name + '" successfully edited to "' + form.username.data + '"',
                     'success')
-            if BeforeEmail != form.email.data:
+            if before_email != form.email.data:
                 flash(
-                    '\n\t ' + form.name.data + '\'s email "' + BeforeEmail + '" successfully edited to "' + form.email.data + '"',
+                    '\n\t ' + form.name.data + '\'s email "' + before_email + '" successfully edited to "' + form.email.data + '"',
                     'success')
-            if BeforePhonenumber != form.phonenumber.data:
+            if before_phone_number != form.phonenumber.data:
                 flash(
-                    '\n\t ' + form.name.data + '\'s phone number "' + BeforePhonenumber + '" successfully edited to "' + form.phonenumber.data + '"',
+                    '\n\t ' + form.name.data + '\'s phone number "' + before_phone_number + '" successfully edited to "' + form.phonenumber.data + '"',
                     'success')
 
             return redirect(url_for("viewAccountInfo", form=form))
         except Exception as ex:
             flash(ex, 'danger')
 
-    return render_template('./delivery_app/account_info.html', form=form)
+    return render_template('/delivery_app/account_info.html', form=form)

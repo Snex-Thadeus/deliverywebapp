@@ -72,8 +72,8 @@
                             <span>Manage Orders</span><i class="accordion-icon fa fa-angle-left"></i>
                         </a>
                         <ul class="sub-menu">
-                            <li><a href="{{ url_for("viewOrders") }}">View Orders</a></li>
-                            <li><a href="{{ url_for("viewDeliveries") }}">View Deliveries</a></li>
+                            <li><a href="{{ url_for('view_orders') }}">View Orders</a></li>
+                            <li><a href="{{ url_for('view_deliveries') }}">View Deliveries</a></li>
                         </ul>
                     </li>
                     <li>
@@ -92,8 +92,8 @@
                             <span>Manage Products</span><i class="accordion-icon fa fa-angle-left"></i>
                         </a>
                         <ul class="sub-menu">
-                            <li><a href="{{ url_for("viewProduct") }}">View Products</a></li>
-                            <li><a href="{{ url_for("viewProductPrices") }}">View Product Prices</a></li>
+                            <li><a href="{{ url_for('view_product') }}">View Products</a></li>
+                            <li><a href="{{ url_for('view_product_prices') }}">View Product Prices</a></li>
 
                         </ul>
                     </li>
@@ -116,8 +116,8 @@
                             <span>Manage Customers</span><i class="accordion-icon fa fa-angle-left"></i>
                         </a>
                         <ul class="sub-menu">
-                            <li><a href="{{ url_for("viewCustomersDetails") }}">View Customers</a></li>
-                            <li><a href="{{ url_for("viewAreas") }}">View Areas</a></li>
+                            <li><a href="{{ url_for('view_customers_details') }}">View Customers</a></li>
+                            <li><a href="{{ url_for('view_areas') }}">View Areas</a></li>
 
                         </ul>
                     </li>
@@ -135,12 +135,12 @@
                             <span>Manage Inventory</span><i class="accordion-icon fa fa-angle-left"></i>
                         </a>
                         <ul class="sub-menu">
-                            <li><a href="{{ url_for("viewRawMaterialItems") }}">View Raw Material Items</a></li>
-                            <li><a href="{{ url_for("viewUnitofMeasure") }}">View Units of Measure</a></li>
-                            <li><a href="{{ url_for('defineItemUom') }}">View Item UoM</a></li>
-                            <li><a href="#">View Conversion Factors</a></li>
-                            <li><a href="#">View Production Activities</a></li>
-                            <li><a href="#">View Quantity Balances</a></li>
+                            <li><a href="{{ url_for('view_raw_material_items') }}">View Raw Material Items</a></li>
+                            <li><a href="{{ url_for('view_unit_of_measure') }}">View Units of Measure</a></li>
+                            <li><a href="{{ url_for('view_item_uom') }}">View Item UoM</a></li>
+                            <li><a href="{{ url_for('view_conversion_factors') }}">View Conversion Factors</a></li>
+                            <li><a href="{{ url_for('view_product_prices') }}">View Product Prices</a></li>
+                            <li><a href="{{ url_for('view_quantity_balances') }}">View Quantity Balances</a></li>
                         </ul>
                     </li>
                     <li>
@@ -157,10 +157,10 @@
                             <span>Expenses/Purchases</span><i class="accordion-icon fa fa-angle-left"></i>
                         </a>
                         <ul class="sub-menu">
-                            <li><a href="{{ url_for("viewExpenseCategory") }}">View Expense Category</a></li>
-                            <li><a href="{{ url_for("viewPettyCash") }}">View Petty Cash</a></li>
-                            <li><a href="{{ url_for("viewSupplies") }}">View Suppliers</a></li>
-                            <li><a href="{{ url_for("viewBills") }}">View Bills</a></li>
+                            <li><a href="{{ url_for('view_expense_category') }}">View Expense Category</a></li>
+                            <li><a href="{{ url_for('view_petty_cash')}}">View Petty Cash</a></li>
+                            <li><a href="{{ url_for('view_suppliers') }}">View Suppliers</a></li>
+                            <li><a href="{{ url_for('view_bills') }}">View Bills</a></li>
                         </ul>
                     </li>
                     <li>
@@ -178,8 +178,8 @@
                         </a>
                         <ul class="sub-menu" style="display: block;">
                             <!-- Active Page -->
-                            <li class="active"><a href="{{ url_for('defineAccountInfo') }}">Create User</a></li>
-                            <li class="active"><a href="{{ url_for('viewAccountInfo') }}">View Users</a></li>
+                            <li class="active"><a href="{{ url_for('define_account_info') }}">Create User</a></li>
+                            <li class="active"><a href="{{ url_for('view_account_info') }}">View Users</a></li>
 
                         </ul>
                     </li>

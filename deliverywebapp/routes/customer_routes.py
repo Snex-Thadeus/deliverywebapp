@@ -1,17 +1,12 @@
 from flask import render_template, flash, redirect, url_for, request, jsonify, json
-from deliverywebapp.forms.forms import LoginForm, DefineProductsForm, DefineAreasForm, DefineBillsForm, \
-    DefineCustomerDetailsForm
-from deliverywebapp import app, db
-from deliverywebapp.forms.search_forms import SearchViewProductsForm
-from deliverywebapp.models.models import ProductTb
-from flask_sqlalchemy import sqlalchemy
-from sqlalchemy import update, or_
+from deliverywebapp.forms.forms import DefineCustomerDetailsForm
+from deliverywebapp import app
 from deliverywebapp.utility import AlchemyEncoder
 from deliverywebapp.models.models import *
 
 
 @app.route('/search_view_customers', methods=['GET', 'POST'])
-def searchViewCustomers():
+def search_view_customers():
     searchbox = request.form.get('text')
     try:
         count = len(searchbox)
@@ -39,24 +34,16 @@ def searchViewCustomers():
             return json.dumps(customers2, cls=AlchemyEncoder)
 
     except Exception as ex:
-            flash(ex, 'danger')
+        flash(ex, 'danger')
 
 
 areasTbDropDownSchema = AreaTbDropDownSchema(many=True)
 
 
 @app.route('/delivery_app/define-customer', methods=['GET', 'POST'])
-def defineCustomerDetails():
+def define_customer_details():
     form = DefineCustomerDetailsForm()
-    if request.method == "GET":
-        try:
-            areasDropDownList = areasTbDropDownSchema.dump(AreasTb.query.all())
-            form.area.choices = [(i['ID'], i['Name']) for i in areasDropDownList]
-
-        except Exception as ex:
-            flash(ex, "danger")
-
-    elif request.method == "POST":
+    if request.method == "POST":
         try:
 
             customer = CustomerTb(
@@ -78,16 +65,24 @@ def defineCustomerDetails():
             flash(ex, 'danger')
 
         flash('Customer: "' + form.firstname.data + '  ' + form.lastname.data + '" successfully added', 'success')
-        return redirect(url_for('viewCustomersDetails'))
+        return redirect(url_for('view_customers_details'))
 
-    return render_template('./delivery_app/define-customers.html', form=form)
+    elif request.method == "GET":
+        try:
+            areas_drop_down_list = areasTbDropDownSchema.dump(AreasTb.query.all())
+            form.area.choices = [(i['ID'], i['Name']) for i in areas_drop_down_list]
+
+        except Exception as ex:
+            flash(ex, "danger")
+
+    return render_template('/delivery_app/define-customers.html', form=form)
 
 
 @app.route('/delivery_app/define-customer-edit/<string:id>', methods=['GET', 'POST'])
-def editDefineCustomersDetails(id):
+def edit_define_customers_details():
     pass
 
 
-@app.route('/delivery_app/view-customer')
-def viewCustomersDetails():
-    return render_template('./delivery_app/view-customers.html')
+@app.route('/delivery_app/view-customer', methods=['GET', 'POST'])
+def view_customers_details():
+    return render_template('/delivery_app/view-customers.html')

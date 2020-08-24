@@ -1,18 +1,13 @@
-from flask import render_template, flash, redirect, url_for, request, jsonify, json, Response
-from deliverywebapp.forms.forms import LoginForm, DefineProductsForm, DefineAreasForm, DefineBillsForm, \
-    DefineCustomerDetailsForm, DefineOrdersForm
-from deliverywebapp import app, db
-from deliverywebapp.forms.search_forms import SearchViewProductsForm
-from deliverywebapp.models.models import ProductTb
-from flask_sqlalchemy import sqlalchemy
-from sqlalchemy import update, or_
-from deliverywebapp.utility import AlchemyEncoder, getCleanPriceValue
+from flask import render_template, flash, redirect, url_for, request, jsonify, json
+from deliverywebapp.forms.forms import DefineOrdersForm
+from deliverywebapp import app
+from deliverywebapp.utility import AlchemyEncoder, get_clean_price_value
 from deliverywebapp.models.models import *
 
 
 @app.route('/search_view_orders', methods=['GET', 'POST'])
-def searchViewOrders():
-    return json.dumps(OrderTb.query.all(), cls=AlchemyEncoder)
+def search_view_orders():
+    return json.dumps(OrdersTb.query.all(), cls=AlchemyEncoder)
 
 
 productTbDropDownSchema = ProductTbDropDownSchema(many=True)
@@ -34,7 +29,7 @@ DELIVERY_METHOD = [(-1, 'Choose Delivery Method'), ('Factory', 'Factory'), ('Del
 
 
 @app.route('/product_prices/<string:filter>', methods=['POST', 'GET'])
-def filterProductsPricesByDeliveryMethod(filter):
+def filter_products_prices_by_delivery_method(filter):
     delivery = filter.split(" ")[0]
     category = filter.split(" ")[1]
 
@@ -43,24 +38,24 @@ def filterProductsPricesByDeliveryMethod(filter):
                                   "product_price_tb ON product_tb.ID = product_price_tb.ProductTbID "
                                   "WHERE product_price_tb.Method = '" + delivery + "' AND product_price_tb.Category = '" + category + "'")
 
-    productRows = [dict(row) for row in products]
+    product_rows = [dict(row) for row in products]
 
-    return json.dumps(productRows, cls=AlchemyEncoder)
+    return json.dumps(product_rows, cls=AlchemyEncoder)
 
 
 CATEGORY = [(-1, "Choose Category"), ("Wholesale", "Wholesale"), ("Retail", "Retail")]
 
 
 @app.route('/delivery_app/define-orders', methods=['GET', 'POST'])
-def defineOrders():
+def define_orders():
     form = DefineOrdersForm()
     if request.method == "GET":
         try:
-            productTB = ProductTb.query.all()
-            productDropDownList = productTbDropDownSchema.dump(productTB)
+            product_tb = ProductTb.query.all()
+            product_drop_down_list = productTbDropDownSchema.dump(product_tb)
 
             choices = [(-1, "Choose Product")]
-            for i in productDropDownList:
+            for i in product_drop_down_list:
                 choices.append((i['ID'], i['Description']))
 
             form.ddProducts.choices = choices
@@ -81,26 +76,25 @@ def defineOrders():
                 flash("Please select product", "warning")
                 return redirect(url_for('defineOrders', form=form))
 
-
-            phoneNumber = None
+            phone_number = None
             if form.customer.data:
                 for isPhonenumber in form.customer.data.split(" "):
                     if "254" in isPhonenumber or "07" in isPhonenumber:
-                        phoneNumber = isPhonenumber
+                        phone_number = isPhonenumber
                         break
 
             price = form.ddProducts.data  # .split(" ")[0]
 
-            orders = OrderTb(CustomerName=form.customer.data,
-                             TelephoneNo=phoneNumber,
+            orders = OrdersTb(CustomerName=form.customer.data,
+                             TelephoneNo=phone_number,
                              DeliveryMethod=form.deliveryMethod.data,
                              Location=form.location.data,
                              OrderDate=form.orderdate.data,
                              LPONo=form.lpoNo.data,
                              ProductID=price,
-                             Price=getCleanPriceValue(form.price.data),
+                             Price=get_clean_price_value(form.price.data),
                              Quantity=form.quantity.data,
-                             TotalAmount=getCleanPriceValue(form.totalAmount.data)
+                             TotalAmount=get_clean_price_value(form.totalAmount.data)
                              )
             db.session.add(orders)
             db.session.commit()
@@ -108,18 +102,24 @@ def defineOrders():
             flash(
                 'Order: "' + form.lpoNo.data + '" is successfully added ',
                 'success')
-            return redirect(url_for('viewOrders', form=form))
+            return redirect(url_for('view_orders', form=form))
         except Exception as ex:
             flash(ex, 'danger')
 
-    return render_template('./delivery_app/define-orders.html', form=form)
+    return render_template('/delivery_app/define-orders.html', form=form)
 
 
 @app.route('/delivery_app/define-order-edit/<string:id>', methods=['GET', 'POST'])
-def editDefineOrders(id):
+def edit_define_orders(id):
     pass
 
 
+@app.route('/orders/<int:page_num>')
+def orders(page_num):
+    orders = OrdersTb.query.paginate(per_page=50, page=page_num, error_out=True)
+    return render_template('pagination.html', orders=orders)
+
+
 @app.route('/delivery_app/view-order')
-def viewOrders():
-    return render_template('./delivery_app/view-orders.html')
+def view_orders():
+    return render_template('/delivery_app/view-orders.html')
