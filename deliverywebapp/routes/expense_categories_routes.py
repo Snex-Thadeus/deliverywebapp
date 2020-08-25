@@ -63,7 +63,7 @@ def edit_define_expense_categories(id):
         except Exception as ex:
             flash(ex, 'danger')
 
-        return redirect(url_for('viewExpenseCategory', form=form))
+        return redirect(url_for('view_expense_category', form=form))
 
     return render_template('/delivery_app/define-expense-categories.html', form=form)
 

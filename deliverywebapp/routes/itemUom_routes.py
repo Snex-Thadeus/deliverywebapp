@@ -36,7 +36,7 @@ def define_item_uom():
             raw_material_dd = rawMaterialDropDownSchema.dump(raw_materials)
             for i in raw_material_dd:
                 raw_material_choices.append((i['ID'], i['Description']))
-            form.chooseRawMaterail.choices = raw_material_choices
+            form.chooseRawMaterial.choices = raw_material_choices
 
             unit_of_measure_choices = [(-1, 'Choose unit of measure')]
             unit_of_measures = UnitOfMeasureTb.query.all()
@@ -46,16 +46,16 @@ def define_item_uom():
             form.chooseUnitOfMeasure.choices = unit_of_measure_choices
         elif request.method == "POST":
             item_uom = ItemUomTb(
-                form.chooseRawMaterail.data,
+                form.chooseRawMaterial.data,
                 form.chooseUnitOfMeasure.data
             )
             db.session.add(item_uom)
             db.session.commit()
 
             flash(
-                'Item Uom: "' + form.chooseUnitOfMeasure.data + '", "' + form.chooseUnitOfMeasure.data + '" is successfully added ',
+                'Item Uom: "' + form.chooseRawMaterial.data + '", "' + form.chooseUnitOfMeasure.data + '" is successfully added ',
                 'success')
-            return redirect(url_for('view_orders', form=form))
+            return redirect(url_for('view_item_uom', form=form))
 
     except Exception as ex:
         flash(ex, 'danger')
@@ -89,7 +89,7 @@ def edit_define_item_uom(id):
         except Exception as ex:
             flash(ex, 'danger')
 
-        return redirect(url_for('viewItemUom', form=form))
+        return redirect(url_for('view_item_uom', form=form))
 
     return render_template('/delivery_app/define-item-uom.html', form=form)
 

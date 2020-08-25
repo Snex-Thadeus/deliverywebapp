@@ -64,7 +64,7 @@ def edit_define_bills(id):
         except sqlalchemy.exc.SQLAlchemyError as ex:
             flash(ex, 'danger')
 
-        return redirect(url_for('viewBills', form=form))
+        return redirect(url_for('view_bills', form=form))
 
     return render_template('/delivery_app/define-bills.html', form=form)
 

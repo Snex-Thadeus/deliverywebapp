@@ -568,15 +568,15 @@
                                                 <div class="row row-sm">
                                                     <div class="col-md-4" style="padding-top: 2%;">
                                                         <div class="form-group mg-md-l--1 bd-t-0-force">
-                                                            {% if form.chooseRawMaterail.errors %}
-                                                                {{ form.chooseRawMaterail(class="form-control") }}
+                                                            {% if form.chooseRawMaterial.errors %}
+                                                                {{ form.chooseRawMaterial(class="form-control") }}
                                                                 <div class="invalid-feedback">
-                                                                    {% for error in form.chooseRawMaterail.errors %}
+                                                                    {% for error in form.chooseRawMaterial.errors %}
                                                                         <span>{{ error }}</span>
                                                                     {% endfor %}
                                                                 </div>
                                                             {% else %}
-                                                                {{ form.chooseRawMaterail(class="form-control", placeholder="Choose raw material") }}
+                                                                {{ form.chooseRawMaterial(class="form-control", placeholder="Choose raw material") }}
                                                             {% endif %}
                                                         </div>
                                                     </div>

@@ -30,7 +30,7 @@ def define_raw_material_items():
             db.session.commit()
 
             flash('Raw material item: "' + form.description.data + '" successfully added', 'success')
-            return redirect(url_for('viewRawMaterialItems', form=form))
+            return redirect(url_for('view_raw_material_items', form=form))
         except Exception as ex:
             flash(ex, 'danger')
 

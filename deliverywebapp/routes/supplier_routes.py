@@ -26,23 +26,20 @@ def define_suppliers():
     form = DefineSupplierForm()
     if form.validate_on_submit():
         try:
-            supplier_name = form.supplierName.data
-            email = form.email.data
-            telephone = form.telephoneNo.data
-            location = form.location.data
+
             # TODO:
             supplier = SupplierTb(
-                Name=supplier_name,
-                Email=email,
-                TelephoneNo=telephone,
-                Location=location
+                form.supplierName.data,
+                form.email.data,
+                form.telephoneNo.data,
+                form.location.data
             )
 
             db.session.add(supplier)
             db.session.commit()
 
             flash('Supplier: "' + form.supplierName.data + '" successfully added', 'success')
-            return redirect(url_for('viewSupplies', form=form))
+            return redirect(url_for('view_suppliers', form=form))
         except Exception as ex:
             flash(ex, 'danger')
 
@@ -54,7 +51,7 @@ def edit_define_supplier(id):
     form = DefineSupplierForm()
     if not form.validate_on_submit():
         try:
-            supplier = ExpenseCategoriesTb.query.get(id)
+            supplier = SupplierTb.query.get(id)
             form.supplierName.data = supplier.Name
             form.email.data = supplier.Email
             form.telephoneNo = supplier.TelephoneNo
@@ -96,7 +93,7 @@ def edit_define_supplier(id):
         except sqlalchemy.exc.SQLAlchemyError as ex:
             flash(ex, ' danger')
 
-        return redirect(url_for('viewSupplies', form=form))
+        return redirect(url_for('view_suppliers', form=form))
 
     return render_template('/delivery_app/define-suppliers.html', form=form)
 

@@ -53,7 +53,7 @@ def define_daily_production():
             flash(
                 'Item Uom: "' + form.chooseProductionActivity.data + '", "' + form.chooseItemUom.data + '" is successfully added ',
                 'success')
-            return redirect(url_for('view daily production', form=form))
+            return redirect(url_for('view_daily_production', form=form))
 
     except Exception as ex:
         flash(ex, 'danger')

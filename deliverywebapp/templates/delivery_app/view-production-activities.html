@@ -1,6 +1,6 @@
 {% extends "master_layout.html" %}
 {% block imports %}
-    <script src="{{ url_for('static', filename='delivery_app_scripts/view_product_prices_search2.js')}}"></script>
+    <script src="{{ url_for('static', filename='delivery_app_scripts/view_unit_of_measure_search.js')}}"></script>
 {% endblock %}
 {% block content %}
     <div class="page-content">
@@ -495,8 +495,8 @@
                </nav>
                <div class="pd-y-10 pd-x-30 d-flex justify-content-between align-items-center header-bottom">
                   <div class="d-flex align-items-center">
-                     <h2 class="d-flex align-items-center tx-16 mb-0 pd-r-10 mr-2 bd-r bd-gray-200">Manage Product</h2>
-                     <h2 class="d-flex align-items-center tx-13 mb-0 tx-normal">View Product Prices</h2>
+                     <h2 class="d-flex align-items-center tx-16 mb-0 pd-r-10 mr-2 bd-r bd-gray-200">Manage Inventory</h2>
+                     <h2 class="d-flex align-items-center tx-13 mb-0 tx-normal">View Production Activities</h2>
                   </div>
 
                </div>
@@ -513,11 +513,9 @@
                   <div class="col-lg-12 page-content-area">
                      <div class="inner-content">
 
-
-
                         <div class="custom-fieldset mg-b-30">
                            <div class="clearfix">
-                                   {% with messages = get_flashed_messages(with_categories=true) %}
+                                {% with messages = get_flashed_messages(with_categories=true) %}
                                   {% if messages %}
                                       {% for category, message in messages %}
                                           <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
@@ -536,43 +534,42 @@
                                  <div class="table-responsive">
                                     <div class="row">
                                     <div class="form-group col-sm-6">
-                                     <input type="text" id = "livebox" class="form-control" placeholder="Search Product">
+                                           <input type="text" id = "livebox" class="form-control" placeholder="Search with description">
                                     </div>
                                     <div class="form-group col-sm-6">
-                                    <a class="btn btn-primary" href="{{ url_for('define_product_prices') }}">Add Production Activity</a>
+                                    <a class="btn btn-primary" href="{{ url_for('define_production_activities') }}" >Add Production Activity</a>
                                  </div>
                                  </div>
                                     <table class="table table-separated table-bordered">
                                        <thead>
                                           <tr>
                                              <th class="font-weight-bold">ACTIVITY</th>
-                                             <th class="text-center w-100px font-weight-bold">Actions</th>
+                                             <th class="text-center w-100px font-weight-bold">ACTION</th>
                                           </tr>
                                        </thead>
                                        <tbody>
-
                                        </tbody>
                                     </table>
                                     <nav>
-{#                                       <ul class="pagination justify-content-center">#}
-{#                                          <li class="page-item disabled">#}
-{#                                             <a class="page-link waves-effect" href="">#}
-{#                                             <span class="fa fa-arrow-left"></span>#}
-{#                                             </a>#}
-{#                                          </li>#}
-{#                                          <li class="page-item active">#}
-{#                                             <a class="page-link waves-effect" href="">1</a>#}
-{#                                          </li>#}
-{#                                          <li class="page-item"><a class="page-link waves-effect" href="">2</a></li>#}
-{#                                          <li class="page-item"><a class="page-link waves-effect" href="">3</a></li>#}
-{#                                          <li class="page-item"><a class="page-link waves-effect" href="">4</a></li>#}
-{#                                          <li class="page-item"><a class="page-link waves-effect" href="">5</a></li>#}
-{#                                          <li class="page-item">#}
-{#                                             <a class="page-link waves-effect" href="">#}
-{#                                             <span class="fa fa-arrow-right"></span>#}
-{#                                             </a>#}
-{#                                          </li>#}
-{#                                       </ul>#}
+                                       {#<ul class="pagination justify-content-center">
+                                          <li class="page-item disabled">
+                                             <a class="page-link waves-effect" href="">
+                                             <span class="fa fa-arrow-left"></span>
+                                             </a>
+                                          </li>
+                                          <li class="page-item active">
+                                             <a class="page-link waves-effect" href="">1</a>
+                                          </li>
+                                          <li class="page-item"><a class="page-link waves-effect" href="">2</a></li>
+                                          <li class="page-item"><a class="page-link waves-effect" href="">3</a></li>
+                                          <li class="page-item"><a class="page-link waves-effect" href="">4</a></li>
+                                          <li class="page-item"><a class="page-link waves-effect" href="">5</a></li>
+                                          <li class="page-item">
+                                             <a class="page-link waves-effect" href="">
+                                             <span class="fa fa-arrow-right"></span>
+                                             </a>
+                                          </li>
+                                       </ul>#}
                                     </nav>
                                  </div>
                               </div>
@@ -584,6 +581,7 @@
                   <!--================================-->
                   <!-- Page Sidebar Area Start -->
                   <!--================================-->
+
                   <!--/ Page Sidebar Area End -->
                </div>
             </div>
@@ -591,6 +589,8 @@
             <!--================================-->
             <!-- Page Footer Start -->
             <!--================================-->
+
             <!--/ Page Footer End -->
          </div>
+             <a href="" data-click="scroll-top" class="btn-scroll-top fade waves-effect"><i data-feather="arrow-up" class="wd-16 ht-16"></i></a>
 {% endblock %}

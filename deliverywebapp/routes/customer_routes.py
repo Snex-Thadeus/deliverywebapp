@@ -43,20 +43,28 @@ areasTbDropDownSchema = AreaTbDropDownSchema(many=True)
 @app.route('/delivery_app/define-customer', methods=['GET', 'POST'])
 def define_customer_details():
     form = DefineCustomerDetailsForm()
-    if request.method == "POST":
+    if request.method == "GET":
+        try:
+            areas_drop_down_list = areasTbDropDownSchema.dump(AreasTb.query.all())
+            form.area.choices = [(i['ID'], i['Name']) for i in areas_drop_down_list]
+
+        except Exception as ex:
+            flash(ex, "danger")
+
+    elif request.method == "POST":
         try:
 
             customer = CustomerTb(
-                FirstName=form.firstname.data,
-                LastName=form.lastname.data,
-                ContactPerson=form.contactperson.data,
-                Type=form.customerType.data,
-                Email=form.email.data,
-                PhoneNumber=form.phonenumber1.data,
-                PhoneNumber2=form.phonenumber2.data,
-                PhoneNumber3=form.phonenumber3.data,
-                AreaID=form.area.data,
-                Location=form.location.data)
+                form.firstname.data,
+                form.lastname.data,
+                form.contactperson.data,
+                form.customerType.data,
+                form.email.data,
+                form.phonenumber1.data,
+                form.phonenumber2.data,
+                form.phonenumber3.data,
+                form.area.data,
+                form.location.data)
 
             db.session.add(customer)
             db.session.commit()
@@ -67,15 +75,7 @@ def define_customer_details():
         flash('Customer: "' + form.firstname.data + '  ' + form.lastname.data + '" successfully added', 'success')
         return redirect(url_for('view_customers_details'))
 
-    elif request.method == "GET":
-        try:
-            areas_drop_down_list = areasTbDropDownSchema.dump(AreasTb.query.all())
-            form.area.choices = [(i['ID'], i['Name']) for i in areas_drop_down_list]
-
-        except Exception as ex:
-            flash(ex, "danger")
-
-    return render_template('/delivery_app/define-customers.html', form=form)
+    return render_template('./delivery_app/define-customers.html', form=form)
 
 
 @app.route('/delivery_app/define-customer-edit/<string:id>', methods=['GET', 'POST'])

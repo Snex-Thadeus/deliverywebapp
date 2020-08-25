@@ -307,13 +307,13 @@ class ItemUomTb(db.Model):
 
 class ItemUomSchema(ma.Schema):
     class Meta:
-        fields = ("ID", "MaterialItemsTb", "UnitOfMeasureTb")
+        fields = ("ID", "MaterialItemsTbID", "UnitOfMeasureTbID")
 
 
 class ConversionFactorTb(db.Model):
     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
     MaterialItemsTbID = db.Column(db.Integer, db.ForeignKey("material_items_tb.ID"), nullable=False)
-    ItemUomTbID = db.Column(db.Integer, db.ForeignKey("item_uom_tb.ID"), nullable=False)
+    ItemUomTbID = db.Column(db.Integer, db.ForeignKey("unit_of_measure_tb.ID"), nullable=False)
     MeasurementDescription = db.Column(db.String(50), nullable=False)
     DescribeQuantity = db.Column(db.Integer, nullable=False)
 
@@ -435,19 +435,34 @@ class ViewQuantityBalancesTb(db.Model):
         self.Balance = balance
 
 
-class ViewDailyProductionTb(db.Model):
+class ViewFinishedGoodsBalancesTb(db.Model):
     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    Activity = db.Column(db.String(50), nullable=False)
-    Measure = db.Column(db.String(50), nullable=False)
-    Quantity = db.Column(db.Integer, nullable=False)
-    Item = db.Column(db.String(50), nullable=False)
-    Uom = db.Column(db.String(10), nullable=False)
-    QuantityUsed = db.Column(db.Integer, nullable=False)
-    ProductionDate = db.Column(db.DateTime, nullable=False)
+    Product = db.Column(db.Integer, db.ForeignKey("product_price_tb.ID"), nullable=False)
+    P_In = db.Column(db.Integer, nullable=False)
+    Out = db.Column(db.Integer, nullable=False)
+    Balance = db.Column(db.Integer, nullable=False)
+    Date = db.Column(db.DateTime, default=datetime.now(), nullable=False)
+
+    def __init__(self, product, p_in, out, balance, date):
+        self.Product = product
+        self.P_In = p_in
+        self.Out = out
+        self.Balance = balance
+        self.Date = date
 
 
-    # # class ViewFinishedGoodsBalancesTb(db.Model):
-    # #     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    #
-    # # class ViewPackingMaterialBalancesTb(db.Model):
-    # #
+class ViewPackingMaterialBalancesTb(db.Model):
+    ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    Product = db.Column(db.Integer, db.ForeignKey("packaging_materials_tb.ID"), nullable=False)
+    P_In = db.Column(db.Integer, nullable=False)
+    Out = db.Column(db.Integer, nullable=False)
+    Balance = db.Column(db.Integer, nullable=False)
+    Date = db.Column(db.DateTime, default=datetime.now(), nullable=False)
+
+    def __init__(self, product, p_in, out, balance, date):
+        self.Product = product
+        self.P_In = p_in
+        self.Out = out
+        self.Balance = balance
+        self.Date = date
+

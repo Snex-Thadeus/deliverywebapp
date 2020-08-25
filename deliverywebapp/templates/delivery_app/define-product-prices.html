@@ -505,7 +505,7 @@
                                                      <div class="form-group mg-md-l--1 bd-t-0-force">
                                                         {% if form.chooseCategory.errors %}
                                                                 {{ form.chooseProduct(class="form-control select2-hidden-accessible", **{'data-placeholder':"Choose one", 'data-parsley-class-handler':"#slWrapper", 'data-parsley-errors-container':"#slErrorContainer" 'required'})}}
-                                                               <div id="slErrorContainer">
+                                                               <div id="s2ErrorContainer">
                                                                     {% for error in form.chooseCategory.errors %}
                                                                         <span>{{ error }}</span>
                                                                     {% endfor %}
@@ -519,7 +519,7 @@
                                                      <div class="form-group mg-md-l--1 bd-t-0-force">
                                                        {% if form.chooseMethod.errors %}
                                                                 {{ form.chooseMethod(class="form-control select2-hidden-accessible", **{'data-placeholder':"Choose one", 'data-parsley-class-handler':"#slWrapper", 'data-parsley-errors-container':"#slErrorContainer" 'required'})}}
-                                                               <div id="slErrorContainer">
+                                                               <div id="s3ErrorContainer">
                                                                     {% for error in form.chooseMethod.errors %}
                                                                         <span>{{ error }}</span>
                                                                     {% endfor %}

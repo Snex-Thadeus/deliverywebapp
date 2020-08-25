@@ -25,46 +25,51 @@ def search_view_conversion_factors():
 rawMaterialDropDownSchema = MaterialItemSchema(many=True)
 
 
-class ConversionFactorsSchema(ma.Schema):
-    class Meta:
-        fields = ("ID", "ItemUom")
-
-
-conversionFactorsSchema = ConversionFactorsSchema(many=True)
+UnitOfMeasureDropDownSchema = UnitOfMeasureSchema(many=True)
 
 
 @app.route('/delivery_app/define-conversion-factors', methods=['GET', 'POST'])
 def define_conversion_factors():
     form = DefineConversionFactorsForm()
-    if request.method == 'GET':
-        raw_material_choices = [(-1, 'Choose raw material')]
-        raw_materials = MaterialItemsTb.query.all()
-        raw_material_dd = rawMaterialDropDownSchema.dump(raw_materials)
-        for i in raw_material_dd:
-            raw_material_choices.append((i['ID'], i['Description']))
-        form.chooseRawMaterail.choices = raw_material_choices
+    try:
+        if request.method == 'GET':
+            raw_material_choices = [(-1, 'Choose raw material')]
+            raw_materials = MaterialItemsTb.query.all()
+            raw_material_dd = rawMaterialDropDownSchema.dump(raw_materials)
+            for i in raw_material_dd:
+                raw_material_choices.append((i['ID'], i['Description']))
+            form.chooseRawMaterial.choices = raw_material_choices
 
-        item_uom_choices = [(-1, 'Choose conversion factors')]
-        item_uoms = db.session.execute(
-            'SELECT i.ID ,CONCAT( m.Description + u.ShortDescription) AS ItemUom from item_uom_tb i INNER JOIN  material_items_tb m ON i.MaterialItemsTbID = m.ID INNER JOIN unit_of_measure_tb u ON i.UnitOfMeasureTbID  = u.ID')
+            item_uom_choices = [(-1, 'Choose conversion factors')]
+            item_uoms = UnitOfMeasureTb.query.all()
+            item_uoms_dd = UnitOfMeasureDropDownSchema.dump(item_uoms)
+            for i in item_uoms_dd:
+                item_uom_choices.append((i['ID'], i['Description']))
+            form.chooseItemUom.choices = item_uom_choices
+        #item_uoms = db.session.execute(
+            #'SELECT i.ID ,CONCAT( m.Description + u.ShortDescription) AS ItemUom from item_uom_tb i INNER JOIN  material_items_tb m ON i.MaterialItemsTbID = m.ID INNER JOIN unit_of_measure_tb u ON i.UnitOfMeasureTbID  = u.ID')
         # itemUomsRaw = [dict(row) for row in itemUoms]
-        item_uoms_dd = conversionFactorsSchema.dump(item_uoms)
-        for i in item_uoms_dd:
-            item_uom_choices.append((i['ID'], i['ItemUom']))
-        form.chooseItemUom.choices = item_uom_choices
 
-    elif request.method == 'POST':
-        conversion_factor = ConversionFactorTb(
-            MaterialItemsTbID=form.chooseRawMaterail.data,
-            ItemUomTbID=form.chooseItemUom.data,
-            MeasurementDescription=form.measurementDescription.data,
-            DescribeQuantity=form.quantity.data
-        )
-        db.session.add(conversion_factor)
-        db.session.commit()
-    render_template('/delivery_app/define-conversion_factors.html', form=form)
+        elif request.method == 'POST':
+            conversion_factor = ConversionFactorTb(
+             form.chooseRawMaterial.data,
+             form.chooseItemUom.data,
+             form.measurementDescription.data,
+             form.quantity.data
+             )
+            db.session.add(conversion_factor)
+            db.session.commit()
+            flash(
+                'Item Uom: "' + form.chooseRawMaterial.data + '", "' + form.chooseItemUom.data + '" is successfully added ',
+                'success')
+            return redirect(url_for('view_conversion_factors', form=form))
+
+    except Exception as ex:
+        flash(ex, 'danger')
+
+    return render_template('/delivery_app/define-conversion_factors.html', form=form)
 
 
 @app.route('/delivery_app/view-conversion-factors')
 def view_conversion_factors():
-    render_template('./delivery_app/view-conversion-factors.html')
+    return render_template('./delivery_app/view-conversion-factors.html')

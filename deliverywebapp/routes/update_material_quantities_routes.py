@@ -1,4 +1,4 @@
-from flask import render_template, flash, request, json
+from flask import render_template, flash, request, json, redirect, url_for
 from deliverywebapp.forms.forms import ReceiveMaterialQuantitiesForm
 from deliverywebapp import app
 from deliverywebapp.utility import AlchemyEncoder
@@ -22,40 +22,41 @@ def search_material_quantities():
         flash(ex, 'danger')
 
 
-MaterialDropDownSchema = MaterialItemSchema(many=True)
-
-
-class MaterialQuantitiesSchema(ma.Schema):
-    class Meta:
-        fields = ("ID", "material")
-
-
-MaterialQuantitiesSchema = MaterialQuantitiesSchema(many=True)
+ItemUomDropDownSchema = ItemUomSchema(many=True)
 
 
 @app.route('/delivery_app/define-material_quantities', methods=['GET', 'POST'])
 def define_material_quantities():
     form = ReceiveMaterialQuantitiesForm()
-    if request.method == 'GET':
-        material_choices = [(-1, 'Choose  material')]
-        materials = ItemUomTb.query.all()
-        material_id = MaterialDropDownSchema.dump(materials)
-        for i in material_id:
-            material_choices.append((i['ID'], i['Material']))
-        form.chooseMaterail.choices = material_choices
+    try:
+        if request.method == 'GET':
+            material_choices = [(-1, 'Choose  material')]
+            materials = ItemUomTb.query.all()
+            material_id = ItemUomDropDownSchema.dump(materials)
+            for i in material_id:
+                material_choices.append((i['ID'], i['MaterialItemsTbID'],  i['UnitOfMeasureTbID']))
+            form.selectMaterial.choices = material_choices
 
-    elif request.method == 'POST':
-        update_material_quantities = UpdateMaterialQuantitiesTb(
-            ItemUomTbID=form.chooseMaterail.data,
-            ReceivedDate=form.receivedDate.data,
-            Quantity=form.quantity.data
+        elif request.method == 'POST':
+            update_material_quantities = UpdateMaterialQuantitiesTb(
+                form.selectMaterial.data,
+                form.selectReceivedDate.data,
+                form.UnitofMeasure.data,
+                form.quantity.data
 
-        )
-        db.session.add(update_material_quantities)
-        db.session.commit()
-    render_template('/delivery_app/define-material_quantities.html', form=form)
+            )
+            db.session.add(update_material_quantities)
+            db.session.commit()
+            flash(
+                'Item Uom: "' + form.chooseProductionActivity.data + '", "' + form.chooseItemUom.data + '" is successfully added ',
+                'success')
+            return redirect(url_for('view_material_quantities', form=form))
+
+    except Exception as ex:
+        flash(ex, 'danger')
+        return render_template('/delivery_app/define-material_quantities.html', form=form)
 
 
 @app.route('/delivery_app/view-material_quantities')
 def view_material_quantities():
-    render_template('/delivery_app/view-material_quantities.html')
+    return render_template('/delivery_app/view-material-quantities.html')

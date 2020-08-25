@@ -1,7 +1,6 @@
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-
 from eventlet.green import ssl
 from flask import json
 from sqlalchemy.ext.declarative import DeclarativeMeta

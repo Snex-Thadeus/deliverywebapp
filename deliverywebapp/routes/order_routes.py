@@ -68,10 +68,10 @@ def define_orders():
         try:
             if form.category.data == "-1":
                 flash("Please select category", "warning")
-                return redirect(url_for('defineOrders', form=form))
+                return redirect(url_for('define_orders', form=form))
             if form.deliveryMethod.data == "-1":
                 flash("Please select delivery method", "warning")
-                return redirect(url_for('defineOrders', form=form))
+                return redirect(url_for('define_orders', form=form))
             if form.ddProducts.data == "-1":
                 flash("Please select product", "warning")
                 return redirect(url_for('defineOrders', form=form))
@@ -85,16 +85,16 @@ def define_orders():
 
             price = form.ddProducts.data  # .split(" ")[0]
 
-            orders = OrdersTb(CustomerName=form.customer.data,
-                             TelephoneNo=phone_number,
-                             DeliveryMethod=form.deliveryMethod.data,
-                             Location=form.location.data,
-                             OrderDate=form.orderdate.data,
-                             LPONo=form.lpoNo.data,
-                             ProductID=price,
-                             Price=get_clean_price_value(form.price.data),
-                             Quantity=form.quantity.data,
-                             TotalAmount=get_clean_price_value(form.totalAmount.data)
+            orders = OrdersTb(form.customer.data,
+                             phone_number,
+                             form.deliveryMethod.data,
+                             form.location.data,
+                             form.orderdate.data,
+                             form.lpoNo.data,
+                             price,
+                             get_clean_price_value(form.price.data),
+                             form.quantity.data,
+                             get_clean_price_value(form.totalAmount.data)
                              )
             db.session.add(orders)
             db.session.commit()

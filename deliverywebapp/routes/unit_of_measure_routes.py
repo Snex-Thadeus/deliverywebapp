@@ -30,7 +30,7 @@ def define_unit_of_measure():
             db.session.commit()
 
             flash('Unit of Measure: "' + form.description.data + '" successfully added', 'success')
-            return redirect(url_for('viewUnitofMeasure', form=form))
+            return redirect(url_for('view_unit_of_measure', form=form))
 
         except Exception as ex:
             flash(ex, 'danger')
@@ -71,7 +71,7 @@ def edit_unit_of_measure(id):
         except Exception as ex:
             flash(ex, 'danger')
 
-        return redirect(url_for('viewUnitofMeasure', form=form))
+        return redirect(url_for('view_unit_of_measure', form=form))
 
     return render_template('./delivery_app/define-unit-of-measure.html', form=form)
 

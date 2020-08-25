@@ -35,6 +35,62 @@ def search_view_product_prices():
         flash(ex, 'danger')
 
 
+# MANAGE PRODUCT PRICE
+
+productTbDropDownSchema = ProductTbDropDownSchema(many=True)
+
+
+@app.route('/delivery_app/define-product-prices', methods=['POST', 'GET'])
+def define_product_prices():
+    form = DefineProductPricesForm()
+    # use request.method when you have SelectField in your Form.
+    if request.method == 'GET':
+        try:
+            product_tb = ProductTb.query.all()
+            product_drop_down_list = productTbDropDownSchema.dump(product_tb)
+            form.chooseProduct.choices = [(i['ID'], i['Description']) for i in product_drop_down_list]
+            form.chooseCategory.choices = PRODUCT_PRICE_CATEGORY
+            form.chooseMethod.choices = PRODUCT_PRICE_METHOD
+        except Exception as ex:
+            flash(ex, 'danger')
+
+    elif request.method == 'POST':
+        try:
+            price = get_clean_price_value(form.price.data)
+
+            product = ProductPriceTb(form.chooseProduct.data,
+                                  form.chooseCategory.data,
+                                  form.chooseMethod.data,
+                                  price)
+            db.session.add(product)
+            db.session.commit()
+
+        except Exception as ex:
+            flash(ex, 'danger')
+
+        try:
+            product = db.session.execute(
+                'SELECT product_tb.ID, product_tb.Description FROM product_tb INNER JOIN product_price_tb ON '
+                'product_tb.ID = product_price_tb.ProductTbID WHERE product_tb.ID = ' + form.chooseProduct.data)
+
+            product_rows = [dict(row) for row in product]
+
+            if len(product_rows) > 0:
+                flash('Product: "' + product_rows[0][
+                    'Description'] + '" successfully set to price of ' + form.price.data,
+                      'success')
+            else:
+                flash("Product price was not added, try again", ' danger')
+
+            return redirect(url_for('view_product_prices'))
+
+        except Exception as ex:
+            flash(ex, 'danger')
+            return redirect(url_for('view_product_prices'))
+
+    return render_template('/delivery_app/define-product-prices.html', form=form)
+
+
 PRODUCT_PRICE_CATEGORY = ["Wholesale", "Retail"]
 PRODUCT_PRICE_METHOD = ["Factory", "Delivery"]
 
@@ -112,60 +168,6 @@ def edit_define_product_prices(id):
         return redirect(url_for('view_product_prices', form=form))
 
     return render_template('./delivery_app/define-product-prices.html', form=form)
-
-
-# MANAGE PRODUCT PRICE
-
-productTbDropDownSchema = ProductTbDropDownSchema(many=True)
-
-
-@app.route('/delivery_app/define-product-prices', methods=['POST', 'GET'])
-def define_product_prices():
-    form = DefineProductPricesForm()
-    # use request.method when you have SelectField in your Form.
-    if request.method == 'GET':
-        try:
-            product_tb = ProductTb.query.all()
-            product_drop_down_list = productTbDropDownSchema.dump(product_tb)
-            form.chooseProduct.choices = [(i['ID'], i['Description']) for i in product_drop_down_list]
-            form.chooseCategory.choices = PRODUCT_PRICE_CATEGORY
-            form.chooseMethod.choices = PRODUCT_PRICE_METHOD
-        except Exception as ex:
-            flash(ex, 'danger')
-
-    elif request.method == 'POST':
-        try:
-            price = get_clean_price_value(form.price.data)
-
-            data = ProductPriceTb(form.chooseProduct.data, form.chooseCategory.data,
-                                  form.chooseMethod.data, price)
-            db.session.add(data)
-            db.session.commit()
-
-        except Exception as ex:
-            flash(ex, 'danger')
-
-        try:
-            product = db.session.execute(
-                'SELECT product_tb.ID, product_tb.Description FROM product_tb INNER JOIN product_price_tb ON '
-                'product_tb.ID = product_price_tb.ProductTbID WHERE product_tb.ID = ' + form.chooseProduct.data)
-
-            product_rows = [dict(row) for row in product]
-
-            if len(product_rows) > 0:
-                flash('Product: "' + product_rows[0][
-                    'Description'] + '" successfully set to price of ' + form.price.data,
-                      'success')
-            else:
-                flash("Product price was not added, try again", ' danger')
-
-            return redirect(url_for('view_product_prices'))
-
-        except Exception as ex:
-            flash(ex, 'danger')
-            return redirect(url_for('view_product_prices'))
-
-    return render_template('/delivery_app/define-product-prices.html', form=form)
 
 
 @app.route('/delivery_app/view-product-prices')

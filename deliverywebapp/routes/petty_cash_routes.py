@@ -5,7 +5,7 @@ from flask_sqlalchemy import sqlalchemy
 from deliverywebapp.utility import AlchemyEncoder, get_clean_price_value
 from deliverywebapp.models.models import *
 
-ACCOUNT = ['Petty Cash']
+4
 
 
 @app.route('/search_view_petty_cash', methods=['POST', 'GET'])
@@ -21,6 +21,9 @@ def search_view_petty_cash():
 
     except sqlalchemy.exc.SQLAlchemyError as ex:
         flash(ex, ' danger')
+
+
+ACCOUNT = ['Petty Cash']
 
 
 @app.route('/delivery_app/define-petty-cash', methods=['GET', 'POST'])
@@ -95,7 +98,7 @@ def edit_petty_cash(id):
         except Exception as ex:
             flash(ex, 'danger')
 
-        return redirect(url_for('viewBills', form=form))
+        return redirect(url_for('view_petty_cash', form=form))
 
     return render_template('./delivery_app/define-petty-cash.html', form=form)
 

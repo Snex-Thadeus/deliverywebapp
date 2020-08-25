@@ -99,7 +99,7 @@ class DefinePettyCashForm(FlaskForm):
     amountReceived = StringField('Amount Received', validators=[DataRequired()])
     dateReceived = StringField('Date Received', validators=[DataRequired()])
     receivedFrom = StringField('Received From', validators=[DataRequired()])
-    account = SelectField('Account', default='Petty Cash', validators=[DataRequired()])
+    account = SelectField('Account', default='Petty Cash', validators=[Optional()])
     submit = SubmitField('Submit')
 
 
@@ -148,8 +148,9 @@ class DefineItemUomForm(FlaskForm):
 class DefineConversionFactorsForm(FlaskForm):
     chooseRawMaterial = SelectField('Choose raw material', validators=[DataRequired()])
     chooseItemUom = SelectField("Choose Item Uom", validators=[DataRequired()])
-    measurementDescription = SelectField('Measurement Description', validators=[DataRequired()])
-    quantity = SelectField('Quantity', validators=[DataRequired()])
+    measurementDescription = StringField('Measurement Description', validators=[DataRequired()])
+    quantity = StringField('Quantity', validators=[DataRequired()])
+    submit = SubmitField("Submit")
 
 
 class DefineProductionActivitiesForm(FlaskForm):
@@ -160,7 +161,7 @@ class DefineProductionActivitiesForm(FlaskForm):
 class ReceiveMaterialQuantitiesForm(FlaskForm):
     selectMaterial = SelectField('Select material', validators=[DataRequired()])
     selectReceivedDate = SelectField('Select received date', validators=[DataRequired()])
-    date = StringField('Date', validators=[DataRequired()])
+    unitofMeasure = StringField('Unit of Measure', validators=[DataRequired()])
     quantity = SelectField('Quantity', validators=[DataRequired()])
     submit = SubmitField("Add Quantity")
 
