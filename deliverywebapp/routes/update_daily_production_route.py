@@ -6,7 +6,7 @@ from deliverywebapp.models.models import *
 
 productionActivitiesDropDownSchema = ProductionActivitiesSchema(many=True)
 
-itemUomDropDownSchema = ItemUomSchema(many=True)
+conversionFactorDropDownSchema = ConversionFactorSchema(many=True)
 
 
 @app.route('/search-daily-production', methods=['POST', 'GET'])
@@ -36,22 +36,24 @@ def define_daily_production():
                 production_activities_choices.append((i['ID'], i['Description']))
             form.chooseProductionActivity.choices = production_activities_choices
 
-            item_uom_choices = [(-1, 'Choose Item Uom')]
-            item_uom = ItemUomTb.query.all()
-            item_uom_dd = itemUomDropDownSchema.dump(item_uom)
-            for i in item_uom_dd:
-                item_uom_choices.append((int(i['ID']), i['Description']))
-            form.chooseItemUom.choices = item_uom_choices
+            measure_choices = [(-1, 'Choose Measure')]
+            measure = ConversionFactorTb.query.all()
+            measure_dd = conversionFactorDropDownSchema.dump(measure)
+            for i in measure_dd:
+                measure_choices.append((int(i['ID']), i['MeasurementDescription']))
+            form.chooseMeasure.choices = measure_choices
         elif request.method == "POST":
             item_uom = UpdateDailyProductionTb(
                 form.chooseProductionActivity.data,
-                form.chooseItemUom.data
+                form.chooseMeasure.data,
+                form.quantity.data,
+                form.date.data
             )
             db.session.add(item_uom)
             db.session.commit()
 
             flash(
-                'Item Uom: "' + form.chooseProductionActivity.data + '", "' + form.chooseItemUom.data + '" is successfully added ',
+                'Item Uom: "' + form.chooseProductionActivity.data + '", "' + form.chooseMeasure.data + '" is successfully added ',
                 'success')
             return redirect(url_for('view_daily_production', form=form))
 

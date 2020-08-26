@@ -65,28 +65,13 @@ def define_product_prices():
             db.session.add(product)
             db.session.commit()
 
-        except Exception as ex:
-            flash(ex, 'danger')
-
-        try:
-            product = db.session.execute(
-                'SELECT product_tb.ID, product_tb.Description FROM product_tb INNER JOIN product_price_tb ON '
-                'product_tb.ID = product_price_tb.ProductTbID WHERE product_tb.ID = ' + form.chooseProduct.data)
-
-            product_rows = [dict(row) for row in product]
-
-            if len(product_rows) > 0:
-                flash('Product: "' + product_rows[0][
-                    'Description'] + '" successfully set to price of ' + form.price.data,
-                      'success')
-            else:
-                flash("Product price was not added, try again", ' danger')
-
-            return redirect(url_for('view_product_prices'))
+            flash(
+                'Product Price: "' + form.chooseCategory.data + '", "' + form.chooseMethod.data + '", "' + form.price.data + '" is successfully added ',
+                'success')
+            return redirect(url_for('view_product_prices', form=form))
 
         except Exception as ex:
             flash(ex, 'danger')
-            return redirect(url_for('view_product_prices'))
 
     return render_template('/delivery_app/define-product-prices.html', form=form)
 

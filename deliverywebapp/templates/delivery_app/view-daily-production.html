@@ -698,7 +698,7 @@
             <div class="pd-y-10 pd-x-30 d-flex justify-content-between align-items-center header-bottom">
                 <div class="d-flex align-items-center">
                     <h2 class="d-flex align-items-center tx-16 mb-0 pd-r-10 mr-2 bd-r bd-gray-200">Manage Orders</h2>
-                    <h2 class="d-flex align-items-center tx-13 mb-0 tx-normal">View Deliveries</h2>
+                    <h2 class="d-flex align-items-center tx-13 mb-0 tx-normal">View Daily Production</h2>
                 </div>
             </div>
         </div>
@@ -744,21 +744,13 @@
                                         <table class="table table-separated table-hover table-bordered">
                                             <thead>
                                             <tr>
-                                                <th>ORDER NO</th>
-                                                <th>CUSTOMER NAME</th>
-                                                <th>TELEPHONE NO</th>
-                                                <th>DELIVERY METHOD</th>
-                                                <th>LOCATION</th>
-                                                <th>ORDER DATE</th>
-                                                <th>PRODUCT</th>
+                                                <th>ACTIVITY</th>
+                                                <th>MEASURE</th>
                                                 <th>QUANTITY</th>
-                                                <th>TOTAL AMOUNT</th>
-                                                <th>INVOICE/RECEIPT</th>
-                                                <th>INVOICE NO/RECEIPT NO</th>
-                                                <th>DELIVERED DATE</th>
-                                                <th>PAYMENT MODE</th>
-                                                <th>REFERENCE NO</th>
-                                                <th>AMOUNT PAID</th>
+                                                <th>ITEM</th>
+                                                <th>UOM</th>
+                                                <th>QUANTITY USED</th>
+                                                <th>PRODUCTION DATE</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -789,118 +781,96 @@
                                                                                 <div class="col-md-4"
                                                                                      style="padding-top: 2%;">
                                                                                     <div class="form-group mg-md-l--1 bd-t-0-force">
-                                                                                        {% if form.invoice_receipt.errors %}
-                                                                                            {{ form.invoice_receipt(class="form-control select2-hidden-accessible", **{'data-placeholder':"Choose one", 'data-parsley-class-handler':"#slWrapper", 'data-parsley-errors-container':"#slErrorContainer" 'required'}) }}
+                                                                                        {% if form.activity.errors %}
+                                                                                            {{ form.activity(class="form-control select2-hidden-accessible", **{'data-placeholder':"Activity", 'data-parsley-class-handler':"#slWrapper", 'data-parsley-errors-container':"#slErrorContainer" 'required'}) }}
                                                                                             <div id="slErrorContainer">
-                                                                                                {% for error in form.invoice_receipt.errors %}
+                                                                                                {% for error in form.activity.errors %}
                                                                                                     <span>{{ error }}</span>
                                                                                                 {% endfor %}
                                                                                             </div>
                                                                                         {% else %}
-                                                                                            {{ form.invoice_receipt(class="form-control select2-hidden-accessible",id="chooseInvoiceReceipt",**{'data-placeholder':"Choose Product", 'tabindex':"-1", 'aria-hidden':"true"}) }}
+                                                                                            {{ form.activity(class="form-control select2-hidden-accessible",id="activity",**{'data-placeholder':"Activity", 'tabindex':"-1", 'aria-hidden':"true"}) }}
                                                                                         {% endif %}
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-md-4"
                                                                                      style="padding-top: 2%;">
                                                                                     <div class="form-group mg-md-l--1 bd-t-0-force">
-                                                                                        {% if form.invoiceNo_receiptNo.errors %}
-                                                                                            {{ form.invoiceNo_receiptNo(class="form-control") }}
+                                                                                        {% if form.measure.errors %}
+                                                                                            {{ form.measure(class="form-control select2-hidden-accessible", **{'data-placeholder':"Measure", 'data-parsley-class-handler':"#slWrapper", 'data-parsley-errors-container':"#slErrorContainer" 'required'}) }}
                                                                                             <div id="s2ErrorContainer">
-                                                                                                {% for error in form.invoiceNo_receiptNo.errors %}
+                                                                                                {% for error in form.measure.errors %}
                                                                                                     <span>{{ error }}</span>
                                                                                                 {% endfor %}
                                                                                             </div>
                                                                                         {% else %}
-                                                                                            {{ form.invoiceNo_receiptNo(class="form-control",id="invoiceNo_receiptNo",placeholder="Enter Invoice No./Receipt No.") }}
+                                                                                            {{ form.measure(class="form-control select2-hidden-accessible",id="Measure", **{'data-placeholder':"Measuret", 'tabindex':"-1", 'aria-hidden':"true"}) }}
                                                                                         {% endif %}
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-md-4"
                                                                                      style="padding-top: 2%;">
-
-                                                                                    <div class="nativeDatePicker">
-                                                                                        <div class="form-group mg-md-l--1 bd-t-0-force">
-                                                                                            <input class="form-control"
-                                                                                                   type="date" id="bday"
-                                                                                                   name="bday">
-                                                                                            <span class="validity"></span>
-                                                                                        </div>
-
-                                                                                        <div class="fallbackDatePicker">
-      <span>
-        <label for="day">Day:</label>
-        <select id="day" name="day">
-        </select>
-      </span>
-                                                                                            <span>
-        <label for="month">Month:</label>
-        <select id="month" name="month">
-          <option selected>January</option>
-          <option>February</option>
-          <option>March</option>
-          <option>April</option>
-          <option>May</option>
-          <option>June</option>
-          <option>July</option>
-          <option>August</option>
-          <option>September</option>
-          <option>October</option>
-          <option>November</option>
-          <option>December</option>
-        </select>
-      </span>
-                                                                                            <span>
-        <label for="year">Year:</label>
-        <select id="year" name="year">
-        </select>
-      </span>
-                                                                                        </div>
-
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-md-4"
-                                                                                     style="padding-top: 2%;">
                                                                                     <div class="form-group mg-md-l--1 bd-t-0-force">
-                                                                                        {% if form.paymentMode.errors %}
-                                                                                            {{ form.paymentMode(class="form-control select2-hidden-accessible", **{'data-placeholder':"Choose one", 'data-parsley-class-handler':"#slWrapper", 'data-parsley-errors-container':"#slErrorContainer" 'required'}) }}
+                                                                                        {% if form.quantity.errors %}
+                                                                                            {{ form.quantity(class="form-control") }}
                                                                                             <div id="s3ErrorContainer">
-                                                                                                {% for error in form.paymentMode.errors %}
+                                                                                                {% for error in form.quantity.errors %}
                                                                                                     <span>{{ error }}</span>
                                                                                                 {% endfor %}
                                                                                             </div>
                                                                                         {% else %}
-                                                                                            {{ form.paymentMode(class="form-control select2-hidden-accessible",id="choosePaymentMode", **{'data-placeholder':"Choose Product", 'tabindex':"-1", 'aria-hidden':"true"}) }}
+                                                                                            {{ form.quantity(class="form-control",id="Quantity", placeholder="Quantity") }}
                                                                                         {% endif %}
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-md-4"
                                                                                      style="padding-top: 2%;">
                                                                                     <div class="form-group mg-md-l--1 bd-t-0-force">
-                                                                                        {% if form.referenceNo.errors %}
-                                                                                            {{ form.referenceNo(class="form-control") }}
+                                                                                        {% if form.item.errors %}
+                                                                                            {{ form.item(class="form-control") }}
                                                                                             <div id="s4ErrorContainer">
-                                                                                                {% for error in form.referenceNo.errors %}
+                                                                                                {% for error in form.item.errors %}
                                                                                                     <span>{{ error }}</span>
                                                                                                 {% endfor %}
                                                                                             </div>
                                                                                         {% else %}
-                                                                                            {{ form.referenceNo(class="form-control",id="referenceNo", placeholder="Enter referenceNo") }}
+                                                                                            {{ form.item(class="form-control price-input", id="Item", placeholder="Item") }}
                                                                                         {% endif %}
                                                                                     </div>
-                                                                                </div>
-                                                                                <div class="col-md-4"
-                                                                                     style="padding-top: 2%;">
                                                                                     <div class="form-group mg-md-l--1 bd-t-0-force">
-                                                                                        {% if form.AmountPaid.errors %}
+                                                                                        {% if form.uom.errors %}
                                                                                             {{ form.AmountPaid(class="form-control") }}
                                                                                             <div id="s5ErrorContainer">
-                                                                                                {% for error in form.AmountPaid.errors %}
+                                                                                                {% for error in form.uom.errors %}
                                                                                                     <span>{{ error }}</span>
                                                                                                 {% endfor %}
                                                                                             </div>
                                                                                         {% else %}
-                                                                                            {{ form.AmountPaid(class="form-control price-input", id="amountPaid", placeholder="Enter amount paid") }}
+                                                                                            {{ form.uom(class="form-control price-input", id="uom", placeholder="Uom") }}
+                                                                                        {% endif %}
+                                                                                    </div>
+                                                                                    <div class="form-group mg-md-l--1 bd-t-0-force">
+                                                                                        {% if form.quantityUsed.errors %}
+                                                                                            {{ form.quantityUsed(class="form-control") }}
+                                                                                            <div id="s6ErrorContainer">
+                                                                                                {% for error in form.quantityUsed.errors %}
+                                                                                                    <span>{{ error }}</span>
+                                                                                                {% endfor %}
+                                                                                            </div>
+                                                                                        {% else %}
+                                                                                            {{ form.quantityUsed(class="form-control price-input", id="quantityUsed", placeholder="Quantity Used") }}
+                                                                                        {% endif %}
+                                                                                    </div>
+                                                                                    <div class="form-group mg-md-l--1 bd-t-0-force">
+                                                                                        {% if form.productionDate.errors %}
+                                                                                            {{ form.productionDate(class="form-control") }}
+                                                                                            <div id="s7ErrorContainer">
+                                                                                                {% for error in form.productionDate.errors %}
+                                                                                                    <span>{{ error }}</span>
+                                                                                                {% endfor %}
+                                                                                            </div>
+                                                                                        {% else %}
+                                                                                            {{ form.productionDate(class="form-control price-input", id="productionDate", placeholder="Production Date") }}
                                                                                         {% endif %}
                                                                                     </div>
                                                                                 </div>

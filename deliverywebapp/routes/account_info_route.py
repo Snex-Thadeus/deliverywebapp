@@ -28,15 +28,18 @@ def define_account_info():
         try:
             # Name, UserName, Email, PhoneNumber, Password, OrganizationID
             user_account = UserAccountTb(
-                Name=form.name.data, UserName=form.username.data, Email=form.email.data,
-                PhoneNumber=form.phonenumber.data,
-                Password=Bcrypt(app).generate_password_hash(form.password.data), OrganizationID="1")
+                form.name.data,
+                form.username.data,
+                form.email.data,
+                form.phonenumber.data,
+                Bcrypt(app).generate_password_hash(form.password.data),
+                "1")
             db.session.add(user_account)
             db.session.commit()
 
             flash('User "' + form.name.data + '" successfully added', 'success')
 
-            return redirect(url_for("viewAccountInfo"))
+            return redirect(url_for("view_account_info"))
         except Exception as ex:
             flash(ex, 'danger')
 
@@ -101,7 +104,7 @@ def account_info_edit(id):
                     '\n\t ' + form.name.data + '\'s phone number "' + before_phone_number + '" successfully edited to "' + form.phonenumber.data + '"',
                     'success')
 
-            return redirect(url_for("viewAccountInfo", form=form))
+            return redirect(url_for("view_account_info", form=form))
         except Exception as ex:
             flash(ex, 'danger')
 

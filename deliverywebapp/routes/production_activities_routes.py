@@ -25,16 +25,16 @@ def define_production_activities():
     form = DefineProductionActivitiesForm()
     if form.validate_on_submit():
         try:
-           production_activities = ProductionActivitiesTb(form.description.data)
-           db.session.add(production_activities)
-           db.session.commit()
+            production_activity = ProductionActivitiesTb(form.activity.data)
+            db.session.add(production_activity)
+            db.session.commit()
 
-           flash('Production activities item: "' + form.description.data + '" successfully added', 'success')
-           return redirect(url_for('view_production_activities', form=form))
+            flash('Production Activity: "' + form.activity.data + '" successfully added', 'success')
+            return redirect(url_for('define_production_activities', form=form))
         except Exception as ex:
-         flash(ex, 'danger')
+            flash(ex, 'danger')
 
-         return render_template('./delivery_app/define-production-activities.html', form=form)
+    return render_template('/delivery_app/define-expense-categories.html', form=form)
 
 
 @app.route('/delivery_app/define-production-activities-edit/<string:id>', methods=['GET', 'POST'])
@@ -51,13 +51,13 @@ def edit_define_production_activities(id):
             production_activities_tb_edit = db.session.query(ProductionActivitiesTb).filter(ProductionActivitiesTb.ID == id).one()
             before_production_activities = production_activities_tb_edit.Description
 
-            production_activities_tb_edit.Description = form.description.data
+            production_activities_tb_edit.Description = form.activity.data
 
             db.session.commit()
 
-            if before_production_activities != form.description.data:
+            if before_production_activities != form.activity.data:
                 flash(
-                    '\n\t "' + before_production_activities + '" successfully edited to "' + form.description.data + '"',
+                    '\n\t "' + before_production_activities + '" successfully edited to "' + form.activity.data + '"',
                     'success')
 
         except Exception as ex:

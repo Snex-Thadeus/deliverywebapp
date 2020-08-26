@@ -533,31 +533,61 @@
                                          <div class="row">
                                             <div class="col-lg-4">
                                                <div class="form-group">
-                                                  {% if form.description.errors %}
-                                                        {{ form.description(class="form-control")}}
+                                                  {% if form.selectMaterial.errors %}
+                                                        {{ form.selectMaterial(class="form-control")}}
                                                        <div class="invalid-feedback">
-                                                            {% for error in form.description.errors %}
+                                                            {% for error in form.selectMaterial.errors %}
                                                                 <span>{{ error }}</span>
                                                             {% endfor %}
                                                        </div>
 
                                                    {% else %}
-                                                       {{ form.description(class="form-control", placeholder="Enter Description") }}
+                                                       {{ form.selectMaterial(class="form-control", placeholder="Select Material") }}
                                                    {% endif %}
                                                </div>
                                             </div>
                                             <div class="col-lg-4">
                                                <div class="form-group">
-                                                  {% if form.shortDescription.errors %}
-                                                        {{ form.shortDescription(class="form-control")}}
+                                                  {% if form.selectReceivedDate.errors %}
+                                                        {{ form.selectReceivedDate(class="form-control")}}
                                                        <div class="invalid-feedback">
-                                                            {% for error in form.shortDescription.errors %}
+                                                            {% for error in form.selectReceivedDate.errors %}
                                                                 <span>{{ error }}</span>
                                                             {% endfor %}
                                                        </div>
 
                                                    {% else %}
-                                                       {{ form.shortDescription(class="form-control", placeholder="Enter Short Description") }}
+                                                       {{ form.selectReceivedDate(class="form-control", placeholder="Select Received Date") }}
+                                                   {% endif %}
+                                               </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                               <div class="form-group">
+                                                  {% if form.unitofMeasure.errors %}
+                                                        {{ form.unitofMeasure(class="form-control")}}
+                                                       <div class="invalid-feedback">
+                                                            {% for error in form.unitofMeasure.errors %}
+                                                                <span>{{ error }}</span>
+                                                            {% endfor %}
+                                                       </div>
+
+                                                   {% else %}
+                                                       {{ form.unitofMeasure(class="form-control", placeholder="Unit of Measure") }}
+                                                   {% endif %}
+                                               </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                               <div class="form-group">
+                                                  {% if form.quantity.errors %}
+                                                        {{ form.quantity(class="form-control")}}
+                                                       <div class="invalid-feedback">
+                                                            {% for error in form.quantity.errors %}
+                                                                <span>{{ error }}</span>
+                                                            {% endfor %}
+                                                       </div>
+
+                                                   {% else %}
+                                                       {{ form.quantity(class="form-control", placeholder="Quantity") }}
                                                    {% endif %}
                                                </div>
                                             </div>

@@ -36,11 +36,6 @@ def define_areas():
     return render_template('/delivery_app/define-areas.html', form=form)
 
 
-@app.route('/delivery_app/view-areas')
-def view_areas():
-    return render_template('/delivery_app/view-areas.html')
-
-
 @app.route('/delivery_app/define-areas-edit/<string:id>', methods=['GET', 'POST'])
 def edit_define_areas(id):
     form = DefineAreasForm()
@@ -66,6 +61,11 @@ def edit_define_areas(id):
         except Exception as ex:
             flash(ex, 'danger')
 
-        return redirect(url_for('viewAreas', form=form))
+        return redirect(url_for('view_areas', form=form))
 
     return render_template('/delivery_app/define-areas.html', form=form)
+
+
+@app.route('/delivery_app/view-areas')
+def view_areas():
+    return render_template('/delivery_app/view-areas.html')

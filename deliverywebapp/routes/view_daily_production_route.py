@@ -10,11 +10,11 @@ def search_view_daily_production():
     searchbox = request.form.get('text')
     try:
         if searchbox != "":
-            daily_production = UpdateDailyProductionTb.query.filter(
+            daily_production = DailyProductionTb.query.filter(
                 ProductionActivitiesTb.Description.like('%' + searchbox + '%')).all()
             return json.dumps(daily_production, cls=AlchemyEncoder)
         else:
-            daily_production = UpdateDailyProductionTb.query.all()
+            daily_production = DailyProductionTb.query.all()
             return json.dumps(daily_production, cls=AlchemyEncoder)
     except Exception as ex:
             flash(ex, 'danger')

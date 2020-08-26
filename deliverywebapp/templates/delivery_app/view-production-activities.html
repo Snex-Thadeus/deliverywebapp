@@ -1,6 +1,6 @@
 {% extends "master_layout.html" %}
 {% block imports %}
-    <script src="{{ url_for('static', filename='delivery_app_scripts/view_unit_of_measure_search.js')}}"></script>
+    <script src="{{ url_for('static', filename='delivery_app_scripts/view_expense_categories_search.js')}}"></script>
 {% endblock %}
 {% block content %}
     <div class="page-content">
@@ -496,7 +496,7 @@
                <div class="pd-y-10 pd-x-30 d-flex justify-content-between align-items-center header-bottom">
                   <div class="d-flex align-items-center">
                      <h2 class="d-flex align-items-center tx-16 mb-0 pd-r-10 mr-2 bd-r bd-gray-200">Manage Inventory</h2>
-                     <h2 class="d-flex align-items-center tx-13 mb-0 tx-normal">View Production Activities</h2>
+                     <h2 class="d-flex align-items-center tx-13 mb-0 tx-normal">View Production Activity</h2>
                   </div>
 
                </div>
@@ -534,17 +534,17 @@
                                  <div class="table-responsive">
                                     <div class="row">
                                     <div class="form-group col-sm-6">
-                                           <input type="text" id = "livebox" class="form-control" placeholder="Search with description">
+                                           <input type="text" id = "livebox" class="form-control" placeholder="Search Category Description">
                                     </div>
                                     <div class="form-group col-sm-6">
-                                    <a class="btn btn-primary" href="{{ url_for('define_production_activities') }}" >Add Production Activity</a>
+                                    <a class="btn btn-primary" href="{{ url_for('define_expense_category') }}" >Add Expense Category</a>
                                  </div>
                                  </div>
                                     <table class="table table-separated table-bordered">
                                        <thead>
                                           <tr>
-                                             <th class="font-weight-bold">ACTIVITY</th>
-                                             <th class="text-center w-100px font-weight-bold">ACTION</th>
+                                             <th class="font-weight-bold">CATEGORY DESCRIPTION</th>
+                                             <th class="text-center w-100px font-weight-bold">Actions</th>
                                           </tr>
                                        </thead>
                                        <tbody>

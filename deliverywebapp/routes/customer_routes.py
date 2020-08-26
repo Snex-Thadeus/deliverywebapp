@@ -65,7 +65,6 @@ def define_customer_details():
                 form.phonenumber3.data,
                 form.area.data,
                 form.location.data)
-
             db.session.add(customer)
             db.session.commit()
 

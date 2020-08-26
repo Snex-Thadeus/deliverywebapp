@@ -18,8 +18,8 @@ customers_schema = CustomerSchema(many=True)
 @app.route('/customer-autocomplete', methods=['GET'])
 def autocomplete():
     # TODO: CUSTOMER DATA
-    customerTB = CustomerTb.query.all()
-    return jsonify(customers_schema.dump(customerTB))
+    customer_tb = CustomerTb.query.all()
+    return jsonify(customers_schema.dump(customer_tb))
     # custumer_schema.dump()
     # customers = json.dumps(customerTB)
     # return Response(customers, mimetype='application/json')
@@ -100,7 +100,7 @@ def define_orders():
             db.session.commit()
 
             flash(
-                'Order: "' + form.lpoNo.data + '" is successfully added ',
+                'Order: "' + form.customer.data + '", "' + form.lpoNo.data + '", "' + form.price.data + '" is successfully added ',
                 'success')
             return redirect(url_for('view_orders', form=form))
         except Exception as ex:
@@ -111,7 +111,106 @@ def define_orders():
 
 @app.route('/delivery_app/define-order-edit/<string:id>', methods=['GET', 'POST'])
 def edit_define_orders(id):
-    pass
+    form = DefineOrdersForm()
+
+    if not form.validate_on_submit():
+        try:
+            order = OrdersTb.query.get(id)
+            form.customer.data = order.customer
+            phone_number = order.phone_number
+            form.deliveryMethod.data = order.deliveryMethod
+            form.location.data = order.location
+            form.orderdate.data = order.orderdate
+            form.lpoNo.data = order.lpoNo
+            form.ddProducts.data = order.ddProducts
+            order.get_clean_price_value(form.price.data)
+            form.quantity.data = order.quantity
+            order.get_clean_price_value(form.totalAmount.data)
+
+        except Exception as ex:
+            flash(ex, 'danger')
+    elif form.validate_on_submit():
+        try:
+            order_tb_edit = db.session.query(OrdersTb).filter(OrdersTb.ID == id).one()
+            before_customer = order_tb_edit.customer
+            before_phone_number = order_tb_edit.phone_number
+            before_delivery_method = order_tb_edit.deliveryMethod
+            before_location = order_tb_edit.location
+            before_orderdate = order_tb_edit.orderdate
+            before_lpo_no = order_tb_edit.lpoNo
+            before_dd_products = order_tb_edit.ddProducts
+            before_price = order_tb_edit.get_clean_price_value(form.price.data)
+            before_quantity = order_tb_edit.quantity
+            before_total_amount = order_tb_edit.get_clean_price_value(form.totalAmount.data)
+
+            order_tb_edit.customer = form.customer.data
+            order_tb_edit.phone_number = form.phone_number.data
+            order_tb_edit.deliveryMethod = form.deliveryMethod.data
+            order_tb_edit.location = form.location.data
+            order_tb_edit.orderdate = form.orderdate.data
+            order_tb_edit.lpoNo = form.lpoNo.data
+            order_tb_edit.ddProducts = form.ddProducts.data
+            order_tb_edit.get_clean_price_value(form.price.data)
+            order_tb_edit.quantity = form.quantity.data
+            order_tb_edit.get_clean_price_value(form.totalAmount.data)
+
+            db.session.commit()
+
+            if before_customer != form.customer.data:
+                flash(
+                    '\n\t "' + before_customer + '" successfully edited to "' + form.customer.data + '"',
+                    'success')
+
+            if before_phone_number != form.phone_number.data:
+                flash(
+                    '\n\t "' + before_phone_number + '" successfully edited to "' + form.phone_number.data + '"',
+                    'success')
+
+            if before_delivery_method != form.delivery_method.data:
+                flash(
+                    '\n\t "' + before_delivery_method + '" successfully edited to "' + form.delivery_method.data + '"',
+                    'success')
+
+            if before_location != form.location.data:
+                flash(
+                    '\n\t "' + before_location + '" successfully edited to "' + form.location.data + '"',
+                    'success')
+
+            if before_orderdate != form.orderdate.data:
+                flash(
+                    '\n\t "' + before_orderdate + '" successfully edited to "' + form.orderdate.data + '"',
+                    'success')
+
+            if before_lpo_no != form.lpoNo.data:
+                flash(
+                    '\n\t "' + before_lpo_no + '" successfully edited to "' + form.lpoNo.data + '"',
+                    'success')
+
+            if before_dd_products != form.ddproducts.data:
+                flash(
+                    '\n\t "' + before_dd_products + '" successfully edited to "' + form.ddproducts.data + '"',
+                    'success')
+
+            if before_price != form.price.data:
+                flash(
+                    '\n\t "' + before_price + '" successfully edited to "' + form.price.data + '"',
+                    'success')
+
+            if before_quantity != form.quantity.data:
+                flash(
+                    '\n\t "' + before_quantity + '" successfully edited to "' + form.quantity.data + '"',
+                    'success')
+
+            if before_total_amount != form.totalAmount.data:
+                flash(
+                    '\n\t "' + before_total_amount + '" successfully edited to "' + form.totalAmount.data + '"',
+                    'success')
+        except Exception as ex:
+            flash(ex, 'danger')
+
+        return redirect(url_for('view_orders', form=form))
+
+    return render_template('./delivery_app/define-orders.html', form=form)
 
 
 @app.route('/orders/<int:page_num>')

@@ -61,7 +61,6 @@ class DefineCustomerDetailsForm(FlaskForm):
     phonenumber1 = StringField('Phone 1', validators=[DataRequired()])
     phonenumber2 = StringField('Phone 2', )
     phonenumber3 = StringField('Phone 3', )
-
     area = SelectField('Area', validators=[DataRequired()])
     location = StringField('Location', validators=[DataRequired()])
     submit = SubmitField('Submit')
@@ -173,9 +172,9 @@ class ViewQuantityBalancesForm(FlaskForm):
 
 
 class UpdateDailyProductionForm(FlaskForm):
-    chooseActivity = SelectField('Select Activity', validators=[DataRequired()])
+    chooseProductionActivity = SelectField('Select Activity', validators=[DataRequired()])
     chooseMeasure = SelectField('Select Measure', validators=[DataRequired()])
-    quantity = SelectField('Enter Quantity', validators=[DataRequired()])
+    quantity = StringField('Enter Quantity', validators=[DataRequired()])
     date = StringField('Date', validators=[DataRequired()])
     submit = SubmitField('Submit')
 

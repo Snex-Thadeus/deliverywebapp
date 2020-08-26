@@ -33,11 +33,11 @@ from deliverywebapp.routes import routes, product_route, \
         unit_of_measure_routes, supplier_routes, petty_cash_routes, \
         customer_routes, order_routes, account_info_route, example_route, \
         view_deliveries_routes, itemUom_routes, conversion_factors_routes, \
-        update_material_quantities_routes, view_deliveries_routes, \
+        update_material_quantities_routes, reset_token_route, \
         view_quantity_balances_routes, update_daily_production_route, \
         view_daily_production_route, update_packaging_material_route, \
-        view_packaging_material_balances_routes, reset_request_route, \
-        reset_token_route
+        view_packaging_material_balances_routes, reset_request_route
+
 
     #return app
 

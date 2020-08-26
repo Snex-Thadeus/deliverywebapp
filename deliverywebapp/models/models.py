@@ -159,7 +159,7 @@ class OrdersTb(db.Model):
     TelephoneNo = db.Column(db.String(50), nullable=False)
     DeliveryMethod = db.Column(db.String(50), nullable=False)
     Location = db.Column(db.String(50), nullable=False)
-    OrderDate = db.Column(db.Date, default=datetime.now(), nullable=False, )
+    OrderDate = db.Column(db.Date, default=datetime.now(), nullable=False)
     LPONo = db.Column(db.String(50), nullable=True, default='N/A')
     ProductID = db.Column(db.Integer, db.ForeignKey('product_price_tb.ID'), nullable=False)
     Price = db.Column(db.String(50), nullable=False)
@@ -312,8 +312,8 @@ class ItemUomSchema(ma.Schema):
 
 class ConversionFactorTb(db.Model):
     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    MaterialItemsTbID = db.Column(db.Integer, db.ForeignKey("material_items_tb.ID"), nullable=False)
-    ItemUomTbID = db.Column(db.Integer, db.ForeignKey("unit_of_measure_tb.ID"), nullable=False)
+    MaterialItems = db.Column(db.String(50), nullable=False)
+    ItemUom = db.Column(db.String(50), nullable=False)
     MeasurementDescription = db.Column(db.String(50), nullable=False)
     DescribeQuantity = db.Column(db.Integer, nullable=False)
 
@@ -325,6 +325,11 @@ class ConversionFactorTb(db.Model):
         self.ItemUomTbID = item_uom_tb_id
         self.MeasurementDescription = measurement_description
         self.DescribeQuantity = describe_quantity
+
+
+class ConversionFactorSchema(ma.Schema):
+    class Meta:
+        fields = ("ID", "MaterialItems", "ItemUom", "MeasurementDescription", "DescribeQuantity")
 
 
 class ProductionActivitiesTb(db.Model):
@@ -355,9 +360,9 @@ class UpdateMaterialQuantitiesTb(db.Model):
 class UpdateDailyProductionTb(db.Model):
     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
     DefineProductionActivitiesTbID = db.Column(db.Integer, db.ForeignKey("production_activities_tb.ID"), nullable=False)
-    ConversionFactorTbID = db.Column(db.Integer, db.ForeignKey("item_uom_tb.ID"), nullable=False)
+    ConversionFactorTbID = db.Column(db.Integer, db.ForeignKey("conversion_factor_tb.ID"), nullable=False)
     Quantity = db.Column(db.Integer, nullable=False)
-    EntryDate = db.Column(db.DateTime, default=datetime.now(), nullable=False)
+    EntryDate = db.Column(db.Date, default=datetime.now(), nullable=False)
 
     def __init__(self, define_production_activities_tb_id, conversion_factors_tb_id, quantity, entry_date):
         self.DefineProductionActivitiesTbID = define_production_activities_tb_id
@@ -373,7 +378,7 @@ class DailyProductionTb(db.Model):
     Quantity = db.Column(db.Integer, primart_key=True, nullable=False)
     Item = db.Column(db.String(20), nullable=False)
     UoM = db.Column(db.String(10), nullable=False)
-    ProductionDate = db.Column(db.DateTime, nullable=False, default=datetime.now())
+    ProductionDate = db.Column(db.Date, nullable=False, default=datetime.now())
 
     def __init__(self, activity, measure, quantity, item, uom, production_date):
         self.Activity = activity
@@ -401,7 +406,7 @@ class UpdatePackagingMaterialsTb(db.Model):
     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
     PackagingMaterialsTbID = db.Column(db.Integer, db.ForeignKey("packaging_materials_tb.ID"), nullable=False)
     Number = db.Column(db.Integer, nullable=False)
-    EntryDate = db.Column(db.DateTime, default=datetime.now(), nullable=False)
+    EntryDate = db.Column(db.Date, default=datetime.now(), nullable=False)
 
     def __init__(self, packaging_materials_tb_id, number, entry_date):
         self.PackagingMaterialsTbID = packaging_materials_tb_id
@@ -414,7 +419,7 @@ class UpdateFinishedGoodsTb(db.Model):
     ProductTbID = db.Column(db.Integer, db.ForeignKey("product_price_tb.ID"), nullable=False)
     PackagingMaterialsTbID = db.Column(db.Integer, db.ForeignKey("item_uom_tb.ID"), nullable=False)
     QuantityUsed = db.Column(db.String(50), nullable=False)
-    EntryDate = db.Column(db.DateTime, default=datetime.now(), nullable=False)
+    EntryDate = db.Column(db.Date, default=datetime.now(), nullable=False)
 
     def __init__(self, product_tb_id, packaging_materials_tb_id, quantity_used, entry_date):
         self.ProductTbID = product_tb_id
@@ -441,7 +446,7 @@ class ViewFinishedGoodsBalancesTb(db.Model):
     P_In = db.Column(db.Integer, nullable=False)
     Out = db.Column(db.Integer, nullable=False)
     Balance = db.Column(db.Integer, nullable=False)
-    Date = db.Column(db.DateTime, default=datetime.now(), nullable=False)
+    Date = db.Column(db.Date, default=datetime.now(), nullable=False)
 
     def __init__(self, product, p_in, out, balance, date):
         self.Product = product
@@ -457,7 +462,7 @@ class ViewPackingMaterialBalancesTb(db.Model):
     P_In = db.Column(db.Integer, nullable=False)
     Out = db.Column(db.Integer, nullable=False)
     Balance = db.Column(db.Integer, nullable=False)
-    Date = db.Column(db.DateTime, default=datetime.now(), nullable=False)
+    Date = db.Column(db.Date, default=datetime.now(), nullable=False)
 
     def __init__(self, product, p_in, out, balance, date):
         self.Product = product
