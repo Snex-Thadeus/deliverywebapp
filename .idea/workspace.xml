@@ -10,28 +10,31 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a50b9782-7b46-4ebe-9606-45fe2328b225" name="Default Changelist" comment="project">
-      <change afterPath="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-daily-production.html" afterDir="false" />
+    <list default="true" id="a50b9782-7b46-4ebe-9606-45fe2328b225" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/deliverywebapp/routes/packing_materials_route.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-finished-goods.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-packaging-materials.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-packing-materials.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/update-finished-goods.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-packaging-materials.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-packing-materials.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deliverywebapp/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/deliverywebapp/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deliverywebapp/delivery_webapp_db" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/deliverywebapp/forms/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/deliverywebapp/forms/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deliverywebapp/models/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/deliverywebapp/models/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deliverywebapp/routes/account_info_route.py" beforeDir="false" afterPath="$PROJECT_DIR$/deliverywebapp/routes/account_info_route.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deliverywebapp/routes/area_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/deliverywebapp/routes/area_routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deliverywebapp/routes/conversion_factors_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/deliverywebapp/routes/conversion_factors_routes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deliverywebapp/routes/customer_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/deliverywebapp/routes/customer_routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deliverywebapp/routes/order_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/deliverywebapp/routes/order_routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deliverywebapp/routes/product_prices_route.py" beforeDir="false" afterPath="$PROJECT_DIR$/deliverywebapp/routes/product_prices_route.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deliverywebapp/routes/production_activities_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/deliverywebapp/routes/production_activities_routes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deliverywebapp/routes/update_daily_production_route.py" beforeDir="false" afterPath="$PROJECT_DIR$/deliverywebapp/routes/update_daily_production_route.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deliverywebapp/routes/update_material_quantities_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/deliverywebapp/routes/update_material_quantities_routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deliverywebapp/routes/view_daily_production_route.py" beforeDir="false" afterPath="$PROJECT_DIR$/deliverywebapp/routes/view_daily_production_route.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deliverywebapp/routes/view_quantity_balances_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/deliverywebapp/routes/view_quantity_balances_routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deliverywebapp/routes/update_finished_goods_route.py" beforeDir="false" afterPath="$PROJECT_DIR$/deliverywebapp/routes/update_finished_goods_route.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deliverywebapp/routes/update_packaging_material_route.py" beforeDir="false" afterPath="$PROJECT_DIR$/deliverywebapp/routes/update_packaging_material_route.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deliverywebapp/routes/view_packaging_material_balances_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/deliverywebapp/routes/view_packaging_material_balances_routes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-daily-production.html" beforeDir="false" afterPath="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-daily-production.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-material_quantities.html" beforeDir="false" afterPath="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-material-quantities.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-orders.html" beforeDir="false" afterPath="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-orders.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-production-activities.html" beforeDir="false" afterPath="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-production-activities.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-deliveries.html" beforeDir="false" afterPath="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-deliveries.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-suppliers.html" beforeDir="false" afterPath="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-suppliers.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-material-quantities.html" beforeDir="false" afterPath="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-material-quantities.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-product-prices.html" beforeDir="false" afterPath="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-product-prices.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-production-activities.html" beforeDir="false" afterPath="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-production-activities.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deliverywebapp/templates/master_layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/deliverywebapp/templates/master_layout.html" afterDir="false" />
     </list>
@@ -43,56 +46,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/master_layout.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="241">
-              <caret line="141" column="84" selection-start-line="141" selection-start-column="84" selection-end-line="141" selection-end-column="84" />
-              <folding>
-                <element signature="n#style#0;n#ul#0;n#li#6;n#ul#0;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/deliverywebapp/routes/update_daily_production_route.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="335">
-              <caret line="42" column="68" selection-start-line="42" selection-start-column="68" selection-end-line="42" selection-end-column="68" />
-              <folding>
-                <element signature="e#0#74#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/deliverywebapp/models/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-560">
-              <caret line="312" column="6" selection-start-line="312" selection-start-column="6" selection-end-line="312" selection-end-column="24" />
-              <folding>
-                <element signature="e#0#29#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/deliverywebapp/forms/forms.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="180" lean-forward="true" selection-start-line="180" selection-end-line="180" />
-              <folding>
-                <element signature="e#0#35#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -120,20 +74,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-product.html" />
-        <option value="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-product-prices.html" />
-        <option value="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-areas.html" />
-        <option value="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-raw-material-items.html" />
-        <option value="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-unit-of-measure.html" />
-        <option value="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-petty-cash.html" />
-        <option value="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-expense-categories.html" />
-        <option value="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-bills.html" />
-        <option value="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-suppliers.html" />
-        <option value="$PROJECT_DIR$/deliverywebapp/routes/routes.py" />
-        <option value="$PROJECT_DIR$/deliverywebapp/routes/product_route.py" />
-        <option value="$PROJECT_DIR$/deliverywebapp/routes/raw_material_items_routes.py" />
-        <option value="$PROJECT_DIR$/deliverywebapp/routes/unit_of_measure_routes.py" />
-        <option value="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-item-uom.html" />
         <option value="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-conversion-factors.html" />
         <option value="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-quantity-balances.html" />
         <option value="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-material-quantities.html" />
@@ -143,41 +83,55 @@
         <option value="$PROJECT_DIR$/deliverywebapp/routes/expense_categories_routes.py" />
         <option value="$PROJECT_DIR$/deliverywebapp/routes/petty_cash_routes.py" />
         <option value="$PROJECT_DIR$/deliverywebapp/routes/supplier_routes.py" />
-        <option value="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-suppliers.html" />
         <option value="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-customers.html" />
         <option value="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-unit-of-measure.html" />
-        <option value="$PROJECT_DIR$/deliverywebapp/routes/itemUom_routes.py" />
         <option value="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-item-uom.html" />
-        <option value="$PROJECT_DIR$/deliverywebapp/routes/product_prices_route.py" />
         <option value="$PROJECT_DIR$/deliverywebapp/routes/view_quantity_balances_routes.py" />
-        <option value="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-production-activities.html" />
-        <option value="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-production-activities.html" />
-        <option value="$PROJECT_DIR$/deliverywebapp/routes/production_activities_routes.py" />
         <option value="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-material_quantities.html" />
-        <option value="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-material-quantities.html" />
         <option value="$PROJECT_DIR$/deliverywebapp/routes/order_routes.py" />
-        <option value="$PROJECT_DIR$/deliverywebapp/routes/conversion_factors_routes.py" />
         <option value="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-conversion_factors.html" />
         <option value="$PROJECT_DIR$/deliverywebapp/routes/update_material_quantities_routes.py" />
         <option value="$PROJECT_DIR$/deliverywebapp/routes/account_info_route.py" />
         <option value="$PROJECT_DIR$/deliverywebapp/routes/area_routes.py" />
-        <option value="$PROJECT_DIR$/deliverywebapp/routes/customer_routes.py" />
-        <option value="$PROJECT_DIR$/deliverywebapp/__init__.py" />
-        <option value="$PROJECT_DIR$/deliverywebapp/forms/forms.py" />
         <option value="$PROJECT_DIR$/deliverywebapp/routes/view_daily_production_route.py" />
         <option value="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-deliveries.html" />
         <option value="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-daily-production.html" />
-        <option value="$PROJECT_DIR$/deliverywebapp/templates/master_layout.html" />
-        <option value="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-daily-production.html" />
+        <option value="$PROJECT_DIR$/deliverywebapp/routes/view_packaging_material_balances_routes.py" />
+        <option value="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-packaging-materials.html" />
+        <option value="$PROJECT_DIR$/deliverywebapp/routes/update_packaging_material_route.py" />
+        <option value="$PROJECT_DIR$/deliverywebapp/routes/packing_materials.py" />
+        <option value="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-packing-materials.html" />
+        <option value="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-packing-materials.html" />
+        <option value="$PROJECT_DIR$/deliverywebapp/routes/packing_materials_route.py" />
+        <option value="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/update-finished-goods.html" />
+        <option value="$PROJECT_DIR$/deliverywebapp/routes/product_prices_route.py" />
+        <option value="$PROJECT_DIR$/deliverywebapp/__init__.py" />
+        <option value="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-production-activities.html" />
+        <option value="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-production-activities.html" />
+        <option value="$PROJECT_DIR$/deliverywebapp/forms/forms.py" />
+        <option value="$PROJECT_DIR$/deliverywebapp/routes/production_activities_routes.py" />
+        <option value="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-material-quantities.html" />
+        <option value="$PROJECT_DIR$/deliverywebapp/routes/customer_routes.py" />
+        <option value="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-orders.html" />
+        <option value="$PROJECT_DIR$/deliverywebapp/routes/itemUom_routes.py" />
+        <option value="$PROJECT_DIR$/deliverywebapp/routes/conversion_factors_routes.py" />
         <option value="$PROJECT_DIR$/deliverywebapp/models/models.py" />
         <option value="$PROJECT_DIR$/deliverywebapp/routes/update_daily_production_route.py" />
+        <option value="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-daily-production.html" />
+        <option value="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-packaging-materials.html" />
+        <option value="$PROJECT_DIR$/deliverywebapp/templates/master_layout.html" />
+        <option value="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-finished-goods.html" />
+        <option value="$PROJECT_DIR$/deliverywebapp/routes/update_finished_goods_route.py" />
+        <option value="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-suppliers.html" />
+        <option value="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-orders.html" />
+        <option value="$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-product-prices.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="565" />
-    <option name="y" value="114" />
-    <option name="width" value="758" />
+    <option name="x" value="340" />
+    <option name="y" value="45" />
+    <option name="width" value="707" />
     <option name="height" value="593" />
   </component>
   <component name="ProjectId" id="1ejKRfL9G0zm7bHX85bFdHxM49W" />
@@ -189,7 +143,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -202,10 +155,24 @@
               <item name="Project" type="462c0819:PsiDirectoryNode" />
               <item name="deliverywebapp" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Project" type="462c0819:PsiDirectoryNode" />
+              <item name="deliverywebapp" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Project" type="462c0819:PsiDirectoryNode" />
+              <item name="deliverywebapp" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="delivery_app" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="ProjectViewState">
@@ -382,13 +349,20 @@
       <option name="project" value="LOCAL" />
       <updated>1598310882716</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="project">
+      <created>1598480161004</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1598480161005</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.4077381" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.42485118" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -399,7 +373,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.3267974" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49776787" visible="true" weight="0.17320262" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49776787" weight="0.15644172" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50223213" side_tool="true" weight="0.22222222" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -408,6 +382,27 @@
       <window_info anchor="right" id="R Graphics" order="3" />
       <window_info anchor="right" id="R Packages" order="4" />
     </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" weight="0.32142857" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32843137" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32885906" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39869282" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.3267974" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49776787" visible="true" weight="0.16257669" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50223213" side_tool="true" weight="0.22222222" />
+      <window_info anchor="bottom" id="Python Console" order="10" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="R Graphics" order="3" />
+      <window_info anchor="right" id="R Packages" order="4" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
@@ -446,9 +441,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="project" />
     <MESSAGE value="project..." />
-    <option name="LAST_COMMIT_MESSAGE" value="project..." />
+    <MESSAGE value="project" />
+    <option name="LAST_COMMIT_MESSAGE" value="project" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1685" y="134" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1595838564929">
@@ -591,311 +586,12 @@
     <SUITE FILE_PATH="coverage/deliverywebapp$deliverywebapp.coverage" NAME="deliverywebapp Coverage Results" MODIFIED="1594993472526" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/example_autocomplete.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deliverywebapp/routes/routes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-product-prices.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8347">
-          <caret line="491" column="26" lean-forward="true" selection-start-line="491" selection-start-column="26" selection-end-line="491" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-unit-of-measure.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="508" column="43" lean-forward="true" selection-end-line="596" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-expense-categories.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-raw-material-items.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7858">
-          <caret line="20" column="50" lean-forward="true" selection-start-line="20" selection-start-column="50" selection-end-line="20" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-product-prices.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-742">
-          <caret line="507" column="74" selection-start-line="507" selection-start-column="74" selection-end-line="507" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-bills.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="69" lean-forward="true" selection-start-line="15" selection-start-column="69" selection-end-line="15" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deliverywebapp/routes/bill_routes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="50" column="29" lean-forward="true" selection-start-line="50" selection-start-column="29" selection-end-line="50" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#83#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deliverywebapp/routes/petty_cash_routes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="104" lean-forward="true" selection-start-line="56" selection-start-column="3" selection-end-line="104" />
-          <folding>
-            <element signature="e#0#83#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-suppliers.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-26">
-          <caret line="516" column="56" lean-forward="true" selection-start-line="516" selection-start-column="56" selection-end-line="516" selection-end-column="56" />
-          <folding>
-            <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#div#0;n#form#0;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#div#0;n#form#0;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-unit-of-measure.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4023">
-          <caret line="591" column="14" selection-start-line="591" selection-start-column="14" selection-end-line="591" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-conversion-factors.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-9264">
-          <caret line="22" column="45" lean-forward="true" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deliverywebapp/routes/supplier_routes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="54" column="50" lean-forward="true" selection-start-line="54" selection-start-column="50" selection-end-line="54" selection-end-column="50" />
-          <folding>
-            <element signature="e#0#83#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deliverywebapp/routes/itemUom_routes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="58" lean-forward="true" selection-start-line="58" selection-end-line="58" />
-          <folding>
-            <element signature="e#0#74#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deliverywebapp/utility.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="13" column="23" lean-forward="true" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deliverywebapp/routes/product_prices_route.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="71" lean-forward="true" selection-end-line="162" />
-          <folding>
-            <element signature="e#0#83#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deliverywebapp/routes/expense_categories_routes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="36" column="86" lean-forward="true" selection-start-line="24" selection-start-column="4" selection-end-line="36" selection-end-column="86" />
-          <folding>
-            <element signature="e#0#83#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-production-activities.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8500">
-          <caret line="500" lean-forward="true" selection-start-line="500" selection-end-line="500" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-production-activities.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deliverywebapp/routes/production_activities_routes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="68" lean-forward="true" selection-start-line="68" selection-end-line="68" />
-          <folding>
-            <element signature="e#0#74#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deliverywebapp/routes/unit_of_measure_routes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1018">
-          <caret line="64" column="30" lean-forward="true" selection-start-line="64" selection-start-column="30" selection-end-line="64" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#83#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deliverywebapp/routes/view_quantity_balances_routes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
-          <folding>
-            <element signature="e#0#55#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deliverywebapp/routes/view_deliveries_routes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1183">
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deliverywebapp/routes/product_route.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="72" column="39" selection-start-line="72" selection-start-column="39" selection-end-line="72" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#74#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-quantity-balances.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8549">
-          <caret line="22" column="45" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-material-quantities.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-535">
-          <caret line="498" column="104" selection-start-line="498" selection-start-column="104" selection-end-line="498" selection-end-column="104" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deliverywebapp/routes/raw_material_items_routes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="32" column="56" selection-start-line="32" selection-start-column="56" selection-end-line="32" selection-end-column="56" />
-          <folding>
-            <element signature="e#0#83#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deliverywebapp/routes/order_routes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1229">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
-          <folding>
-            <element signature="e#0#83#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deliverywebapp/routes/conversion_factors_routes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
-          <folding>
-            <element signature="e#0#83#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-conversion_factors.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="505" column="73" lean-forward="true" selection-start-line="505" selection-start-column="73" selection-end-line="505" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deliverywebapp/routes/update_material_quantities_routes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-          <folding>
-            <element signature="e#0#83#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deliverywebapp/routes/account_info_route.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1440">
-          <caret line="106" column="51" selection-start-line="106" selection-start-column="51" selection-end-line="106" selection-end-column="51" />
-          <folding>
-            <element signature="e#0#83#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/deliverywebapp/routes/area_routes.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="356">
           <caret line="70" column="16" lean-forward="true" selection-start-line="70" selection-start-column="16" selection-end-line="70" selection-end-column="16" />
           <folding>
             <element signature="e#0#83#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deliverywebapp/routes/customer_routes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="75" lean-forward="true" selection-start-line="75" selection-end-line="75" />
-          <folding>
-            <element signature="e#0#83#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deliverywebapp/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="38" column="68" lean-forward="true" selection-start-line="38" selection-start-column="68" selection-end-line="38" selection-end-column="68" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -917,34 +613,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-orders.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="530" column="10" selection-start-line="530" selection-start-column="10" selection-end-line="530" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-customers.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1202">
-          <caret line="607" column="14" selection-start-line="607" selection-start-column="14" selection-end-line="607" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-deliveries.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
           <caret line="758" column="59" selection-end-line="967" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deliverywebapp/forms/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="180" lean-forward="true" selection-start-line="180" selection-end-line="180" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -955,13 +627,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-item-uom.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-410">
-          <caret line="539" column="94" selection-start-line="539" selection-start-column="94" selection-end-line="539" selection-end-column="94" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-daily-production.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2305">
@@ -969,46 +634,376 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-material-quantities.html">
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/routes/expense_categories_routes.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1321">
-          <caret line="572" selection-start-line="572" selection-end-line="572" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-daily-production.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8959">
-          <caret line="527" column="85" selection-start-line="527" selection-start-column="85" selection-end-line="527" selection-end-column="85" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/master_layout.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="141" column="84" selection-start-line="141" selection-start-column="84" selection-end-line="141" selection-end-column="84" />
+        <state relative-caret-position="95">
+          <caret line="22" column="41" lean-forward="true" selection-start-line="22" selection-start-column="41" selection-end-line="22" selection-end-column="41" />
           <folding>
-            <element signature="n#style#0;n#ul#0;n#li#6;n#ul#0;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#0#83#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/deliverywebapp/routes/update_daily_production_route.py">
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/routes/view_deliveries_routes.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="42" column="68" selection-start-line="42" selection-start-column="68" selection-end-line="42" selection-end-column="68" />
+        <state>
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-product.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="575" column="24" lean-forward="true" selection-end-line="592" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-packing-materials.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="544" column="39" selection-start-line="544" selection-start-column="39" selection-end-line="544" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-expense-categories.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="38" lean-forward="true" selection-end-line="576" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/routes/packing_materials_route.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="816">
+          <caret line="64" selection-start-line="64" selection-end-line="64" />
           <folding>
             <element signature="e#0#74#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/routes/supplier_routes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="918">
+          <caret line="54" column="50" lean-forward="true" selection-start-line="54" selection-start-column="50" selection-end-line="54" selection-end-column="50" />
+          <folding>
+            <element signature="e#0#83#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/delivery_app/update-finished-goods.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8464">
+          <caret line="501" column="101" selection-start-line="501" selection-start-column="101" selection-end-line="501" selection-end-column="101" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="40" column="36" selection-start-line="40" selection-start-column="36" selection-end-line="40" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-production-activities.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="543" column="109" selection-start-line="543" selection-start-column="109" selection-end-line="543" selection-end-column="109" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-production-activities.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="532" column="58" selection-start-line="532" selection-start-column="58" selection-end-line="532" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-packaging-materials.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="502" column="24" selection-end-line="603" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/routes/customer_routes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="66" column="35" selection-start-line="66" selection-start-column="35" selection-end-line="66" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#83#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/routes/view_quantity_balances_routes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+          <folding>
+            <element signature="e#0#55#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/routes/view_finished_goods_balances_routes.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/routes/view_packaging_material_balances_routes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+          <folding>
+            <element signature="e#0#55#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-customers.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2376">
+          <caret line="607" column="14" selection-start-line="607" selection-start-column="14" selection-end-line="607" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-item-uom.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3549">
+          <caret line="514" lean-forward="true" selection-start-line="514" selection-end-line="514" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/routes/production_activities_routes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-131">
+          <caret line="34" column="31" lean-forward="true" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#74#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-material-quantities.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-501">
+          <caret line="501" column="104" selection-start-line="501" selection-start-column="104" selection-end-line="501" selection-end-column="104" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/routes/update_material_quantities_routes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="29">
+          <caret line="43" column="33" lean-forward="true" selection-start-line="43" selection-start-column="33" selection-end-line="43" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#83#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-material-quantities.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1023">
+          <caret line="572" selection-start-line="572" selection-end-line="572" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/routes/order_routes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="891">
+          <caret line="86" lean-forward="true" selection-start-line="86" selection-end-line="86" />
+          <folding>
+            <element signature="e#0#83#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/routes/conversion_factors_routes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="43" column="51" lean-forward="true" selection-start-line="43" selection-start-column="51" selection-end-line="43" selection-end-column="51" />
+          <folding>
+            <element signature="e#0#83#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/routes/itemUom_routes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="40" column="58" selection-start-line="40" selection-start-column="58" selection-end-line="40" selection-end-column="58" />
+          <folding>
+            <element signature="e#0#74#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-daily-production.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="619" column="70" lean-forward="true" selection-start-line="619" selection-start-column="70" selection-end-line="619" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-packing-materials.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-510">
+          <caret line="495" column="104" selection-start-line="495" selection-start-column="104" selection-end-line="495" selection-end-column="104" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/routes/update_daily_production_route.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="35" column="74" selection-start-line="35" selection-start-column="74" selection-end-line="35" selection-end-column="74" />
+          <folding>
+            <element signature="e#0#74#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-finished-goods.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="412">
+          <caret line="587" column="130" selection-start-line="587" selection-start-column="130" selection-end-line="587" selection-end-column="130" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/deliverywebapp/models/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-560">
-          <caret line="312" column="6" selection-start-line="312" selection-start-column="6" selection-end-line="312" selection-end-column="24" />
+        <state relative-caret-position="365">
+          <caret line="423" column="92" lean-forward="true" selection-start-line="423" selection-start-column="92" selection-end-line="423" selection-end-column="92" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-packaging-materials.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="464">
+          <caret line="573" column="55" selection-start-line="573" selection-start-column="55" selection-end-line="573" selection-end-column="130" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/routes/update_packaging_material_route.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="30" column="34" lean-forward="true" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="54" />
+          <folding>
+            <element signature="e#0#74#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/routes/update_finished_goods_route.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="50" column="13" lean-forward="true" selection-start-line="50" selection-start-column="13" selection-end-line="50" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#74#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-suppliers.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1429">
+          <caret line="452" column="21" lean-forward="true" selection-start-line="452" selection-start-column="21" selection-end-line="452" selection-end-column="21" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#form#0;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#div#0;n#form#0;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#3;n#div#0;n#div#0;n#div#0;n#form#0;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/delivery_app/define-orders.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="349">
+          <caret line="701" column="131" lean-forward="true" selection-start-line="701" selection-start-column="131" selection-end-line="701" selection-end-column="131" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/master_layout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="147" column="121" selection-start-line="147" selection-start-column="121" selection-end-line="147" selection-end-column="121" />
+          <folding>
+            <element signature="n#style#0;n#ul#0;n#li#6;n#ul#0;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-unit-of-measure.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="27" lean-forward="true" selection-end-line="596" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/routes/product_prices_route.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="85" column="31" lean-forward="true" selection-start-line="85" selection-start-column="31" selection-end-line="85" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#83#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/routes/product_route.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-941">
+          <folding>
+            <element signature="e#0#74#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-product.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-9001">
+          <caret line="11" column="47" selection-start-line="11" selection-start-column="47" selection-end-line="11" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-orders.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="608" column="14" selection-start-line="608" selection-start-column="14" selection-end-line="608" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/static/delivery_app_scripts/view_product_prices_search2.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-raw-material-items.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="548" column="47" lean-forward="true" selection-end-line="595" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/templates/delivery_app/view-product-prices.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="485">
+          <caret line="546" column="46" selection-start-line="546" selection-start-column="46" selection-end-line="546" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deliverywebapp/forms/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="48" column="72" selection-start-line="48" selection-start-column="72" selection-end-line="48" selection-end-column="72" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
           </folding>
         </state>
       </provider>

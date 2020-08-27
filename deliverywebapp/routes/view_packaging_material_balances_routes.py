@@ -20,8 +20,5 @@ from deliverywebapp.models.models import *
      #       flash(ex, 'danger')
 
 
-@app.route('/delivery_app/view-packaging_materials')
-def view_packaging_materials():
-    form = UpdatePackagingMaterialsForm()
-    return render_template('/delivery_app/view-packaging-materials.html', form=form)
+
 

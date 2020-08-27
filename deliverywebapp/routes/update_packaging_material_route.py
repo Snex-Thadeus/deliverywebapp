@@ -32,24 +32,31 @@ def define_packaging_materials():
             packaging_materials_dd = packagingMaterialsDropDownSchema.dump(packaging_materials)
             for i in packaging_materials_dd:
                 packaging_materials_choices.append((i['ID'], i['Description']))
-            form.choosePackagingMaterials.choices = packaging_materials_choices
+            form.choosePackagingMaterial.choices = packaging_materials_choices
 
         else:
             request.method == "POST"
             packaging_materials = UpdateDailyProductionTb(
-                form.choosePackagingMaterials.data
+                form.choosePackagingMaterial.data,
+                form.quantity.data,
+                form.date.data
             )
             db.session.add(packaging_materials)
             db.session.commit()
 
             flash(
-                'Packaging materials: "' + form.choosePackagingMaterials.data + '" is successfully added ',
+                'Packaging materials: "' + form.choosePackagingMaterial.data + '" is successfully added ',
                 'success')
-            return redirect(url_for('view packaging materials', form=form))
+            return redirect(url_for('view_packaging_materials', form=form))
 
     except Exception as ex:
         flash(ex, 'danger')
 
     return render_template('/delivery_app/define-packaging-materials.html', form=form)
 
+
+@app.route('/delivery_app/view-packaging-materials')
+def view_packaging_materials():
+    form = UpdatePackagingMaterialsForm()
+    return render_template('/delivery_app/view-packaging-materials.html', form=form)
 

@@ -36,7 +36,9 @@ from deliverywebapp.routes import routes, product_route, \
         update_material_quantities_routes, reset_token_route, \
         view_quantity_balances_routes, update_daily_production_route, \
         view_daily_production_route, update_packaging_material_route, \
-        view_packaging_material_balances_routes, reset_request_route
+        view_packaging_material_balances_routes, reset_request_route, \
+        packing_materials_route, update_finished_goods_route,\
+        production_activities_routes
 
 
     #return app

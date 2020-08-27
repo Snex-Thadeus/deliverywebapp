@@ -743,7 +743,7 @@
 
                                                             {% if form.deliveryMethod.errors %}
                                                                 {{ form.deliveryMethod(class="form-control select2-hidden-accessible", **{'data-placeholder':"Choose one", 'data-parsley-class-handler':"#slWrapper", 'data-parsley-errors-container':"#slErrorContainer" 'required'}) }}
-                                                                <div id="slErrorContainer">
+                                                                <div id="s2ErrorContainer">
                                                                     {% for error in form.deliveryMethod.errors %}
                                                                         <span>{{ error }}</span>
                                                                     {% endfor %}
@@ -760,7 +760,7 @@
 
                                                             {% if form.ddProducts.errors %}
                                                                 {{ form.ddProducts(class="form-control select2-hidden-accessible", **{'data-placeholder':"Choose one", 'data-parsley-class-handler':"#slWrapper", 'data-parsley-errors-container':"#slErrorContainer" 'required'}) }}
-                                                                <div id="slErrorContainer">
+                                                                <div id="s3ErrorContainer">
                                                                     {% for error in form.ddProducts.errors %}
                                                                         <span>{{ error }}</span>
                                                                     {% endfor %}
@@ -773,7 +773,7 @@
 
                                                     <div class="input-group mb-3 col-sm-4" style="padding-top: 2%;">
                                                         <div class="input-group-prepend">
-                                                            <span class="input-group-text" id="basic-addon3"><i
+                                                            <span class="input-group-text" id="basic-addon5"><i
                                                                     class="fa fa-money"></i></span>
                                                         </div>
                                                         {% if form.price.errors %}
@@ -805,7 +805,7 @@
 
                                                     <div class="input-group mb-3 col-sm-3" style="padding-top: 2%;">
                                                         <div class="input-group-prepend">
-                                                            <span class="input-group-text" id="basic-addon3"><i
+                                                            <span class="input-group-text" id="basic-addon6"><i
                                                                     class="fa fa-money"></i></span>
                                                         </div>
                                                         {% if form.totalAmount.errors %}

@@ -15,7 +15,7 @@ def search_daily_production():
     try:
         if searchbox != "":
             daily_production = UpdateDailyProductionTb.query.filter(
-                ProductionActivitiesTb.Description.like('%' + searchbox + '%')).all()
+                UpdateDailyProductionTb.Description.like('%' + searchbox + '%')).all()
             return json.dumps(daily_production, cls=AlchemyEncoder)
         else:
             daily_production = UpdateDailyProductionTb.query.all()
@@ -33,7 +33,7 @@ def define_daily_production():
             production_activities = ProductionActivitiesTb.query.all()
             production_activities_dd = productionActivitiesDropDownSchema.dump(production_activities)
             for i in production_activities_dd:
-                production_activities_choices.append((i['ID'], i['Description']))
+                production_activities_choices.append((i['ID'], i['Activity']))
             form.chooseProductionActivity.choices = production_activities_choices
 
             measure_choices = [(-1, 'Choose Measure')]
@@ -55,7 +55,7 @@ def define_daily_production():
             flash(
                 'Item Uom: "' + form.chooseProductionActivity.data + '", "' + form.chooseMeasure.data + '" is successfully added ',
                 'success')
-            return redirect(url_for('view_daily_production', form=form))
+            return redirect(url_for('define_daily_production', form=form))
 
     except Exception as ex:
         flash(ex, 'danger')

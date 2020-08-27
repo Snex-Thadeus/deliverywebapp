@@ -542,17 +542,25 @@
                                     <a class="btn btn-primary" href="{{ url_for('define_product_prices') }}">Add Product Price</a>
                                  </div>
                                  </div>
-                                    <table class="table table-separated table-bordered">
+                                    <table class="table table-separated table-bordered search-box-table">
                                        <thead>
                                           <tr>
-                                             <th class="font-weight-bold">PRODUCT DESCRIPTION</th>
                                              <th class="font-weight-bold">CATEGORY</th>
                                              <th class="font-weight-bold">METHOD</th>
                                              <th class="font-weight-bold">PRICE</th>
                                              <th class="text-center w-100px font-weight-bold">Actions</th>
                                           </tr>
                                        </thead>
-                                       <tbody>
+                                       <tbody id="tablebody">
+{#                                       {% for product in products %}#}
+{#                                          <tr>#}
+{#                                             <td>{{ product.SKUNumber }}</td>#}
+{#                                             <td>{{ product.Description }}</td>#}
+{#                                             <td class="text-right table-actions">#}
+{#                                                <a class="table-action  mg-r-10" href="{{ url_for('editDefineProduct', id=product.ID) }}"><i class="fa fa-pencil"></i></a>#}
+{#                                             </td>#}
+{#                                          </tr>#}
+{#                                       {% endfor %}#}
 
                                        </tbody>
                                     </table>

@@ -312,8 +312,8 @@ class ItemUomSchema(ma.Schema):
 
 class ConversionFactorTb(db.Model):
     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    MaterialItems = db.Column(db.String(50), nullable=False)
-    ItemUom = db.Column(db.String(50), nullable=False)
+    MaterialItems = db.Column(db.Integer, db.ForeignKey("material_items_tb.ID"), nullable=False)
+    ItemUom = db.Column(db.Integer, db.ForeignKey("unit_of_measure_tb.ID"), nullable=False)
     MeasurementDescription = db.Column(db.String(50), nullable=False)
     DescribeQuantity = db.Column(db.Integer, nullable=False)
 
@@ -416,8 +416,8 @@ class UpdatePackagingMaterialsTb(db.Model):
 
 class UpdateFinishedGoodsTb(db.Model):
     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    ProductTbID = db.Column(db.Integer, db.ForeignKey("product_price_tb.ID"), nullable=False)
-    PackagingMaterialsTbID = db.Column(db.Integer, db.ForeignKey("item_uom_tb.ID"), nullable=False)
+    ProductTbID = db.Column(db.Integer, db.ForeignKey("product_tb.ID"), nullable=False)
+    PackagingMaterialsTbID = db.Column(db.Integer, db.ForeignKey("packaging_materials_tb.ID"), nullable=False)
     QuantityUsed = db.Column(db.String(50), nullable=False)
     EntryDate = db.Column(db.Date, default=datetime.now(), nullable=False)
 

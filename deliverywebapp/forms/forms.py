@@ -153,7 +153,7 @@ class DefineConversionFactorsForm(FlaskForm):
 
 
 class DefineProductionActivitiesForm(FlaskForm):
-    activity = SelectField('Activity', validators=[DataRequired()])
+    activity = StringField('Activity', validators=[DataRequired()])
     submit = SubmitField("Add a new activity")
 
 
@@ -192,18 +192,19 @@ class ViewDailyProductionForm(FlaskForm):
 
 class DefinePackagingMaterialsForm(FlaskForm):
     description = StringField('Description', validators=[DataRequired()])
+    submit = SubmitField('Submit')
 
 
 class UpdatePackagingMaterialsForm(FlaskForm):
-    material = SelectField('Select Packaging Material', validators=[DataRequired()])
+    choosePackagingMaterial = SelectField('Select Packaging Material', validators=[DataRequired()])
     quantity = IntegerField('Enter Quantity', validators=[DataRequired()])
-    date = StringField('Enter Date', validators=[DataRequired()])
+    date = StringField('Date', validators=[DataRequired()])
     submit = SubmitField("Add New")
 
 
 class UpdateFinishedGoodsForm(FlaskForm):
-    product = SelectField('Select Product', validators=[DataRequired()])
-    packingMaterial = SelectField('Select Packing Material', validators=[DataRequired()])
+    chooseProduct = SelectField('Select Product', validators=[DataRequired()])
+    choosePackingMaterial = SelectField('Select Packing Material', validators=[DataRequired()])
     quantityUsed = IntegerField('Enter Quantity', validators=[DataRequired()])
     date = StringField('Date', validators=[DataRequired()])
     submit = SubmitField("Update Finished Goods")

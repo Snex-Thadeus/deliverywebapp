@@ -1,8 +1,11 @@
+
 {% extends "master_layout.html" %}
 {% block imports %}
-    <script src="{{ url_for('static', filename='delivery_app_scripts/view_expense_categories_search.js')}}"></script>
+    <script src="{{ url_for('static', filename='delivery_app_scripts/view_product_search.js')}}"></script>
 {% endblock %}
+
 {% block content %}
+
     <div class="page-content">
             <!--================================-->
             <!-- Page Header Start -->
@@ -496,7 +499,7 @@
                <div class="pd-y-10 pd-x-30 d-flex justify-content-between align-items-center header-bottom">
                   <div class="d-flex align-items-center">
                      <h2 class="d-flex align-items-center tx-16 mb-0 pd-r-10 mr-2 bd-r bd-gray-200">Manage Inventory</h2>
-                     <h2 class="d-flex align-items-center tx-13 mb-0 tx-normal">View Production Activity</h2>
+                     <h2 class="d-flex align-items-center tx-13 mb-0 tx-normal">View Production Activities</h2>
                   </div>
 
                </div>
@@ -534,24 +537,23 @@
                                  <div class="table-responsive">
                                     <div class="row">
                                     <div class="form-group col-sm-6">
-                                           <input type="text" id = "livebox" class="form-control" placeholder="Search Category Description">
+                                        <input type="text" id = "livebox" class="form-control" placeholder="Search Production Activity">
+{#                                        <input type="text"  id="livebox1" class="form-control searchbox" placeholder="Search Production Activity">#}
                                     </div>
                                     <div class="form-group col-sm-6">
-                                    <a class="btn btn-primary" href="{{ url_for('define_expense_category') }}" >Add Expense Category</a>
+                                    <a class="btn btn-primary" href="{{ url_for('define_production_activities') }}" >Add New Activity</a>
                                  </div>
                                  </div>
-                                    <table class="table table-separated table-bordered">
+                                    <table class="table table-separated table-bordered search-box-table">
                                        <thead>
                                           <tr>
-                                             <th class="font-weight-bold">CATEGORY DESCRIPTION</th>
+                                             <th class="font-weight-bold">ACTIVITY</th>
                                              <th class="text-center w-100px font-weight-bold">Actions</th>
                                           </tr>
                                        </thead>
-                                       <tbody>
-                                       </tbody>
                                     </table>
                                     <nav>
-                                       {#<ul class="pagination justify-content-center">
+                                      {# <ul class="pagination justify-content-center">
                                           <li class="page-item disabled">
                                              <a class="page-link waves-effect" href="">
                                              <span class="fa fa-arrow-left"></span>
@@ -560,6 +562,7 @@
                                           <li class="page-item active">
                                              <a class="page-link waves-effect" href="">1</a>
                                           </li>
+
                                           <li class="page-item"><a class="page-link waves-effect" href="">2</a></li>
                                           <li class="page-item"><a class="page-link waves-effect" href="">3</a></li>
                                           <li class="page-item"><a class="page-link waves-effect" href="">4</a></li>
@@ -575,6 +578,9 @@
                               </div>
                            </div>
                         </div>
+
+
+
                      </div>
                   </div>
                   <!--/ Page Content Area End -->

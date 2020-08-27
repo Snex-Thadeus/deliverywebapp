@@ -40,7 +40,7 @@ def define_conversion_factors():
                 raw_material_choices.append((i['ID'], i['Description']))
             form.chooseRawMaterial.choices = raw_material_choices
 
-            item_uom_choices = [(-1, 'Choose conversion factors')]
+            item_uom_choices = [(-1, 'Choose unit of measure')]
             item_uoms = UnitOfMeasureTb.query.all()
             item_uoms_dd = UnitOfMeasureDropDownSchema.dump(item_uoms)
             for i in item_uoms_dd:

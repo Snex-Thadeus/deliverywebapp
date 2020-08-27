@@ -1,8 +1,11 @@
+
 {% extends "master_layout.html" %}
 {% block imports %}
-    <script src="{{ url_for('static', filename='delivery_app_scripts/view_unit_of_measure_search.js')}}"></script>
+    <script src="{{ url_for('static', filename='delivery_app_scripts/view_product_search.js')}}"></script>
 {% endblock %}
+
 {% block content %}
+
     <div class="page-content">
             <!--================================-->
             <!-- Page Header Start -->
@@ -534,27 +537,26 @@
                                  <div class="table-responsive">
                                     <div class="row">
                                     <div class="form-group col-sm-6">
-                                           <input type="text" id = "livebox" class="form-control" placeholder="Search with description">
+                                        <input type="text" id = "livebox" class="form-control" placeholder="Search Material Quantity">
+{#                                        <input type="text"  id="livebox1" class="form-control searchbox" placeholder=" Search Material Quantity">#}
                                     </div>
                                     <div class="form-group col-sm-6">
                                     <a class="btn btn-primary" href="{{ url_for('define_material_quantities') }}" >Add Quantity</a>
                                  </div>
                                  </div>
-                                    <table class="table table-separated table-bordered">
+                                    <table class="table table-separated table-bordered search-box-table">
                                        <thead>
                                           <tr>
                                              <th class="font-weight-bold">MATERIAL</th>
-                                             <th class="font-weight-bold">DATE RECEIVED</th>
+                                             <th class="font-weight-bold">DATE ISSUED</th>
                                              <th class="font-weight-bold">UNIT OF MEASURE</th>
                                              <th class="font-weight-bold">QUANTITY</th>
-                                             <th class="text-center w-100px font-weight-bold">ACTION</th>
+                                             <th class="text-center w-100px font-weight-bold">Actions</th>
                                           </tr>
                                        </thead>
-                                       <tbody>
-                                       </tbody>
                                     </table>
                                     <nav>
-                                       {#<ul class="pagination justify-content-center">
+                                      {# <ul class="pagination justify-content-center">
                                           <li class="page-item disabled">
                                              <a class="page-link waves-effect" href="">
                                              <span class="fa fa-arrow-left"></span>
@@ -563,6 +565,7 @@
                                           <li class="page-item active">
                                              <a class="page-link waves-effect" href="">1</a>
                                           </li>
+
                                           <li class="page-item"><a class="page-link waves-effect" href="">2</a></li>
                                           <li class="page-item"><a class="page-link waves-effect" href="">3</a></li>
                                           <li class="page-item"><a class="page-link waves-effect" href="">4</a></li>
@@ -578,6 +581,9 @@
                               </div>
                            </div>
                         </div>
+
+
+
                      </div>
                   </div>
                   <!--/ Page Content Area End -->

@@ -67,12 +67,10 @@ def define_customer_details():
                 form.location.data)
             db.session.add(customer)
             db.session.commit()
-
+            flash('Customer: "' + form.firstname.data + '  ' + form.lastname.data + '" successfully added', 'success')
+            return redirect(url_for('view_customers_details'))
         except Exception as ex:
             flash(ex, 'danger')
-
-        flash('Customer: "' + form.firstname.data + '  ' + form.lastname.data + '" successfully added', 'success')
-        return redirect(url_for('view_customers_details'))
 
     return render_template('./delivery_app/define-customers.html', form=form)
 

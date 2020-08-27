@@ -30,11 +30,11 @@ def define_production_activities():
             db.session.commit()
 
             flash('Production Activity: "' + form.activity.data + '" successfully added', 'success')
-            return redirect(url_for('define_production_activities', form=form))
+            return redirect(url_for('view_production_activities', form=form))
         except Exception as ex:
             flash(ex, 'danger')
 
-    return render_template('/delivery_app/define-expense-categories.html', form=form)
+    return render_template('/delivery_app/define-production-activities.html', form=form)
 
 
 @app.route('/delivery_app/define-production-activities-edit/<string:id>', methods=['GET', 'POST'])
